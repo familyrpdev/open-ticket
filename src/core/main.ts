@@ -18,6 +18,7 @@ export class ODOpenTicketMain extends api.ODMain {
     
     declare checkers: api.ODMappedCheckerManager
     declare builders: api.ODMappedBuilderManager
+    declare components: api.ODMappedComponentManager
     declare responders: api.ODMappedResponderManager
     declare actions: api.ODMappedActionManager
     declare verifybars: api.ODMappedVerifyBarManager
@@ -86,6 +87,7 @@ export class ODOpenTicketMain extends api.ODMain {
                 new api.ODMappedCheckerFunctionManager(debug)
             ),
             builders:new api.ODMappedBuilderManager(debug),
+            components:new api.ODMappedComponentManager(debug),
             client,
             responders:new api.ODMappedResponderManager(debug,client),
             actions:new api.ODMappedActionManager(debug),

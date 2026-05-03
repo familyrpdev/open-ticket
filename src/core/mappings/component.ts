@@ -1,0 +1,53 @@
+///////////////////////////////////////
+//OPEN TICKET COMPONENT MAPPINGS
+///////////////////////////////////////
+import * as api from "@open-discord-bots/framework/api"
+import * as discord from "discord.js"
+
+/**## ODSharedComponentManagerIdMappings `interface`
+ * A list of all available IDs in the default `ODSharedComponentManager` class in `opendiscord`.
+ * It's used to generate typescript declarations for this class.
+ */
+export interface ODSharedComponentManagerIdMappings extends api.ODComponentManagerIdConstraint {
+    "opendiscord:example-component":{origin:"slash"|"text"|"other",params:{guild:discord.Guild|null,channel:discord.TextBasedChannel,user:discord.User},workers:"opendiscord:example-component"},
+}
+
+/**## ODMessageComponentManagerIdMappings `interface`
+ * A list of all available IDs in the default `ODMessageComponentManager` class in `opendiscord`.
+ * It's used to generate typescript declarations for this class.
+ */
+export interface ODMessageComponentManagerIdMappings extends api.ODComponentManagerIdConstraint {
+    "opendiscord:example-message":{origin:"slash"|"text"|"other",params:{guild:discord.Guild|null,channel:discord.TextBasedChannel,user:discord.User},workers:"opendiscord:example-message"},
+}
+
+/**## ODModalComponentManagerIdMappings `interface`
+ * A list of all available IDs in the default `ODModalComponentManager` class in `opendiscord`.
+ * It's used to generate typescript declarations for this class.
+ */
+export interface ODModalComponentManagerIdMappings extends api.ODComponentManagerIdConstraint {
+    "opendiscord:example-modal":{origin:"slash"|"text"|"other",params:{guild:discord.Guild|null,channel:discord.TextBasedChannel,user:discord.User},workers:"opendiscord:example-modal"},
+}
+
+/////////////////////////////
+////// MAPPED MANAGERS //////
+/////////////////////////////
+
+/**## ODMappedSharedComponentManager `class
+ * A special class with types for the Open Ticket `ODSharedComponentManager` class.
+ */
+export class ODMappedSharedComponentManager extends api.ODSharedComponentManager<ODSharedComponentManagerIdMappings> {}
+
+/**## ODMappedMessageComponentManager `class
+ * A special class with types for the Open Ticket `ODMessageComponentManager` class.
+ */
+export class ODMappedMessageComponentManager extends api.ODMessageComponentManager<ODMessageComponentManagerIdMappings> {}
+
+/**## ODMappedModalComponentManager `class
+ * A special class with types for the Open Ticket `ODModalComponentManager` class.
+ */
+export class ODMappedModalComponentManager extends api.ODModalComponentManager<ODModalComponentManagerIdMappings> {}
+
+/**## ODMappedComponentManager `class
+ * A special class with types for the Open Ticket `ODBuilderManager` class.
+ */
+export class ODMappedComponentManager extends api.ODComponentManager<ODSharedComponentManagerIdMappings,ODMessageComponentManagerIdMappings,ODModalComponentManagerIdMappings> {}
