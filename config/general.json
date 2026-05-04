@@ -5,14 +5,14 @@
         "version":"open-ticket-v4.1.3"
     },
     
-    "token":"insert your bot token here! (or leave empty when using 'tokenFromENV')",
+    "token":"INSERT_BOT_TOKEN (leave empty if using 'tokenFromENV')",
     "tokenFromENV":false,
 
     "mainColor":"#f8ba00",
     "language":"english",
     "prefix":"!ticket ",
-    "serverId":"discord server id",
-    "globalAdmins":["discord role id"],
+    "serverId":"DISCORD_SERVER_ID",
+    "globalAdmins":["DISCORD_ROLE_ID"],
 
     "slashCommands":true,
     "textCommands":true,
@@ -22,7 +22,7 @@
         "type":"listening OR watching OR playing OR custom",
         "mode":"online OR invisible OR idle OR dnd",
         "text":"/help",
-        "state":"(additional text or leave empty)"
+        "state":"Insert additional status text (or leave empty)"
     },
 
     "system":{
@@ -58,7 +58,7 @@
 
         "logs":{
             "enabled":false,
-            "channel":"discord channel id"
+            "channel":"DISCORD_CHANNEL_ID"
         },
         
         "limits":{

@@ -47,7 +47,7 @@ export const loadAllConfigCheckerTranslations = async () => {
 //GLOBAL FUNCTIONS
 export const registerDefaultCheckerSystemTranslations = (tm:api.ODMappedCheckerTranslationRegister,lm:api.ODMappedLanguageManager) => {
     //SYSTEM
-    //tm.quickTranslate(lm,"checker.system.headerOpenTicket","other","opendiscord:header-openticket") //OPEN TICKET (ignore)
+    tm.quickTranslate(lm,"checker.system.headerOpenTicket","other","opendiscord:header-projectname") //OPEN TICKET
     tm.quickTranslate(lm,"checker.system.typeError","other","opendiscord:type-error") // [ERROR] (ignore)
     tm.quickTranslate(lm,"checker.system.typeWarning","other","opendiscord:type-warning") // [WARNING] (ignore)
     tm.quickTranslate(lm,"checker.system.typeInfo","other","opendiscord:type-info") // [INFO] (ignore)

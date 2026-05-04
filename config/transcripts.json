@@ -8,11 +8,11 @@
         "enableActiveAdminDM":false,
         "enableEveryAdminDM":false,
 
-        "channel":"transcript channel id (or leave empty)",
+        "channel":"DISCORD_TRANSCRIPT_CHANNEL_ID (leave empty to disable)",
         "mode":"html OR text"
     },
     "embedSettings":{
-        "customColor":"#f8ab00 (or leave empty)",
+        "customColor":"#f8ab00 (leave empty to disable)",
         "listAllParticipants":false,
         "includeTicketStats":false
     },
@@ -25,13 +25,13 @@
         "includeBotMessages":true,
 
         "fileMode":"custom OR channel-name OR channel-id OR user-name OR user-id",
-        "customFileName":"this-is-a-transcript (or leave empty)"
+        "customFileName":"transcript"
     },
     "htmlTranscriptStyle":{
         "background":{
             "enableCustomBackground":false,
-            "backgroundColor":"#f8ba00 (or leave empty)",
-            "backgroundImage":"https://www.example.com/image.png (or leave empty)" 
+            "backgroundColor":"#f8ba00 (leave empty to disable)",
+            "backgroundImage":"https://www.example.com/image.png (leave empty to disable)" 
         },
         "header":{
             "enableCustomHeader":false,

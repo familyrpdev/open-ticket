@@ -9,22 +9,22 @@
         "embed":{
             "enabled":true,
             "title":"Tickets:",
-            "description":"Create a ticket by clicking one of the buttons below!",
+            "description":"Create a ticket by selecting one of the options below. Once selected, a private ticket will be created for you and our support team will be able to assist you directly.",
             
-            "customColor":"#f8ab00 (or leave empty)",
-            "url":"https://openticket.dj-dj.be (or leave empty)",
+            "customColor":"#f8ab00 (leave empty to disable)",
+            "url":"https://openticket.dj-dj.be (leave empty to disable)",
 
-            "image":"https://www.example.com/image.png (or leave empty)",
-            "thumbnail":"https://www.example.com/image.png (or leave empty)",
+            "image":"https://www.example.com/image.png (leave empty to disable)",
+            "thumbnail":"https://www.example.com/image.png (leave empty to disable)",
             
-            "footer":"Open Ticket v4.1.3 (or leave empty)",
+            "footer":"Open Ticket v4.1.3 (leave empty to disable)",
             "fields":[
-                {"name":"field name","value":"field value","inline":false}
+                {"name":"Field name","value":"Field value","inline":false}
             ],
             "timestamp":false
         },
         "settings":{
-            "dropdownPlaceholder":"Create a ticket!",
+            "dropdownPlaceholder":"Choose a ticket type",
 
             "enableMaxTicketsWarningInText":false,
             "enableMaxTicketsWarningInEmbed":true,
