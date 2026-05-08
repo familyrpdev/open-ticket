@@ -652,7 +652,7 @@ const main = async () => {
     //load shared components
     opendiscord.log("Loading shared components...","system")
     if (opendiscord.sharedFuses.getFuse("sharedComponentsLoading")){
-        //TODO TODO
+        //TODO!!
     }
     await opendiscord.events.get("onSharedComponentLoad").emit([opendiscord.components.shared,opendiscord.components,opendiscord.actions])
     await opendiscord.events.get("afterSharedComponentsLoaded").emit([opendiscord.components.shared,opendiscord.components,opendiscord.actions])
@@ -660,7 +660,7 @@ const main = async () => {
     //load message components
     opendiscord.log("Loading message components...","system")
     if (opendiscord.sharedFuses.getFuse("messageComponentsLoading")){
-        //TODO TODO
+        //TODO!!
     }
     await opendiscord.events.get("onMessageComponentLoad").emit([opendiscord.components.messages,opendiscord.components,opendiscord.actions])
     await opendiscord.events.get("afterMessageComponentsLoaded").emit([opendiscord.components.messages,opendiscord.components,opendiscord.actions])
@@ -668,10 +668,18 @@ const main = async () => {
     //load modal components
     opendiscord.log("Loading modal components...","system")
     if (opendiscord.sharedFuses.getFuse("modalComponentsLoading")){
-        //TODO TODO
+        //TODO!!
     }
     await opendiscord.events.get("onModalComponentLoad").emit([opendiscord.components.modals,opendiscord.components,opendiscord.actions])
     await opendiscord.events.get("afterModalComponentsLoaded").emit([opendiscord.components.modals,opendiscord.components,opendiscord.actions])
+
+    //load component modifiers
+    opendiscord.log("Loading component modifiers...","system")
+    if (opendiscord.sharedFuses.getFuse("componentModifiersLoading")){
+        //TODO!!
+    }
+    await opendiscord.events.get("onComponentModifierLoad").emit([opendiscord.components.modifiers,opendiscord.components.messages,opendiscord.builders.messages])
+    await opendiscord.events.get("afterComponentModifiersLoaded").emit([opendiscord.components.modifiers,opendiscord.components.messages,opendiscord.builders.messages])
 
     //plugin loading before responders
     await opendiscord.events.get("onPluginBeforeResponderLoad").emit([])

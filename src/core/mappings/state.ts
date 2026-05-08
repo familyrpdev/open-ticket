@@ -10,6 +10,7 @@ import * as discord from "discord.js"
  */
 export interface ODStateManagerIdMappings extends api.ODStateManagerIdConstraint {
     "opendiscord:message-origin":ODMessageOriginState,
+    "opendiscord:verifybar":ODVerifybarState,
 }
 
 /////////////////////////////
@@ -21,9 +22,17 @@ export interface ODStateManagerIdMappings extends api.ODStateManagerIdConstraint
  */
 export class ODMappedStateManager extends api.ODStateManager<ODStateManagerIdMappings> {}
 
-/**## ODGeneralJsonConfig `class
+/**## ODMessageOriginState `class
  * A special class with types for the Open Ticket message origin states.
  */
 export class ODMessageOriginState extends api.ODState<{
-    messageOrigin:"ticket-message"|"close-message"|"reopen-message"|"autoclose-message"|"claim-message"|"unclaim-message"|"pin-message"|"unpin-message"
-}> {}
+    messageOrigin:"slash"|"text"|"button"|"dropdown"|"modal"|"other",
+    messageType:"ticket-message"|"close-message"|"reopen-message"|"autoclose-message"|"claim-message"|"unclaim-message"|"pin-message"|"unpin-message",
+},false,false> {}
+
+/**## ODVerifybarState `class
+ * A special class with types for the Open Ticket verifybar states.
+ */
+export class ODVerifybarState extends api.ODState<{
+    verifybarId:string,
+},false,true> {}

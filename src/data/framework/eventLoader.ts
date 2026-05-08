@@ -219,6 +219,8 @@ export const loadAllEvents = () => {
         "afterMessageComponentsLoaded",
         "onModalComponentLoad",
         "afterModalComponentsLoaded",
+        "onComponentModifierLoad",
+        "afterComponentModifiersLoaded",
 
         //plugin loading before responders
         "onPluginBeforeResponderLoad",

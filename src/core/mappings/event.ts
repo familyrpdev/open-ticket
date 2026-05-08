@@ -28,7 +28,7 @@ import { ODMappedVerifyBarManager } from "./verifybar.js"
 import { ODMappedStartScreenManager } from "./startscreen.js"
 import { ODMappedLiveStatusManager } from "./console.js"
 import { ODMappedProgressBarManager, ODMappedProgressBarRendererManager } from "./progressbar.js"
-import { ODMappedComponentManager, ODMappedMessageComponentManager, ODMappedModalComponentManager, ODMappedSharedComponentManager } from "./component.js"
+import { ODMappedComponentManager, ODMappedComponentModifierManager, ODMappedMessageComponentManager, ODMappedModalComponentManager, ODMappedSharedComponentManager } from "./component.js"
 import { ODMappedStateManager } from "./state.js"
 
 //OPEN TICKET MAPPINGSS
@@ -263,6 +263,8 @@ export interface ODEventManagerIdMappings extends api.ODEventManagerIdConstraint
     "afterMessageComponentsLoaded": api.ODEvent<(shared:ODMappedMessageComponentManager, components:ODMappedComponentManager, actions:ODMappedActionManager) => api.ODPromiseVoid>
     "onModalComponentLoad": api.ODEvent<(shared:ODMappedModalComponentManager, components:ODMappedComponentManager, actions:ODMappedActionManager) => api.ODPromiseVoid>
     "afterModalComponentsLoaded": api.ODEvent<(shared:ODMappedModalComponentManager, components:ODMappedComponentManager, actions:ODMappedActionManager) => api.ODPromiseVoid>
+    "onComponentModifierLoad": api.ODEvent<(modifiers:ODMappedComponentModifierManager, msgComponents:ODMappedMessageComponentManager, msgBuilders:ODMappedMessageManager) => api.ODPromiseVoid>
+    "afterComponentModifiersLoaded": api.ODEvent<(modifiers:ODMappedComponentModifierManager, msgComponents:ODMappedMessageComponentManager, msgBuilders:ODMappedMessageManager) => api.ODPromiseVoid>
 
     //plugin loading before responders
     "onPluginBeforeResponderLoad": api.ODEvent<() => api.ODPromiseVoid>,

@@ -28,6 +28,14 @@ export interface ODModalComponentManagerIdMappings extends api.ODComponentManage
     //"opendiscord:example-modal":{origin:"slash"|"text"|"other",params:{guild:discord.Guild|null,channel:discord.TextBasedChannel,user:discord.User},workers:"opendiscord:example-modal"},
 }
 
+/**## ODComponentModifierManagerIdMappings `interface`
+ * A list of all available IDs in the default `ODComponentModifierManager` class in `opendiscord`.
+ * It's used to generate typescript declarations for this class.
+ */
+export interface ODComponentModifierManagerIdMappings extends api.ODComponentModifierManagerIdConstraint {
+    //"opendiscord:example-modifier":api.ODMessageComponentModifier<string,{}>,
+}
+
 /////////////////////////////
 ////// MAPPED MANAGERS //////
 /////////////////////////////
@@ -47,7 +55,12 @@ export class ODMappedMessageComponentManager extends api.ODMessageComponentManag
  */
 export class ODMappedModalComponentManager extends api.ODModalComponentManager<ODModalComponentManagerIdMappings> {}
 
+/**## ODMappedComponentModifierManager `class
+ * A special class with types for the Open Ticket `ODComponentModifierManager` class.
+ */
+export class ODMappedComponentModifierManager extends api.ODComponentModifierManager<ODComponentModifierManagerIdMappings> {}
+
 /**## ODMappedComponentManager `class
  * A special class with types for the Open Ticket `ODBuilderManager` class.
  */
-export class ODMappedComponentManager extends api.ODComponentManager<ODSharedComponentManagerIdMappings,ODMessageComponentManagerIdMappings,ODModalComponentManagerIdMappings> {}
+export class ODMappedComponentManager extends api.ODComponentManager<ODSharedComponentManagerIdMappings,ODMessageComponentManagerIdMappings,ODModalComponentManagerIdMappings,ODComponentModifierManagerIdMappings> {}
