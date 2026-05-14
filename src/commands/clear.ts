@@ -3,8 +3,10 @@
 ///////////////////////////////////////
 import {opendiscord, api, utilities} from "../index.js"
 import * as discord from "discord.js"
+import * as actionUtils from "../actions/utilities.js"
 
 const generalConfig = opendiscord.configs.get("opendiscord:general")
+const clearMsgState = opendiscord.states.get("opendiscord:clear-message")
 
 export async function registerCommandResponders(){
     //CLEAR COMMAND RESPONDER
@@ -29,7 +31,7 @@ export async function registerCommandResponders(){
             
             const tempFilter = instance.options.getString("filter",false)
             const filter = (tempFilter) ? tempFilter.toLowerCase() as api.ODTicketClearFilter : "all"
-            const list: string[] = []
+            const channelNameList: string[] = []
             const ticketList = opendiscord.tickets.getAll().filter((ticket) => {
                 if (filter == "all") return true
                 else if (filter == "open" && ticket.get("opendiscord:open").value) return true
@@ -43,12 +45,17 @@ export async function registerCommandResponders(){
             })
             for (const ticket of ticketList){
                 const ticketChannel = await opendiscord.tickets.getTicketChannel(ticket)
-                if (ticketChannel) list.push("#"+ticketChannel.name)
+                if (ticketChannel) channelNameList.push("#"+ticketChannel.name)
             }
 
             //reply with clear verify
             await instance.defer(true)
-            await instance.reply(await opendiscord.builders.messages.getSafe("opendiscord:clear-verify-message").build(origin,{guild,channel,user,filter,list}))
+            const sentMsg = await instance.reply(await opendiscord.builders.messages.getSafe("opendiscord:clear-verify-message").build(origin,{guild,channel,user,filter,list:channelNameList,inProgress:false}))
+            if (sentMsg.success) await clearMsgState.setMsgState({channel,message:sentMsg.message,user},{
+                messageOrigin:origin,
+                clearFilter:filter,
+                clearChannelNameList:channelNameList
+            },sentMsg.ephemeral)
         }),
         new api.ODWorker("opendiscord:logs",-1,(instance,params,origin,cancel) => {
             opendiscord.log(instance.user.displayName+" used the 'clear' command!","info",[
@@ -63,26 +70,45 @@ export async function registerCommandResponders(){
 
 export async function registerButtonResponders(){
     //CLEAR CONTINUE BUTTON RESPONDER
-    opendiscord.responders.buttons.add(new api.ODButtonResponder("opendiscord:clear-continue",/^od:clear-continue_/))
+    opendiscord.responders.buttons.add(new api.ODButtonResponder("opendiscord:clear-continue","od:clear-continue"))
     opendiscord.responders.buttons.get("opendiscord:clear-continue").workers.add(
         new api.ODWorker("opendiscord:clear-continue",0,async (instance,params,origin,cancel) => {
-            const {guild,channel,user} = instance
-            if (!guild || channel.isDMBased()) return
-            const originalOrigin = instance.interaction.customId.split("_")[1] as api.ODActionManagerIdMappings["opendiscord:clear-tickets"]["origin"]
-            const filter = instance.interaction.customId.split("_")[2] as api.ODTicketClearFilter
+            const {guild,channel,user,message} = instance
+
+            //check message state
+            const state = await clearMsgState.getMsgState({channel,message,user})
+            if (!state){
+                //TODO TRANSLATION!!!
+                await instance.reply(await opendiscord.builders.messages.getSafe("opendiscord:error").build(origin,{guild,channel,user,error:"This interaction is no longer valid or has expired. Use the command `{0}` instead. It is normal to receive this error after a major Open Ticket update.".replace("{0}","/clear"),layout:"simple",customTitle:"Message State Expired"}))
+                return cancel()
+            }
+
+            //responder checks
+            const hasPerms = await actionUtils.replyHasPermissions(instance,origin,"clear")
+            if (!hasPerms) return cancel()
+            
+            const isInGuild = await actionUtils.replyIsInGuild(instance,origin)
+            if (!isInGuild || !guild || !channel || channel.isDMBased()) return cancel()
+
+            //fetch state details
+            const originalUser = ((state.userId) ? await opendiscord.client.fetchUser(state.userId) : user) ?? user
+            const originalOrigin = state.data.messageOrigin
+            const originalClearFilter = state.data.clearFilter
+            const originalClearChannelNameList = state.data.clearChannelNameList
             
             //start ticket clear
-            await instance.defer("update",true)
+            await instance.update(await opendiscord.builders.messages.getSafe("opendiscord:clear-verify-message").build(originalOrigin,{guild,channel,user:originalUser,filter:originalClearFilter,list:originalClearChannelNameList,inProgress:true}))
+
             const list: string[] = []
             const ticketList = opendiscord.tickets.getAll().filter((ticket) => {
-                if (filter == "all") return true
-                else if (filter == "open" && ticket.get("opendiscord:open").value) return true
-                else if (filter == "closed" && ticket.get("opendiscord:closed").value) return true
-                else if (filter == "claimed" && ticket.get("opendiscord:claimed").value) return true
-                else if (filter == "pinned" && ticket.get("opendiscord:pinned").value) return true
-                else if (filter == "unclaimed" && !ticket.get("opendiscord:claimed").value) return true
-                else if (filter == "unpinned" && !ticket.get("opendiscord:pinned").value) return true
-                else if (filter == "autoclosed" && ticket.get("opendiscord:closed").value) return true
+                if (originalClearFilter == "all") return true
+                else if (originalClearFilter == "open" && ticket.get("opendiscord:open").value) return true
+                else if (originalClearFilter == "closed" && ticket.get("opendiscord:closed").value) return true
+                else if (originalClearFilter == "claimed" && ticket.get("opendiscord:claimed").value) return true
+                else if (originalClearFilter == "pinned" && ticket.get("opendiscord:pinned").value) return true
+                else if (originalClearFilter == "unclaimed" && !ticket.get("opendiscord:claimed").value) return true
+                else if (originalClearFilter == "unpinned" && !ticket.get("opendiscord:pinned").value) return true
+                else if (originalClearFilter == "autoclosed" && ticket.get("opendiscord:closed").value) return true
                 else return false
             })
             for (const ticket of ticketList){
@@ -90,8 +116,8 @@ export async function registerButtonResponders(){
                 if (ticketChannel) list.push("#"+ticketChannel.name)
             }
 
-            await opendiscord.actions.get("opendiscord:clear-tickets").run(originalOrigin,{guild,channel,user,filter,list:ticketList})
-            await instance.update(await opendiscord.builders.messages.getSafe("opendiscord:clear-message").build(originalOrigin,{guild,channel,user,filter,list}))
+            await opendiscord.actions.get("opendiscord:clear-tickets").run(originalOrigin,{guild,channel,user,filter:originalClearFilter,list:ticketList})
+            await instance.update(await opendiscord.builders.messages.getSafe("opendiscord:clear-message").build(originalOrigin,{guild,channel,user,filter:originalClearFilter,list}))
         })
     )
 }

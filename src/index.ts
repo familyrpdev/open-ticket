@@ -676,7 +676,7 @@ const main = async () => {
     //load component modifiers
     opendiscord.log("Loading component modifiers...","system")
     if (opendiscord.sharedFuses.getFuse("componentModifiersLoading")){
-        //TODO!!
+        await (await import("./components/verifybarModifiers.js")).registerAllVerifyBarModifiers()
     }
     await opendiscord.events.get("onComponentModifierLoad").emit([opendiscord.components.modifiers,opendiscord.components.messages,opendiscord.builders.messages])
     await opendiscord.events.get("afterComponentModifiersLoaded").emit([opendiscord.components.modifiers,opendiscord.components.messages,opendiscord.builders.messages])
@@ -806,13 +806,13 @@ const main = async () => {
     //load verifybars
     opendiscord.log("Loading verifybars...","system")
     if (opendiscord.sharedFuses.getFuse("verifyBarsLoading")){
-        await (await import("./actions/closeTicket.js")).registerVerifyBars()
-        await (await import("./actions/deleteTicket.js")).registerVerifyBars()
-        await (await import("./actions/reopenTicket.js")).registerVerifyBars()
-        await (await import("./actions/claimTicket.js")).registerVerifyBars()
-        await (await import("./actions/unclaimTicket.js")).registerVerifyBars()
-        await (await import("./actions/pinTicket.js")).registerVerifyBars()
-        await (await import("./actions/unpinTicket.js")).registerVerifyBars()
+        await (await import("./commands/close.js")).registerVerifyBars()
+        await (await import("./commands/delete.js")).registerVerifyBars()
+        await (await import("./commands/reopen.js")).registerVerifyBars()
+        await (await import("./commands/claim.js")).registerVerifyBars()
+        await (await import("./commands/unclaim.js")).registerVerifyBars()
+        await (await import("./commands/pin.js")).registerVerifyBars()
+        await (await import("./commands/unpin.js")).registerVerifyBars()
     }
     await opendiscord.events.get("onVerifyBarLoad").emit([opendiscord.verifybars])
     await opendiscord.events.get("afterVerifyBarsLoaded").emit([opendiscord.verifybars])

@@ -5,6 +5,7 @@ import {opendiscord, api, utilities} from "../index.js"
 import * as discord from "discord.js"
 
 const generalConfig = opendiscord.configs.get("opendiscord:general")
+const interactiveMsgState = opendiscord.states.get("opendiscord:interactive-message")
 
 export async function registerActions(){
     opendiscord.actions.add(new api.ODAction("opendiscord:unpin-ticket"))
@@ -52,7 +53,15 @@ export async function registerActions(){
             }
 
             //reply with new message
-            if (params.sendMessage) await channel.send((await opendiscord.builders.messages.getSafe("opendiscord:unpin-message").build(origin,{guild,channel,user,ticket,reason})).message)
+            if (params.sendMessage){
+                const sentMsg = await channel.send((await opendiscord.builders.messages.getSafe("opendiscord:unpin-message").build(origin,{guild,channel,user,ticket,reason})).message)
+                if (sentMsg) await interactiveMsgState.setMsgState({channel,message:sentMsg},{
+                    messageType:"unpin-message",
+                    messageOrigin:"other",
+                    messageAuthor:user.id,
+                    messageReason:reason
+                },false)
+            }
             ticket.get("opendiscord:busy").value = false
             await opendiscord.events.get("afterTicketUnpinned").emit([ticket,user,channel,reason])
 
@@ -85,188 +94,4 @@ export async function registerActions(){
             ])
         })
     ])
-}
-
-export async function registerVerifyBars(){
-    //UNPIN TICKET TICKET MESSAGE
-    opendiscord.verifybars.add(new api.ODVerifyBar("opendiscord:unpin-ticket-ticket-message",opendiscord.builders.messages.getSafe("opendiscord:verifybar-ticket-message"),!generalConfig.data.system.disableVerifyBars))
-    opendiscord.verifybars.get("opendiscord:unpin-ticket-ticket-message").success.add([
-        new api.ODWorker("opendiscord:permissions",1,async (instance,params,origin,cancel) => {
-            const permissionMode = generalConfig.data.system.permissions.unpin
-
-            if (permissionMode == "none"){
-                //no permissions
-                instance.reply(await opendiscord.builders.messages.getSafe("opendiscord:error-no-permissions").build("button",{guild:instance.guild,channel:instance.channel,user:instance.user,permissions:[]}))
-                return cancel()
-            }else if (permissionMode == "everyone") return
-            else if (permissionMode == "admin"){
-                if (!opendiscord.permissions.hasPermissions("support",await opendiscord.permissions.getPermissions(instance.user,instance.channel,instance.guild))){
-                    //no permissions
-                    instance.reply(await opendiscord.builders.messages.getSafe("opendiscord:error-no-permissions").build("button",{guild:instance.guild,channel:instance.channel,user:instance.user,permissions:["support"]}))
-                    return cancel()
-                }else return
-            }else{
-                if (!instance.guild || !instance.member){
-                    //error
-                    instance.reply(await opendiscord.builders.messages.getSafe("opendiscord:error").build("button",{guild:instance.guild,channel:instance.channel,user:instance.user,error:"Permission Error: Not in Server #1",layout:"advanced"}))
-                    return cancel()
-                }
-                const role = await opendiscord.client.fetchGuildRole(instance.guild,permissionMode)
-                if (!role){
-                    //error
-                    instance.reply(await opendiscord.builders.messages.getSafe("opendiscord:error").build("button",{guild:instance.guild,channel:instance.channel,user:instance.user,error:"Permission Error: Not in Server #2",layout:"advanced"}))
-                    return cancel()
-                }
-                if (!role.members.has(instance.member.id)){
-                    //no permissions
-                    instance.reply(await opendiscord.builders.messages.getSafe("opendiscord:error-no-permissions").build("button",{guild:instance.guild,channel:instance.channel,user:instance.user,permissions:[]}))
-                    return cancel()
-                }else return
-            }
-        }),
-        new api.ODWorker("opendiscord:unpin-ticket",0,async (instance,params,origin,cancel) => {
-            const {guild,channel,user} = instance
-            if (!guild){
-                instance.reply(await opendiscord.builders.messages.getSafe("opendiscord:error-not-in-guild").build("button",{channel,user}))
-                return cancel()
-            }
-            const ticket = opendiscord.tickets.get(channel.id)
-            if (!ticket || channel.isDMBased()){
-                instance.reply(await opendiscord.builders.messages.getSafe("opendiscord:error-ticket-unknown").build("button",{guild,channel,user}))
-                return cancel()
-            }
-            //return when not pinned
-            if (!ticket.get("opendiscord:pinned").value){
-                instance.reply(await opendiscord.builders.messages.getSafe("opendiscord:error").build("button",{guild,channel,user,error:opendiscord.languages.getTranslation("errors.actionInvalid.unpin"),layout:"simple"}))
-                return cancel()
-            }
-            //return when busy
-            if (ticket.get("opendiscord:busy").value){
-                instance.reply(await opendiscord.builders.messages.getSafe("opendiscord:error-ticket-busy").build("button",{guild,channel,user}))
-                return cancel()
-            }
-
-            //start unpining ticket
-            if (params.data == "reason"){
-                //unpin with reason
-                instance.modal(await opendiscord.builders.modals.getSafe("opendiscord:unpin-ticket-reason").build("ticket-message",{guild,channel,user,ticket}))
-            }else{
-                //unpin without reason
-                await instance.defer("update",false)
-                await opendiscord.actions.get("opendiscord:unpin-ticket").run("ticket-message",{guild,channel,user,ticket,reason:null,sendMessage:true})
-                await instance.update(await opendiscord.builders.messages.getSafe("opendiscord:ticket-message").build("other",{guild,channel,user,ticket}))
-            }
-        })
-    ])
-    opendiscord.verifybars.get("opendiscord:unpin-ticket-ticket-message").failure.add([
-        new api.ODWorker("opendiscord:back-to-ticket-message",0,async (instance,params,origin,cancel) => {
-            const {guild,channel,user} = instance
-            if (!guild){
-                instance.reply(await opendiscord.builders.messages.getSafe("opendiscord:error-not-in-guild").build("button",{channel,user}))
-                return cancel()
-            }
-            const ticket = opendiscord.tickets.get(channel.id)
-            if (!ticket || channel.isDMBased()){
-                instance.reply(await opendiscord.builders.messages.getSafe("opendiscord:error-ticket-unknown").build("button",{guild,channel,user}))
-                return cancel()
-            }
-
-            await instance.update(await opendiscord.builders.messages.getSafe("opendiscord:ticket-message").build("other",{guild,channel,user,ticket}))
-        })
-    ])
-
-    //UNPIN TICKET PIN MESSAGE
-    opendiscord.verifybars.add(new api.ODVerifyBar("opendiscord:unpin-ticket-pin-message",opendiscord.builders.messages.getSafe("opendiscord:verifybar-pin-message"),!generalConfig.data.system.disableVerifyBars))
-    opendiscord.verifybars.get("opendiscord:unpin-ticket-pin-message").success.add([
-        new api.ODWorker("opendiscord:permissions",1,async (instance,params,origin,cancel) => {
-            const permissionMode = generalConfig.data.system.permissions.unpin
-
-            if (permissionMode == "none"){
-                //no permissions
-                instance.reply(await opendiscord.builders.messages.getSafe("opendiscord:error-no-permissions").build("button",{guild:instance.guild,channel:instance.channel,user:instance.user,permissions:[]}))
-                return cancel()
-            }else if (permissionMode == "everyone") return
-            else if (permissionMode == "admin"){
-                if (!opendiscord.permissions.hasPermissions("support",await opendiscord.permissions.getPermissions(instance.user,instance.channel,instance.guild))){
-                    //no permissions
-                    instance.reply(await opendiscord.builders.messages.getSafe("opendiscord:error-no-permissions").build("button",{guild:instance.guild,channel:instance.channel,user:instance.user,permissions:["support"]}))
-                    return cancel()
-                }else return
-            }else{
-                if (!instance.guild || !instance.member){
-                    //error
-                    instance.reply(await opendiscord.builders.messages.getSafe("opendiscord:error").build("button",{guild:instance.guild,channel:instance.channel,user:instance.user,error:"Permission Error: Not in Server #1",layout:"advanced"}))
-                    return cancel()
-                }
-                const role = await opendiscord.client.fetchGuildRole(instance.guild,permissionMode)
-                if (!role){
-                    //error
-                    instance.reply(await opendiscord.builders.messages.getSafe("opendiscord:error").build("button",{guild:instance.guild,channel:instance.channel,user:instance.user,error:"Permission Error: Not in Server #2",layout:"advanced"}))
-                    return cancel()
-                }
-                if (!role.members.has(instance.member.id)){
-                    //no permissions
-                    instance.reply(await opendiscord.builders.messages.getSafe("opendiscord:error-no-permissions").build("button",{guild:instance.guild,channel:instance.channel,user:instance.user,permissions:[]}))
-                    return cancel()
-                }else return
-            }
-        }),
-        new api.ODWorker("opendiscord:unpin-ticket",0,async (instance,params,origin,cancel) => {
-            const {guild,channel,user} = instance
-            if (!guild){
-                instance.reply(await opendiscord.builders.messages.getSafe("opendiscord:error-not-in-guild").build("button",{channel,user}))
-                return cancel()
-            }
-            const ticket = opendiscord.tickets.get(channel.id)
-            if (!ticket || channel.isDMBased()){
-                instance.reply(await opendiscord.builders.messages.getSafe("opendiscord:error-ticket-unknown").build("button",{guild,channel,user}))
-                return cancel()
-            }
-            //return when not pinned
-            if (!ticket.get("opendiscord:pinned").value){
-                instance.reply(await opendiscord.builders.messages.getSafe("opendiscord:error").build("button",{guild,channel,user,error:opendiscord.languages.getTranslation("errors.actionInvalid.unpin"),layout:"simple"}))
-                return cancel()
-            }
-            //return when busy
-            if (ticket.get("opendiscord:busy").value){
-                instance.reply(await opendiscord.builders.messages.getSafe("opendiscord:error-ticket-busy").build("button",{guild,channel,user}))
-                return cancel()
-            }
-
-            //start unpinning ticket
-            if (params.data == "reason"){
-                //unpin with reason
-                instance.modal(await opendiscord.builders.modals.getSafe("opendiscord:unpin-ticket-reason").build("pin-message",{guild,channel,user,ticket}))
-            }else{
-                //unpin without reason
-                await instance.defer("update",false)
-                await opendiscord.actions.get("opendiscord:unpin-ticket").run("pin-message",{guild,channel,user,ticket,reason:null,sendMessage:false})
-                await instance.update(await opendiscord.builders.messages.getSafe("opendiscord:unpin-message").build("pin-message",{guild,channel,user,ticket,reason:null}))
-            }
-        })
-    ])
-    opendiscord.verifybars.get("opendiscord:unpin-ticket-pin-message").failure.add([
-        new api.ODWorker("opendiscord:back-to-pin-message",0,async (instance,params,origin,cancel) => {
-            const {guild,channel,user} = instance
-            const {verifybarMessage} = params
-            if (!guild){
-                instance.reply(await opendiscord.builders.messages.getSafe("opendiscord:error-not-in-guild").build("button",{channel,user}))
-                return cancel()
-            }
-            const ticket = opendiscord.tickets.get(channel.id)
-            if (!ticket || channel.isDMBased()){
-                instance.reply(await opendiscord.builders.messages.getSafe("opendiscord:error-ticket-unknown").build("button",{guild,channel,user}))
-                return cancel()
-            }
-
-            const rawReason = (verifybarMessage && verifybarMessage.embeds[0] && verifybarMessage.embeds[0].fields[0]) ? verifybarMessage.embeds[0].fields[0].value : null
-            const reason = (rawReason == null) ? null : rawReason.substring(3,rawReason.length-3)
-
-            await instance.update(await opendiscord.builders.messages.getSafe("opendiscord:pin-message").build("other",{guild,channel,user,ticket,reason}))
-        })
-    ])
-    opendiscord.actions.get("opendiscord:unpin-ticket").workers.backupWorker = new api.ODWorker("opendiscord:cancel-busy",0,(instance,params) => {
-        //set busy to false in case of crash or cancel
-        params.ticket.get("opendiscord:busy").value = false
-    })
 }

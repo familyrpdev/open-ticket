@@ -40,8 +40,7 @@ export interface ODCommandResponderManagerIdMappings extends api.ODCommandRespon
  * It's used to generate typescript declarations for this class.
  */
 export interface ODButtonResponderManagerIdMappings extends api.ODButtonResponderManagerIdConstraint {
-    "opendiscord:verifybar-success":{origin:"button",params:{},workers:"opendiscord:handle-verifybar"},
-    "opendiscord:verifybar-failure":{origin:"button",params:{},workers:"opendiscord:handle-verifybar"},
+    "opendiscord:verifybar-button":{origin:"button",params:{},workers:"opendiscord:verifybar-button"},
 
     "opendiscord:help-menu-switch":{origin:"button",params:{},workers:"opendiscord:update-help-menu"},
     "opendiscord:help-menu-previous":{origin:"button",params:{},workers:"opendiscord:update-help-menu"},

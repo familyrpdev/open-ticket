@@ -6,6 +6,7 @@ import * as discord from "discord.js"
 
 const generalConfig = opendiscord.configs.get("opendiscord:general")
 const lang = opendiscord.languages
+const interactiveMsgState = opendiscord.states.get("opendiscord:interactive-message")
 
 export async function registerActions(){
     opendiscord.actions.add(new api.ODAction("opendiscord:create-ticket"))
@@ -207,17 +208,23 @@ export async function registerActions(){
             //check if ticket message is enabled
             if (!option.get("opendiscord:ticket-message-enabled").value) return
             try {
-                const msg = await channel.send((await opendiscord.builders.messages.getSafe("opendiscord:ticket-message").build(origin,{guild,channel,user,ticket})).message)
+                const ticketMsg = await channel.send((await opendiscord.builders.messages.getSafe("opendiscord:ticket-message").build(origin,{guild,channel,user,ticket})).message)
                 
-                ticket.get("opendiscord:ticket-message").value = msg.id
+                if (ticketMsg) await interactiveMsgState.setMsgState({channel,message:ticketMsg},{
+                    messageType:"ticket-message",
+                    messageOrigin:"other",
+                    messageAuthor:user.id
+                },false)
+
+                ticket.get("opendiscord:ticket-message").value = ticketMsg.id
 
                 //pin ticket message (if required)
-                if (generalConfig.data.system.pinFirstTicketMessage && msg.pinnable) await msg.pin("Ticket Message")
+                if (generalConfig.data.system.pinFirstTicketMessage && ticketMsg.pinnable) await ticketMsg.pin("Ticket Message")
                 
                 //manage stats
                 await opendiscord.statistics.get("opendiscord:ticket").setStat("opendiscord:messages-sent",ticket.id.value,1,"increase")
                 
-                await opendiscord.events.get("afterTicketMainMessageCreated").emit([ticket,msg,channel,user])
+                await opendiscord.events.get("afterTicketMainMessageCreated").emit([ticket,ticketMsg,channel,user])
         }catch(err){
                 process.emit("uncaughtException",err)
                 //something went wrong while sending the ticket message

@@ -381,6 +381,8 @@ export async function loadDatabaseSaversCode(){
 }
 
 const loadAutoCode = () => {
+    const interactiveMsgState = opendiscord.states.get("opendiscord:interactive-message")
+
     //AUTOCLOSE TIMEOUT
     opendiscord.code.add(new api.ODCode("opendiscord:autoclose-timeout",3,() => {
         setInterval(async () => {
@@ -399,7 +401,13 @@ const loadAutoCode = () => {
                     if (enabled && (new Date().getTime() - lastMessage.createdTimestamp) >= time){
                         //autoclose ticket
                         await opendiscord.actions.get("opendiscord:close-ticket").run("autoclose",{guild:channel.guild,channel,user:opendiscord.client.client.user,ticket,reason:"Autoclose",sendMessage:false})
-                        await channel.send((await opendiscord.builders.messages.getSafe("opendiscord:autoclose-message").build("timeout",{guild:channel.guild,channel,user:opendiscord.client.client.user,ticket})).message)
+                        const sentMsg = await channel.send((await opendiscord.builders.messages.getSafe("opendiscord:autoclose-message").build("timeout",{guild:channel.guild,channel,user:opendiscord.client.client.user,ticket})).message)
+                        await interactiveMsgState.setMsgState({channel,message:sentMsg},{
+                            messageType:"autoclose-message",
+                            messageOrigin:"other",
+                            messageAuthor:opendiscord.client.client.user.id,
+                            messageReason:"Autoclose"
+                        },false)
                         count++
                         await opendiscord.statistics.get("opendiscord:global").setStat("opendiscord:tickets-autoclosed",1,"increase")
                     }
@@ -426,7 +434,13 @@ const loadAutoCode = () => {
                     if (enabled){
                         //autoclose ticket
                         await opendiscord.actions.get("opendiscord:close-ticket").run("autoclose",{guild:channel.guild,channel,user:opendiscord.client.client.user,ticket,reason:"Autoclose",sendMessage:false})
-                        await channel.send((await opendiscord.builders.messages.getSafe("opendiscord:autoclose-message").build("leave",{guild:channel.guild,channel,user:opendiscord.client.client.user,ticket})).message)
+                        const sentMsg = await channel.send((await opendiscord.builders.messages.getSafe("opendiscord:autoclose-message").build("leave",{guild:channel.guild,channel,user:opendiscord.client.client.user,ticket})).message)
+                        await interactiveMsgState.setMsgState({channel,message:sentMsg},{
+                            messageType:"autoclose-message",
+                            messageOrigin:"other",
+                            messageAuthor:opendiscord.client.client.user.id,
+                            messageReason:"Autoclose"
+                        },false)
                         await opendiscord.statistics.get("opendiscord:global").setStat("opendiscord:tickets-autoclosed",1,"increase")
                     }
                 }

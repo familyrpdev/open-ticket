@@ -5,6 +5,7 @@ import {opendiscord, api, utilities} from "../index.js"
 import * as discord from "discord.js"
 
 const generalConfig = opendiscord.configs.get("opendiscord:general")
+const interactiveMsgState = opendiscord.states.get("opendiscord:interactive-message")
 
 export async function registerActions(){
     opendiscord.actions.add(new api.ODAction("opendiscord:claim-ticket"))
@@ -62,7 +63,15 @@ export async function registerActions(){
             }
 
             //reply with new message
-            if (params.sendMessage) await channel.send((await opendiscord.builders.messages.getSafe("opendiscord:claim-message").build(origin,{guild,channel,user,ticket,reason})).message)
+            if (params.sendMessage){
+                const sentMsg = await channel.send((await opendiscord.builders.messages.getSafe("opendiscord:claim-message").build(origin,{guild,channel,user,ticket,reason})).message)
+                if (sentMsg) await interactiveMsgState.setMsgState({channel,message:sentMsg},{
+                    messageType:"claim-message",
+                    messageOrigin:"other",
+                    messageAuthor:user.id,
+                    messageReason:reason
+                },false)
+            }
             ticket.get("opendiscord:busy").value = false
             await opendiscord.events.get("afterTicketClaimed").emit([ticket,user,channel,reason])
 
@@ -99,184 +108,4 @@ export async function registerActions(){
         //set busy to false in case of crash or cancel
         params.ticket.get("opendiscord:busy").value = false
     })
-}
-
-export async function registerVerifyBars(){
-    //CLAIM TICKET TICKET MESSAGE
-    opendiscord.verifybars.add(new api.ODVerifyBar("opendiscord:claim-ticket-ticket-message",opendiscord.builders.messages.getSafe("opendiscord:verifybar-ticket-message"),!generalConfig.data.system.disableVerifyBars))
-    opendiscord.verifybars.get("opendiscord:claim-ticket-ticket-message").success.add([
-        new api.ODWorker("opendiscord:permissions",1,async (instance,params,origin,cancel) => {
-            const permissionMode = generalConfig.data.system.permissions.claim
-
-            if (permissionMode == "none"){
-                //no permissions
-                instance.reply(await opendiscord.builders.messages.getSafe("opendiscord:error-no-permissions").build("button",{guild:instance.guild,channel:instance.channel,user:instance.user,permissions:[]}))
-                return cancel()
-            }else if (permissionMode == "everyone") return
-            else if (permissionMode == "admin"){
-                if (!opendiscord.permissions.hasPermissions("support",await opendiscord.permissions.getPermissions(instance.user,instance.channel,instance.guild))){
-                    //no permissions
-                    instance.reply(await opendiscord.builders.messages.getSafe("opendiscord:error-no-permissions").build("button",{guild:instance.guild,channel:instance.channel,user:instance.user,permissions:["support"]}))
-                    return cancel()
-                }else return
-            }else{
-                if (!instance.guild || !instance.member){
-                    //error
-                    instance.reply(await opendiscord.builders.messages.getSafe("opendiscord:error").build("button",{guild:instance.guild,channel:instance.channel,user:instance.user,error:"Permission Error: Not in Server #1",layout:"advanced"}))
-                    return cancel()
-                }
-                const role = await opendiscord.client.fetchGuildRole(instance.guild,permissionMode)
-                if (!role){
-                    //error
-                    instance.reply(await opendiscord.builders.messages.getSafe("opendiscord:error").build("button",{guild:instance.guild,channel:instance.channel,user:instance.user,error:"Permission Error: Not in Server #2",layout:"advanced"}))
-                    return cancel()
-                }
-                if (!role.members.has(instance.member.id)){
-                    //no permissions
-                    instance.reply(await opendiscord.builders.messages.getSafe("opendiscord:error-no-permissions").build("button",{guild:instance.guild,channel:instance.channel,user:instance.user,permissions:[]}))
-                    return cancel()
-                }else return
-            }
-        }),
-        new api.ODWorker("opendiscord:claim-ticket",0,async (instance,params,origin,cancel) => {
-            const {guild,channel,user} = instance
-            if (!guild){
-                instance.reply(await opendiscord.builders.messages.getSafe("opendiscord:error-not-in-guild").build("button",{channel,user}))
-                return cancel()
-            }
-            const ticket = opendiscord.tickets.get(channel.id)
-            if (!ticket || channel.isDMBased()){
-                instance.reply(await opendiscord.builders.messages.getSafe("opendiscord:error-ticket-unknown").build("button",{guild,channel,user}))
-                return cancel()
-            }
-            //return when already claimed
-            if (ticket.get("opendiscord:claimed").value){
-                instance.reply(await opendiscord.builders.messages.getSafe("opendiscord:error").build("button",{guild,channel,user,error:opendiscord.languages.getTranslation("errors.actionInvalid.claim"),layout:"simple"}))
-                return cancel()
-            }
-            //return when busy
-            if (ticket.get("opendiscord:busy").value){
-                instance.reply(await opendiscord.builders.messages.getSafe("opendiscord:error-ticket-busy").build("button",{guild,channel,user}))
-                return cancel()
-            }
-
-            //start claiming ticket
-            if (params.data == "reason"){
-                //claim with reason
-                instance.modal(await opendiscord.builders.modals.getSafe("opendiscord:claim-ticket-reason").build("ticket-message",{guild,channel,user,ticket}))
-            }else{
-                //claim without reason
-                await instance.defer("update",false)
-                await opendiscord.actions.get("opendiscord:claim-ticket").run("ticket-message",{guild,channel,user,ticket,reason:null,sendMessage:true})
-                await instance.update(await opendiscord.builders.messages.getSafe("opendiscord:ticket-message").build("other",{guild,channel,user,ticket}))
-            }
-        })
-    ])
-    opendiscord.verifybars.get("opendiscord:claim-ticket-ticket-message").failure.add([
-        new api.ODWorker("opendiscord:back-to-ticket-message",0,async (instance,params,origin,cancel) => {
-            const {guild,channel,user} = instance
-            if (!guild){
-                instance.reply(await opendiscord.builders.messages.getSafe("opendiscord:error-not-in-guild").build("button",{channel,user}))
-                return cancel()
-            }
-            const ticket = opendiscord.tickets.get(channel.id)
-            if (!ticket || channel.isDMBased()){
-                instance.reply(await opendiscord.builders.messages.getSafe("opendiscord:error-ticket-unknown").build("button",{guild,channel,user}))
-                return cancel()
-            }
-
-            await instance.update(await opendiscord.builders.messages.getSafe("opendiscord:ticket-message").build("other",{guild,channel,user,ticket}))
-        })
-    ])
-
-    //CLAIM TICKET UNCLAIM MESSAGE
-    opendiscord.verifybars.add(new api.ODVerifyBar("opendiscord:claim-ticket-unclaim-message",opendiscord.builders.messages.getSafe("opendiscord:verifybar-unclaim-message"),!generalConfig.data.system.disableVerifyBars))
-    opendiscord.verifybars.get("opendiscord:claim-ticket-unclaim-message").success.add([
-        new api.ODWorker("opendiscord:permissions",1,async (instance,params,origin,cancel) => {
-            const permissionMode = generalConfig.data.system.permissions.claim
-
-            if (permissionMode == "none"){
-                //no permissions
-                instance.reply(await opendiscord.builders.messages.getSafe("opendiscord:error-no-permissions").build("button",{guild:instance.guild,channel:instance.channel,user:instance.user,permissions:[]}))
-                return cancel()
-            }else if (permissionMode == "everyone") return
-            else if (permissionMode == "admin"){
-                if (!opendiscord.permissions.hasPermissions("support",await opendiscord.permissions.getPermissions(instance.user,instance.channel,instance.guild))){
-                    //no permissions
-                    instance.reply(await opendiscord.builders.messages.getSafe("opendiscord:error-no-permissions").build("button",{guild:instance.guild,channel:instance.channel,user:instance.user,permissions:["support"]}))
-                    return cancel()
-                }else return
-            }else{
-                if (!instance.guild || !instance.member){
-                    //error
-                    instance.reply(await opendiscord.builders.messages.getSafe("opendiscord:error").build("button",{guild:instance.guild,channel:instance.channel,user:instance.user,error:"Permission Error: Not in Server #1",layout:"advanced"}))
-                    return cancel()
-                }
-                const role = await opendiscord.client.fetchGuildRole(instance.guild,permissionMode)
-                if (!role){
-                    //error
-                    instance.reply(await opendiscord.builders.messages.getSafe("opendiscord:error").build("button",{guild:instance.guild,channel:instance.channel,user:instance.user,error:"Permission Error: Not in Server #2",layout:"advanced"}))
-                    return cancel()
-                }
-                if (!role.members.has(instance.member.id)){
-                    //no permissions
-                    instance.reply(await opendiscord.builders.messages.getSafe("opendiscord:error-no-permissions").build("button",{guild:instance.guild,channel:instance.channel,user:instance.user,permissions:[]}))
-                    return cancel()
-                }else return
-            }
-        }),
-        new api.ODWorker("opendiscord:claim-ticket",0,async (instance,params,origin,cancel) => {
-            const {guild,channel,user} = instance
-            if (!guild){
-                instance.reply(await opendiscord.builders.messages.getSafe("opendiscord:error-not-in-guild").build("button",{channel,user}))
-                return cancel()
-            }
-            const ticket = opendiscord.tickets.get(channel.id)
-            if (!ticket || channel.isDMBased()){
-                instance.reply(await opendiscord.builders.messages.getSafe("opendiscord:error-ticket-unknown").build("button",{guild,channel,user}))
-                return cancel()
-            }
-            //return when already claimed
-            if (ticket.get("opendiscord:claimed").value){
-                instance.reply(await opendiscord.builders.messages.getSafe("opendiscord:error").build("button",{guild,channel,user,error:opendiscord.languages.getTranslation("errors.actionInvalid.claim"),layout:"simple"}))
-                return cancel()
-            }
-            //return when busy
-            if (ticket.get("opendiscord:busy").value){
-                instance.reply(await opendiscord.builders.messages.getSafe("opendiscord:error-ticket-busy").build("button",{guild,channel,user}))
-                return cancel()
-            }
-
-            //start claiming ticket
-            if (params.data == "reason"){
-                //claim with reason
-                instance.modal(await opendiscord.builders.modals.getSafe("opendiscord:claim-ticket-reason").build("unclaim-message",{guild,channel,user,ticket}))
-            }else{
-                //claim without reason
-                await instance.defer("update",false)
-                await opendiscord.actions.get("opendiscord:claim-ticket").run("unclaim-message",{guild,channel,user,ticket,reason:null,sendMessage:false})
-                await instance.update(await opendiscord.builders.messages.getSafe("opendiscord:claim-message").build("unclaim-message",{guild,channel,user,ticket,reason:null}))
-            }
-        })
-    ])
-    opendiscord.verifybars.get("opendiscord:claim-ticket-unclaim-message").failure.add([
-        new api.ODWorker("opendiscord:back-to-unclaim-message",0,async (instance,params,origin,cancel) => {
-            const {guild,channel,user} = instance
-            const {verifybarMessage} = params
-            if (!guild){
-                instance.reply(await opendiscord.builders.messages.getSafe("opendiscord:error-not-in-guild").build("button",{channel,user}))
-                return cancel()
-            }
-            const ticket = opendiscord.tickets.get(channel.id)
-            if (!ticket || channel.isDMBased()){
-                instance.reply(await opendiscord.builders.messages.getSafe("opendiscord:error-ticket-unknown").build("button",{guild,channel,user}))
-                return cancel()
-            }
-
-            const rawReason = (verifybarMessage && verifybarMessage.embeds[0] && verifybarMessage.embeds[0].fields[0]) ? verifybarMessage.embeds[0].fields[0].value : null
-            const reason = (rawReason == null) ? null : rawReason.substring(3,rawReason.length-3)
-
-            await instance.update(await opendiscord.builders.messages.getSafe("opendiscord:unclaim-message").build("other",{guild,channel,user,ticket,reason}))
-        })
-    ])
 }

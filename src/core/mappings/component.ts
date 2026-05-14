@@ -33,7 +33,13 @@ export interface ODModalComponentManagerIdMappings extends api.ODComponentManage
  * It's used to generate typescript declarations for this class.
  */
 export interface ODComponentModifierManagerIdMappings extends api.ODComponentModifierManagerIdConstraint {
-    //"opendiscord:example-modifier":api.ODMessageComponentModifier<string,{}>,
+    "opendiscord:close-ticket-verifybar":api.ODMessageComponentModifier<"ticket-message"|"reopen-message",{guild:discord.Guild|null,channel:discord.TextBasedChannel,user:discord.User,verifybar:api.ODVerifyBar<string>},string>,
+    "opendiscord:reopen-ticket-verifybar":api.ODMessageComponentModifier<"ticket-message"|"close-message"|"autoclose-message",{guild:discord.Guild|null,channel:discord.TextBasedChannel,user:discord.User,verifybar:api.ODVerifyBar<string>},string>,
+    "opendiscord:delete-ticket-verifybar":api.ODMessageComponentModifier<"ticket-message"|"close-message"|"autoclose-message"|"reopen-message",{guild:discord.Guild|null,channel:discord.TextBasedChannel,user:discord.User,verifybar:api.ODVerifyBar<string>},string>,
+    "opendiscord:claim-ticket-verifybar":api.ODMessageComponentModifier<"ticket-message"|"unclaim-message",{guild:discord.Guild|null,channel:discord.TextBasedChannel,user:discord.User,verifybar:api.ODVerifyBar<string>},string>,
+    "opendiscord:unclaim-ticket-verifybar":api.ODMessageComponentModifier<"ticket-message"|"claim-message",{guild:discord.Guild|null,channel:discord.TextBasedChannel,user:discord.User,verifybar:api.ODVerifyBar<string>},string>,
+    "opendiscord:pin-ticket-verifybar":api.ODMessageComponentModifier<"ticket-message"|"unpin-message",{guild:discord.Guild|null,channel:discord.TextBasedChannel,user:discord.User,verifybar:api.ODVerifyBar<string>},string>,
+    "opendiscord:unpin-ticket-verifybar":api.ODMessageComponentModifier<"ticket-message"|"pin-message",{guild:discord.Guild|null,channel:discord.TextBasedChannel,user:discord.User,verifybar:api.ODVerifyBar<string>},string>,
 }
 
 /////////////////////////////
