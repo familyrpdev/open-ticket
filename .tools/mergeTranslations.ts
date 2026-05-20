@@ -1,6 +1,7 @@
-//@ts-check
-const fjs = require("formatted-json-stringify")
-const fs = require("fs")
+
+import fjs from "formatted-json-stringify"
+import fs from "fs"
+
 const formatter = new fjs.ObjectFormatter(null,true,[
     new fjs.ObjectFormatter("_TRANSLATION",true,[
         new fjs.PropertyFormatter("otversion"),

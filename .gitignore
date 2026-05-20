@@ -19,9 +19,7 @@ otdebug.txt
 
 .backup/*
 .tools/*
-!.tools/createDocs.js
-!.tools/mergeTranslations.js
-!.tools/typedoc-config.json
-!.tools/pterodactyl-eggs/
+!.tools/createSponsors.ts
+!.tools/mergeTranslations.ts
 !.tools/docker-compose.yml
 !.tools/dockerfile
