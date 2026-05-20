@@ -1,16 +1,11 @@
-import {opendiscord, api, utilities} from "../../index"
-import {Terminal, terminal} from "terminal-kit"
+import {opendiscord, api, utilities} from "../../index.js"
+import * as cli from "@open-discord-bots/framework/cli"
+import terminalKit from "terminal-kit"
 import ansis from "ansis"
 import * as discord from "discord.js"
-import crypto from "crypto"
-import {renderHeader, terminate} from "./cli"
+import { headerOpts } from "./cli.js"
 
-function generateUniqueIdFromName(name:string){
-    //id only allows a-z, 0-9 & dash characters (& replace spaces with dashes)
-    const filteredChars = name.toLowerCase().replaceAll(" ","-").split("").filter((ch) => /^[a-zA-Z0-9-]{1}$/.test(ch))
-    const randomSuffix = "-"+crypto.randomBytes(4).toString("hex")
-    return filteredChars.join("")+randomSuffix
-}
+const terminal = terminalKit.terminal
 
 interface ODQuickSetupVariables {
     client?:api.ODClientManager,
@@ -20,7 +15,7 @@ interface ODQuickSetupVariables {
     language?:string,
     slashCommands?:boolean,
     textCommands?:boolean,
-    status?:api.ODJsonConfig_DefaultStatusType,
+    status?:api.ODGeneralJsonConfig_Status,
     logChannel?:string|null,
     ticketCategory?:string|null,
     ticketOptions:({
@@ -30,7 +25,7 @@ interface ODQuickSetupVariables {
         buttonColor:api.ODValidButtonColor,
         buttonEmoji:string|null,
         channelPrefix:string,
-        channelSuffix:api.ODJsonConfig_DefaultOptionTicketChannelType["suffix"]
+        channelSuffix:api.ODOptionsJsonConfig_TicketOptionChannelSettings["suffix"]
     }|null)[],
     optionIdStorage:string[],
     autocloseHours?:number|null,
@@ -38,7 +33,7 @@ interface ODQuickSetupVariables {
     globalUserLimit?:number|null,
     removeParticipantsOnClose?:boolean,
     ticketMessageLayout?:"embed"|"text"|null,
-    emojiStyle?:api.ODJsonConfig_DefaultSystem["emojiStyle"],
+    emojiStyle?:api.ODGeneralJsonConfig_TicketSystem["emojiStyle"],
     panelName?:string,
     panelDescription?:string,
     panelDropdown?:boolean,
@@ -49,7 +44,7 @@ interface ODQuickSetupVariables {
 const stepCount = (count:number) => "(Step "+count+"/24) "
 
 const quickSetupStorage: ODQuickSetupVariables = {ticketOptions:[],optionIdStorage:[]}
-const autoCompleteMenuOpts: Terminal.SingleLineMenuOptions = {
+const autoCompleteMenuOpts: terminalKit.Terminal.SingleLineMenuOptions = {
     style:terminal.white,
     selectedStyle:terminal.bgBlue.white
 }
@@ -113,7 +108,7 @@ function quickSetupRequiresReset(): boolean {
 }
 
 async function renderQuickSetupWarning(backFn:() => api.ODPromiseVoid) {
-    renderHeader("⏱️ Open Ticket Quick Setup: Warning")
+    cli.renderHeader(headerOpts,"⏱️ Open Ticket Quick Setup: Warning")
 
     terminal.bold(ansis.yellow("WARNING! ")+ansis.red("By using the 'Quick Setup' feature, your current config will be completely resetted!"))
     terminal.gray("\nAre you sure you want to continue?\n")
@@ -135,7 +130,7 @@ async function renderQuickSetupWarning(backFn:() => api.ODPromiseVoid) {
 }
 
 async function renderQuickSetupWelcome(backFn:() => api.ODPromiseVoid){
-    renderHeader("⏱️ Open Ticket Quick Setup: Introduction")
+    cli.renderHeader(headerOpts,"⏱️ Open Ticket Quick Setup: Introduction")
 
     terminal.bold.underline.blue("Open Ticket: Quick Setup\n")
     terminal.gray([
@@ -165,7 +160,7 @@ async function renderQuickSetupWelcome(backFn:() => api.ODPromiseVoid){
 }
 
 async function renderQuickSetupDevPortal(backFn:() => api.ODPromiseVoid){
-    renderHeader("⏱️ Open Ticket Quick Setup: Discord Bot & Developer Portal")
+    cli.renderHeader(headerOpts,"⏱️ Open Ticket Quick Setup: Discord Bot & Developer Portal")
 
     terminal.bold.blue(stepCount(1)+"Have you already created a Discord bot you can use for Open Ticket?\n")
 
@@ -189,7 +184,7 @@ async function renderQuickSetupDevPortal(backFn:() => api.ODPromiseVoid){
 }
 
 async function renderQuickSetupDevPortalGuide(variation:0|1,backFn:() => api.ODPromiseVoid){
-    renderHeader("⏱️ Open Ticket Quick Setup: Discord Bot & Developer Portal")
+    cli.renderHeader(headerOpts,"⏱️ Open Ticket Quick Setup: Discord Bot & Developer Portal")
 
     if (variation == 0){
         terminal.bold.blue(stepCount(1.1)+"You've mentioned that you don't know how to create a Discord bot.\n\n")
@@ -238,10 +233,10 @@ async function quickSetupLogin(token:string): Promise<api.ODClientManager|null> 
 }
 
 async function renderQuickSetupBotToken(backFn:() => api.ODPromiseVoid){
-    renderHeader("⏱️ Open Ticket Quick Setup: Bot Token")
+    cli.renderHeader(headerOpts,"⏱️ Open Ticket Quick Setup: Bot Token")
 
     terminal.bold.blue(stepCount(2)+"Please insert the token of your discord bot.\n")
-    terminal.gray("This is used to configure the bot and is then stored securely in the './config/general.json' file.\n\n> ")
+    terminal.gray("This is used to configure the bot and is then stored securely in the './config/general.jsonc' file.\n\n> ")
 
     const answer = await terminal.inputField({
         style:terminal.white,
@@ -275,7 +270,7 @@ async function renderQuickSetupServer(backFn:() => api.ODPromiseVoid){
     const {client} = quickSetupStorage
     if (!client) return
 
-    renderHeader("⏱️ Open Ticket Quick Setup: Discord Server")
+    cli.renderHeader(headerOpts,"⏱️ Open Ticket Quick Setup: Discord Server")
 
     terminal.bold.blue(stepCount(3)+"Please select a Discord Server to use.\n")
     terminal.gray("The bot will only work in this server.\n\n")
@@ -305,7 +300,7 @@ async function renderQuickSetupAdminRoles(selectedAdmins:string[],backFn:() => a
     const {client,guild} = quickSetupStorage
     if (!client || !guild) return
 
-    renderHeader("⏱️ Open Ticket Quick Setup: Admin Roles")
+    cli.renderHeader(headerOpts,"⏱️ Open Ticket Quick Setup: Admin Roles")
 
     terminal.bold.blue(stepCount(4)+"Please select all 'Global Admins' roles to use.\n")
     terminal.gray("Users with one of these roles will be able to access & interact with all tickets.\n\n")
@@ -341,7 +336,7 @@ async function renderQuickSetupColorPicker(backFn:() => api.ODPromiseVoid){
     const {client,guild,globalAdmins} = quickSetupStorage
     if (!client || !guild || !globalAdmins) return
 
-    renderHeader("⏱️ Open Ticket Quick Setup: Main Color")
+    cli.renderHeader(headerOpts,"⏱️ Open Ticket Quick Setup: Main Color")
 
     terminal.bold.blue(stepCount(5)+"Please insert a valid hex-color to use in all embeds.\n")
     terminal.gray("You can also choose from existing presets. (e.g. red, green, blue, ...)\n\n> ")
@@ -352,7 +347,7 @@ async function renderQuickSetupColorPicker(backFn:() => api.ODPromiseVoid){
         cancelable:true,
         autoComplete:Array.from(presetColors.keys()),
         autoCompleteHint:true,
-        autoCompleteMenu:autoCompleteMenuOpts as Terminal.Autocompletion
+        autoCompleteMenu:autoCompleteMenuOpts as terminalKit.Terminal.Autocompletion
     }).promise
 
     if (typeof answer != "string") return await backFn()
@@ -375,7 +370,7 @@ async function renderQuickSetupColorPicker(backFn:() => api.ODPromiseVoid){
 }
 
 async function renderQuickSetupLanguage(backFn:() => api.ODPromiseVoid){
-    renderHeader("⏱️ Open Ticket Quick Setup: Language")
+    cli.renderHeader(headerOpts,"⏱️ Open Ticket Quick Setup: Language")
     
     terminal.bold.blue(stepCount(6)+"What language would you like to use in the bot?\n")
     terminal.gray("View a list of available languages here: https://otgithub.dj-dj.be#-translators\n\n> ")
@@ -384,14 +379,14 @@ async function renderQuickSetupLanguage(backFn:() => api.ODPromiseVoid){
         style:terminal.white,
         hintStyle:terminal.gray,
         cancelable:true,
-        autoComplete:opendiscord.defaults.getDefault("languageList"),
+        autoComplete:opendiscord.sharedFuses.getFuse("languageList"),
         autoCompleteHint:true,
-        autoCompleteMenu:autoCompleteMenuOpts as Terminal.Autocompletion
+        autoCompleteMenu:autoCompleteMenuOpts as terminalKit.Terminal.Autocompletion
     }).promise
 
     if (typeof answer != "string") return await backFn()
     else{
-        if (!opendiscord.defaults.getDefault("languageList").includes(answer.toLowerCase())){
+        if (!opendiscord.sharedFuses.getFuse("languageList").includes(answer.toLowerCase())){
             terminal.red.bold("\n\n❌ Please insert an available language from the list. (TIP: use tab for autocomplete)\n")
             await utilities.timer(2000)
             return await renderQuickSetupLanguage(backFn)
@@ -403,7 +398,7 @@ async function renderQuickSetupLanguage(backFn:() => api.ODPromiseVoid){
 }
 
 async function renderQuickSetupCommandTypes(backFn:() => api.ODPromiseVoid){
-    renderHeader("⏱️ Open Ticket Quick Setup: Command Types")
+    cli.renderHeader(headerOpts,"⏱️ Open Ticket Quick Setup: Command Types")
 
     terminal.bold.blue(stepCount(7)+"Would you like to use slash commands, text commands or both?\n")
     terminal.gray("Slash commands are recommended.\n\n")
@@ -436,7 +431,7 @@ async function renderQuickSetupCommandTypes(backFn:() => api.ODPromiseVoid){
 }
 
 async function renderQuickSetupStatusType(backFn:() => api.ODPromiseVoid){
-    renderHeader("⏱️ Open Ticket Quick Setup: Status Type")
+    cli.renderHeader(headerOpts,"⏱️ Open Ticket Quick Setup: Status Type")
 
     terminal.bold.blue(stepCount(8)+"Please select the type of status you want to use.\n")
     terminal.gray("The status will be shown below the bot name in the userlist.\n\n")
@@ -471,7 +466,7 @@ async function renderQuickSetupStatusText(backFn:() => api.ODPromiseVoid){
     const {status} = quickSetupStorage
     if (!status) return
 
-    renderHeader("⏱️ Open Ticket Quick Setup: Status Text")
+    cli.renderHeader(headerOpts,"⏱️ Open Ticket Quick Setup: Status Text")
 
     terminal.bold.blue(stepCount(8.1)+"What text would you like to display in the status?\n")
     terminal.gray("This will be appended after the type you have chosen in the previous question.\n\n> ")
@@ -494,7 +489,7 @@ async function renderQuickSetupLogs(backFn:() => api.ODPromiseVoid){
     const {client,guild} = quickSetupStorage
     if (!client || !guild) return
 
-    renderHeader("⏱️ Open Ticket Quick Setup: Channel Logs")
+    cli.renderHeader(headerOpts,"⏱️ Open Ticket Quick Setup: Channel Logs")
 
     terminal.bold.blue(stepCount(9)+"Please select the 'Text Channel' to use for logs.\n")
     terminal.gray("All logs of the bot will be sent here. Make sure only admins can access this channel.\n\n")
@@ -531,7 +526,7 @@ async function renderQuickSetupTicketCategory(backFn:() => api.ODPromiseVoid){
     const {client,guild} = quickSetupStorage
     if (!client || !guild) return
 
-    renderHeader("⏱️ Open Ticket Quick Setup: Ticket Category")
+    cli.renderHeader(headerOpts,"⏱️ Open Ticket Quick Setup: Ticket Category")
 
     terminal.bold.blue(stepCount(10)+"Please select which 'Category' you would like tickets to be created in.\n")
     terminal.gray("When no category is selected, tickets will appear at the top of the channel list.\n\n")
@@ -564,7 +559,7 @@ async function renderQuickSetupTicketCategory(backFn:() => api.ODPromiseVoid){
 }
 
 async function renderQuickSetupTicketCount(backFn:() => api.ODPromiseVoid){
-    renderHeader("⏱️ Open Ticket Quick Setup: Ticket Configuration")
+    cli.renderHeader(headerOpts,"⏱️ Open Ticket Quick Setup: Ticket Configuration")
 
     terminal.bold.blue(stepCount(11)+"How many ticket options/types would you like to create?\n")
     terminal.gray("You can always add more ticket options/types in the config afterwards.\n\n")
@@ -601,7 +596,7 @@ async function renderQuickSetupTicketCount(backFn:() => api.ODPromiseVoid){
 }
 
 async function renderQuickSetupCreateTicketName(ticketIndex:number,requiredTickets:number,backFn:() => api.ODPromiseVoid){
-    renderHeader("⏱️ Open Ticket Quick Setup: Ticket Configuration (Ticket "+(ticketIndex+1)+"/"+requiredTickets+")")
+    cli.renderHeader(headerOpts,"⏱️ Open Ticket Quick Setup: Ticket Configuration (Ticket "+(ticketIndex+1)+"/"+requiredTickets+")")
 
     terminal.bold.blue("("+utilities.ordinalNumber(ticketIndex+1)+" Ticket) Please insert the name of this ticket option.\n")
     terminal.gray("Recommendation: Clean, short, obvious name, not more than ±30 characters.\n\n> ")
@@ -635,7 +630,7 @@ async function renderQuickSetupCreateTicketName(ticketIndex:number,requiredTicke
 }
 
 async function renderQuickSetupCreateTicketDescription(ticketIndex:number,requiredTickets:number,backFn:() => api.ODPromiseVoid){
-    renderHeader("⏱️ Open Ticket Quick Setup: Ticket Configuration (Ticket "+(ticketIndex+1)+"/"+requiredTickets+")")
+    cli.renderHeader(headerOpts,"⏱️ Open Ticket Quick Setup: Ticket Configuration (Ticket "+(ticketIndex+1)+"/"+requiredTickets+")")
 
     terminal.bold.blue("("+utilities.ordinalNumber(ticketIndex+1)+" Ticket) Please insert the description of this ticket option.\n")
     terminal.gray("Recommendation: Use '\\n' (backslash-n) for a newline.\n\n> ")
@@ -655,7 +650,7 @@ async function renderQuickSetupCreateTicketDescription(ticketIndex:number,requir
 }
 
 async function renderQuickSetupCreateTicketButtonType(ticketIndex:number,requiredTickets:number,backFn:() => api.ODPromiseVoid){
-    renderHeader("⏱️ Open Ticket Quick Setup: Ticket Configuration (Ticket "+(ticketIndex+1)+"/"+requiredTickets+")")
+    cli.renderHeader(headerOpts,"⏱️ Open Ticket Quick Setup: Ticket Configuration (Ticket "+(ticketIndex+1)+"/"+requiredTickets+")")
 
     terminal.bold.blue("("+utilities.ordinalNumber(ticketIndex+1)+" Ticket) How would you like to display the ticket name in the button/dropdown?\n")
     terminal.gray("You will be able to choose between dropdown/buttons when configuring panels.\n\n")
@@ -686,7 +681,7 @@ async function renderQuickSetupCreateTicketButtonType(ticketIndex:number,require
 }
 
 async function renderQuickSetupCreateTicketButtonEmoji(ticketIndex:number,requiredTickets:number,backFn:() => api.ODPromiseVoid){
-    renderHeader("⏱️ Open Ticket Quick Setup: Ticket Configuration (Ticket "+(ticketIndex+1)+"/"+requiredTickets+")")
+    cli.renderHeader(headerOpts,"⏱️ Open Ticket Quick Setup: Ticket Configuration (Ticket "+(ticketIndex+1)+"/"+requiredTickets+")")
 
     terminal.bold.blue("("+utilities.ordinalNumber(ticketIndex+1)+" Ticket) Please insert the button emoji of this ticket option.\n")
     terminal.gray("Only 1 emoji allowed. Tip: Insert custom emoji's via the following syntax: <:12345678910:emoji_name>\n\n> ")
@@ -714,7 +709,7 @@ async function renderQuickSetupCreateTicketButtonEmoji(ticketIndex:number,requir
 }
 
 async function renderQuickSetupCreateTicketButtonColor(ticketIndex:number,requiredTickets:number,backFn:() => api.ODPromiseVoid){
-    renderHeader("⏱️ Open Ticket Quick Setup: Ticket Configuration (Ticket "+(ticketIndex+1)+"/"+requiredTickets+")")
+    cli.renderHeader(headerOpts,"⏱️ Open Ticket Quick Setup: Ticket Configuration (Ticket "+(ticketIndex+1)+"/"+requiredTickets+")")
 
     terminal.bold.blue("("+utilities.ordinalNumber(ticketIndex+1)+" Ticket) What color would you like the button to be?\n")
     terminal.gray("This will not apply when choosing 'dropdown' mode in the panel configuration.\n\n")
@@ -742,7 +737,7 @@ async function renderQuickSetupCreateTicketButtonColor(ticketIndex:number,requir
 }
 
 async function renderQuickSetupCreateTicketChannelPrefix(ticketIndex:number,requiredTickets:number,backFn:() => api.ODPromiseVoid){
-    renderHeader("⏱️ Open Ticket Quick Setup: Ticket Configuration (Ticket "+(ticketIndex+1)+"/"+requiredTickets+")")
+    cli.renderHeader(headerOpts,"⏱️ Open Ticket Quick Setup: Ticket Configuration (Ticket "+(ticketIndex+1)+"/"+requiredTickets+")")
 
     terminal.bold.blue("("+utilities.ordinalNumber(ticketIndex+1)+" Ticket) Please insert the channel prefix of this ticket option.\n")
     terminal.gray("Examples: 'ticket-', 'question-', 'test-channel-', ...\n\n> ")
@@ -766,7 +761,7 @@ async function renderQuickSetupCreateTicketChannelPrefix(ticketIndex:number,requ
 }
 
 async function renderQuickSetupCreateTicketChannelSuffix(ticketIndex:number,requiredTickets:number,backFn:() => api.ODPromiseVoid){
-    renderHeader("⏱️ Open Ticket Quick Setup: Ticket Configuration (Ticket "+(ticketIndex+1)+"/"+requiredTickets+")")
+    cli.renderHeader(headerOpts,"⏱️ Open Ticket Quick Setup: Ticket Configuration (Ticket "+(ticketIndex+1)+"/"+requiredTickets+")")
 
     terminal.bold.blue("("+utilities.ordinalNumber(ticketIndex+1)+" Ticket) Please select the channel suffix mode of this ticket option.\n")
     terminal.gray("The suffix is appended after the prefix and will be generated on ticket creation.\n\n")
@@ -806,7 +801,7 @@ async function renderQuickSetupCreateTicketChannelSuffix(ticketIndex:number,requ
 }
 
 async function renderQuickSetupAutoclose(backFn:() => api.ODPromiseVoid){
-    renderHeader("⏱️ Open Ticket Quick Setup: Ticket Autoclose")
+    cli.renderHeader(headerOpts,"⏱️ Open Ticket Quick Setup: Ticket Autoclose")
 
     terminal.bold.blue(stepCount(12)+"Would you like to enable autoclosing tickets?\n")
     terminal.gray("Applies to all created tickets. You can always change/disable autoclose per ticket-option in the config afterwards.\n\n")
@@ -839,7 +834,7 @@ async function renderQuickSetupAutoclose(backFn:() => api.ODPromiseVoid){
 }
 
 async function renderQuickSetupCooldown(backFn:() => api.ODPromiseVoid){
-    renderHeader("⏱️ Open Ticket Quick Setup: Ticket Cooldown")
+    cli.renderHeader(headerOpts,"⏱️ Open Ticket Quick Setup: Ticket Cooldown")
 
     terminal.bold.blue(stepCount(13)+"Would you like to enable ticket creation cooldown?\n")
     terminal.gray("Applies to all created tickets. You can always change/disable cooldown per ticket-option in the config afterwards.\n\n")
@@ -873,7 +868,7 @@ async function renderQuickSetupCooldown(backFn:() => api.ODPromiseVoid){
 }
 
 async function renderQuickSetupLimits(backFn:() => api.ODPromiseVoid){
-    renderHeader("⏱️ Open Ticket Quick Setup: Ticket Limits")
+    cli.renderHeader(headerOpts,"⏱️ Open Ticket Quick Setup: Ticket Limits")
 
     terminal.bold.blue(stepCount(14)+"Would you like to enable user ticket creation limits?\n")
     terminal.gray("Applies to all created tickets. You can always change/disable limits globally or per ticket-option in the config afterwards.\n\n")
@@ -904,7 +899,7 @@ async function renderQuickSetupLimits(backFn:() => api.ODPromiseVoid){
 }
 
 async function renderQuickSetupCloseParticipants(backFn:() => api.ODPromiseVoid){
-    renderHeader("⏱️ Open Ticket Quick Setup: Ticket Close Configuration")
+    cli.renderHeader(headerOpts,"⏱️ Open Ticket Quick Setup: Ticket Close Configuration")
 
     terminal.bold.blue(stepCount(15)+"Would you like to remove all ticket participants when closing the ticket?\n")
     terminal.gray("When a ticket is closed, only admins can read/write in the ticket. Reopen ticket to restore read/write perms.\n\n")
@@ -929,7 +924,7 @@ async function renderQuickSetupCloseParticipants(backFn:() => api.ODPromiseVoid)
 }
 
 async function renderQuickSetupTicketMessageLayout(backFn:() => api.ODPromiseVoid){
-    renderHeader("⏱️ Open Ticket Quick Setup: Ticket Message Configuration")
+    cli.renderHeader(headerOpts,"⏱️ Open Ticket Quick Setup: Ticket Message Configuration")
 
     terminal.bold.blue(stepCount(16)+"How would you like the (initial) ticket message to be displayed?\n")
     terminal.gray("This message is sent by the bot when creating a ticket and contains buttons like closing, claiming & deleting.\n\n")
@@ -955,7 +950,7 @@ async function renderQuickSetupTicketMessageLayout(backFn:() => api.ODPromiseVoi
 }
 
 async function renderQuickSetupEmojiStyle(backFn:() => api.ODPromiseVoid){
-    renderHeader("⏱️ Open Ticket Quick Setup: Emoji Style")
+    cli.renderHeader(headerOpts,"⏱️ Open Ticket Quick Setup: Emoji Style")
 
     terminal.bold.blue(stepCount(17)+"How would you like emojis to be displayed in messages?\n")
     terminal.gray("This will affect emojis in all messages of the bot, but does not apply to buttons & dropdowns.\n\n")
@@ -982,7 +977,7 @@ async function renderQuickSetupEmojiStyle(backFn:() => api.ODPromiseVoid){
 }
 
 async function renderQuickSetupPanelName(backFn:() => api.ODPromiseVoid){
-    renderHeader("⏱️ Open Ticket Quick Setup: Panel Name")
+    cli.renderHeader(headerOpts,"⏱️ Open Ticket Quick Setup: Panel Name")
 
     terminal.bold.blue(stepCount(18)+"Please insert the name of the ticket panel.\n")
     terminal.gray("This will be shown as the title of the panel message where all tickets are located.\n\n> ")
@@ -1005,7 +1000,7 @@ async function renderQuickSetupPanelName(backFn:() => api.ODPromiseVoid){
 }
 
 async function renderQuickSetupPanelDescription(backFn:() => api.ODPromiseVoid){
-    renderHeader("⏱️ Open Ticket Quick Setup: Panel Description")
+    cli.renderHeader(headerOpts,"⏱️ Open Ticket Quick Setup: Panel Description")
 
     terminal.bold.blue(stepCount(19)+"Please insert the description of the ticket panel.\n")
     terminal.gray("Shown below the title. Can be used to explain some info/rules about the ticket system.\n\n> ")
@@ -1024,7 +1019,7 @@ async function renderQuickSetupPanelDescription(backFn:() => api.ODPromiseVoid){
 }
 
 async function renderQuickSetupPanelDropdown(backFn:() => api.ODPromiseVoid){
-    renderHeader("⏱️ Open Ticket Quick Setup: Panel Mode")
+    cli.renderHeader(headerOpts,"⏱️ Open Ticket Quick Setup: Panel Mode")
 
     terminal.bold.blue(stepCount(20)+"Do you want to show the tickets as buttons or a dropdown?\n")
     terminal.gray("Dropdown doesn't support colors and cannot contain option types other than 'tickets' (e.g. website/url or reaction roles).\n\n")
@@ -1049,7 +1044,7 @@ async function renderQuickSetupPanelDropdown(backFn:() => api.ODPromiseVoid){
 }
 
 async function renderQuickSetupPanelLayout(backFn:() => api.ODPromiseVoid){
-    renderHeader("⏱️ Open Ticket Quick Setup: Panel Layout")
+    cli.renderHeader(headerOpts,"⏱️ Open Ticket Quick Setup: Panel Layout")
 
     terminal.bold.blue(stepCount(21)+"How would you like the panel message to be displayed?\n")
     terminal.gray("Most of the time embeds are used. But for a simpler solution, you can choose the text layout.\n\n")
@@ -1074,7 +1069,7 @@ async function renderQuickSetupPanelLayout(backFn:() => api.ODPromiseVoid){
 }
 
 async function renderQuickSetupPanelDescribeOptions(backFn:() => api.ODPromiseVoid){
-    renderHeader("⏱️ Open Ticket Quick Setup: Panel Option Descriptions")
+    cli.renderHeader(headerOpts,"⏱️ Open Ticket Quick Setup: Panel Option Descriptions")
 
     terminal.bold.blue(stepCount(22)+"Would you like the panel to have auto-generated (ticket-)option descriptions?\n")
     terminal.gray("It will use the 'name' & 'description' of each ticket option and displays it below the panel description.\n\n")
@@ -1101,7 +1096,7 @@ async function renderQuickSetupPanelDescribeOptions(backFn:() => api.ODPromiseVo
 }
 
 async function renderQuickSetupPanelMaxTicketsWarning(backFn:() => api.ODPromiseVoid){
-    renderHeader("⏱️ Open Ticket Quick Setup: Ticket Close Configuration")
+    cli.renderHeader(headerOpts,"⏱️ Open Ticket Quick Setup: Ticket Close Configuration")
 
     terminal.bold.blue(stepCount(23)+"Would you like to show the maximum amount of tickets a user can create in the panel?\n")
     terminal.gray("This will show the amount of tickets a user can create at the same time when limits are enabled.\n\n")
@@ -1126,7 +1121,7 @@ async function renderQuickSetupPanelMaxTicketsWarning(backFn:() => api.ODPromise
 }
 
 async function renderQuickSetupReady(backFn:() => api.ODPromiseVoid){
-    renderHeader("😎 Open Ticket Quick Setup: Overview")
+    cli.renderHeader(headerOpts,"😎 Open Ticket Quick Setup: Overview")
 
     terminal.bold.blue(stepCount(24)+"This is the overview of your ticket bot configuration!\n")
     terminal.gray("Press 'Enter' to save the result to the config.\n\n")
@@ -1171,7 +1166,7 @@ async function renderQuickSetupReady(backFn:() => api.ODPromiseVoid){
 }
 
 async function renderQuickSetupFinished(){
-    renderHeader("✅ Open Ticket Quick Setup: Ready")
+    cli.renderHeader(headerOpts,"✅ Open Ticket Quick Setup: Ready")
 
     terminal.bold.green("The config has been saved succesfully and the bot is now ready for usage!\n")
     terminal.gray("Press 'Enter' to exit the Quick Setup CLI.\n\n")
@@ -1203,18 +1198,14 @@ async function renderQuickSetupFinished(){
     }).promise
 
     //stop CLI
-    return await terminate()
+    return await cli.terminate(headerOpts)
 }
 
 async function saveQuickSetupConfig(){
     //GENERAL CONFIG
     const generalConfig = opendiscord.configs.get("opendiscord:general")
-    const generalConfigData: api.ODJsonConfig_DefaultGeneralData = {
-        _INFO:{
-            support:"https://otdocs.dj-dj.be",
-            discord:"https://discord.dj-dj.be",
-            version:"open-ticket-"+opendiscord.versions.get("opendiscord:version").toString()
-        },
+    const generalConfigData: api.ODGeneralJsonConfig_GeneralData = {
+        _CONFIG_VERSION:"open-ticket-"+opendiscord.versions.get("opendiscord:version").toString(),
         
         token:quickSetupStorage.client?.token ?? "<unknown-token>",
         tokenFromENV:false,
@@ -1229,8 +1220,29 @@ async function saveQuickSetupConfig(){
         textCommands:quickSetupStorage.textCommands ?? false,
         
         status:quickSetupStorage.status ?? {enabled:false,mode:"online",type:"custom",text:"",state:""},
+        logs:{
+            enabled:(typeof quickSetupStorage.logChannel == "string"),
+            channel:quickSetupStorage.logChannel ?? "",
+            logMessages:{
+                creation:{dm:true,logs:true},
+                closing:{dm:true,logs:true},
+                deleting:{dm:true,logs:true},
+                reopening:{dm:false,logs:true},
+                claiming:{dm:false,logs:true},
+                pinning:{dm:false,logs:true},
+                adding:{dm:false,logs:true},
+                removing:{dm:false,logs:true},
+                renaming:{dm:false,logs:true},
+                moving:{dm:true,logs:true},
+                blacklisting:{dm:true,logs:true},
+                transferring:{dm:true,logs:true},
+                topicChange:{dm:false,logs:true},
+                priorityChange:{dm:false,logs:true},
+                reactionRole:{dm:false,logs:true}
+            }
+        },
         
-        system:{
+        ticketSystem:{
             preferSlashOverText:quickSetupStorage.slashCommands ?? false,
             sendErrorOnUnknownCommand:true,
             questionFieldsInCodeBlock:true,
@@ -1241,10 +1253,11 @@ async function saveQuickSetupConfig(){
             alwaysShowReason:false,
             emojiStyle:quickSetupStorage.emojiStyle ?? "before",
             pinEmoji:"📌",
+            closeEmoji:"🔒",
             
-            replyOnTicketCreation:false,
+            replyOnTicketCreation:true,
             replyOnReactionRole:true,
-            askPriorityOnTicketCreation:false,
+            askPriorityOnTicketCreation:true,
             removeParticipantsOnClose:quickSetupStorage.removeParticipantsOnClose ?? false,
             disableAutocloseAfterReopen:true,
             autodeleteRequiresClosedTicket:true,
@@ -1252,7 +1265,7 @@ async function saveQuickSetupConfig(){
             allowCloseBeforeMessage:false,
             allowCloseBeforeAdminMessage:true,
             useTranslatedConfigChecker:true,
-            pinFirstTicketMessage:false,
+            pinFirstTicketMessage:true,
             
             enableTicketClaimButtons:true,
             enableTicketCloseButtons:true,
@@ -1260,11 +1273,7 @@ async function saveQuickSetupConfig(){
             enableTicketDeleteButtons:true,
             enableTicketActionWithReason:true,
             enableDeleteWithoutTranscript:true,
-            
-            logs:{
-                enabled:(typeof quickSetupStorage.logChannel == "string"),
-                channel:quickSetupStorage.logChannel ?? ""
-            },
+            enableCreateTicketForOtherUser:true,
             
             limits:{
                 enabled:(typeof quickSetupStorage.globalUserLimit == "number"),
@@ -1283,49 +1292,41 @@ async function saveQuickSetupConfig(){
                 showCreator:false,
                 showParticipants:false
             },
-            
-            permissions:{
-                help:"everyone",
-                panel:"admin",
-                ticket:"everyone",
-                close:"admin",
-                delete:"admin",
-                reopen:"admin",
-                claim:"admin",
-                unclaim:"admin",
-                pin:"admin",
-                unpin:"admin",
-                move:"admin",
-                rename:"admin",
-                add:"admin",
-                remove:"admin",
-                blacklist:"admin",
-                stats:"everyone",
-                clear:"admin",
-                autoclose:"admin",
-                autodelete:"admin",
-                transfer:"admin",
-                topic:"admin",
-                priority:"admin",
+
+            closedCategory:{
+                enabled:false,
+                categoryId:""
             },
-            
-            messages:{
-                creation:{dm:true,logs:true},
-                closing:{dm:true,logs:true},
-                deleting:{dm:true,logs:true},
-                reopening:{dm:false,logs:true},
-                claiming:{dm:false,logs:true},
-                pinning:{dm:false,logs:true},
-                adding:{dm:false,logs:true},
-                removing:{dm:false,logs:true},
-                renaming:{dm:false,logs:true},
-                moving:{dm:true,logs:true},
-                blacklisting:{dm:true,logs:true},
-                transferring:{dm:true,logs:true},
-                topicChange:{dm:false,logs:true},
-                priorityChange:{dm:false,logs:true},
-                reactionRole:{dm:false,logs:true}
-            }
+            backupCategory:{
+                enabled:false,
+                categoryId:""
+            },
+            claimedCategories:[],
+        },
+        permissions:{
+            help:"everyone",
+            panel:"admin",
+            ticket:"everyone",
+            close:"admin",
+            delete:"admin",
+            reopen:"admin",
+            claim:"admin",
+            unclaim:"admin",
+            pin:"admin",
+            unpin:"admin",
+            move:"admin",
+            rename:"admin",
+            add:"admin",
+            remove:"admin",
+            blacklist:"admin",
+            stats:"everyone",
+            clear:"admin",
+            autoclose:"admin",
+            autodelete:"admin",
+            transfer:"admin",
+            topic:"admin",
+            priority:"admin",
+            transcripts:"admin"
         }
     }
     generalConfig.data = generalConfigData
@@ -1333,14 +1334,15 @@ async function saveQuickSetupConfig(){
 
     //QUESTIONS CONFIG => no configuration needed (coming soonTM)
     const questionsConfig = opendiscord.configs.get("opendiscord:questions")
-    const questionsConfigData: api.ODJsonConfig_DefaultQuestionsData = [
+    const questionsConfigData: api.ODQuestionsJsonConfig_QuestionsData = [
         {
             id:"example-question-1",
             name:"Example Question 1",
+            description:"This is a short text input question.",
             type:"short",
-            
             required:true,
-            placeholder:"Insert your short answer here!",
+            
+            placeholder:"Insert answer...",
             length:{
                 enabled:false,
                 min:0,
@@ -1350,15 +1352,69 @@ async function saveQuickSetupConfig(){
         {
             id:"example-question-2",
             name:"Example Question 2",
+            description:"This is a paragraph text input question.",
             type:"paragraph",
-            
             required:false,
-            placeholder:"Insert your long answer here!",
+            
+            placeholder:"Insert answer...",
             length:{
                 enabled:false,
                 min:0,
                 max:1000
             }
+        },
+        {
+            id:"example-question-3",
+            name:"Example Question 3",
+            description:"This is a dropdown question.",
+            type:"dropdown",
+            required:false,
+
+            placeholder:"Choose your answer...",
+            choices:[
+                {title:"Choice A",description:"Apple",emoji:"🍎"},
+                {title:"Choice B",description:"Banana",emoji:"🍌"},
+                {title:"Choice C",description:"Orange",emoji:"🍊"},
+                {title:"Choice D",description:"Kiwi",emoji:"🥝"}
+            ]
+        },
+        {
+            id:"example-question-4",
+            name:"Example Question 4",
+            description:"This is a radio select question.",
+            type:"radio-select",
+            required:true,
+
+            choices:[
+                {title:"Choice A",description:"Up",selectedByDefault:false},
+                {title:"Choice B",description:"Down",selectedByDefault:false},
+                {title:"Choice C",description:"Left",selectedByDefault:false},
+                {title:"Choice D",description:"Right",selectedByDefault:false}
+            ]
+        },
+        {
+            id:"example-question-5",
+            name:"Example Question 5",
+            description:"This is a checkbox select question.",
+            type:"checkbox-select",
+            required:true,
+
+            limits:{
+                enabled:false,
+                min:0,
+                max:10
+            },
+            choices:[
+                {title:"Choice A",description:"Happiness",selectedByDefault:false},
+                {title:"Choice B",description:"Anger",selectedByDefault:false},
+                {title:"Choice C",description:"Sadness",selectedByDefault:false},
+                {title:"Choice D",description:"Fear",selectedByDefault:false}
+            ]
+        },
+        {
+            id:"example-text-display",
+            type:"text-display",
+            textContents:"This is a text display. It isn't a question, but allows you to display a text, explaination or details."
         }
     ]
     questionsConfig.data = questionsConfigData
@@ -1366,8 +1422,8 @@ async function saveQuickSetupConfig(){
 
     //OPTIONS CONFIG
     const optionsConfig = opendiscord.configs.get("opendiscord:options")
-    const optionsConfigData: api.ODJsonConfig_DefaultOptionsData = quickSetupStorage.ticketOptions.filter((ticket) => ticket !== null).map((ticket) => {
-        const id = generateUniqueIdFromName(ticket.name)
+    const optionsConfigData: api.ODOptionsJsonConfig_OptionsData = quickSetupStorage.ticketOptions.filter((ticket) => ticket !== null).map((ticket) => {
+        const id = cli.generateUniqueIdFromName(ticket.name)
         quickSetupStorage.optionIdStorage.push(id)
 
         return {
@@ -1391,9 +1447,6 @@ async function saveQuickSetupConfig(){
                 prefix:ticket.channelPrefix,
                 suffix:ticket.channelSuffix,
                 category:quickSetupStorage.ticketCategory ?? "",
-                closedCategory:"",
-                backupCategory:"",
-                claimedCategory:[],
                 topic:ticket.description
             },
             
@@ -1464,9 +1517,9 @@ async function saveQuickSetupConfig(){
 
     //PANELS CONFIG
     const panelsConfig = opendiscord.configs.get("opendiscord:panels")
-    const panelsConfigData: api.ODJsonConfig_DefaultPanelsData = [
+    const panelsConfigData: api.ODPanelsJsonConfig_PanelsData = [
         {
-            id:generateUniqueIdFromName(quickSetupStorage.panelName ?? "ticket-panel"),
+            id:cli.generateUniqueIdFromName(quickSetupStorage.panelName ?? "ticket-panel"),
             name:quickSetupStorage.panelName ?? "Ticket Panel",
             dropdown:quickSetupStorage.panelDropdown ?? false,
             options:quickSetupStorage.optionIdStorage,
@@ -1489,6 +1542,7 @@ async function saveQuickSetupConfig(){
             },
             settings:{
                 dropdownPlaceholder:"Open a ticket",
+                maximumButtonsPerRow:5,
 
                 enableMaxTicketsWarningInText:(quickSetupStorage.panelLayout == "text" && (quickSetupStorage.panelMaxTicketsWarning ?? false)),
                 enableMaxTicketsWarningInEmbed:(quickSetupStorage.panelLayout == "embed" && (quickSetupStorage.panelMaxTicketsWarning ?? false)),
@@ -1506,7 +1560,7 @@ async function saveQuickSetupConfig(){
 
     //TRANSCRIPTS CONFIG => no configuration needed (coming soonTM)
     const transcriptsConfig = opendiscord.configs.get("opendiscord:transcripts")
-    const transcriptsConfigData: api.ODJsonConfig_DefaultTranscriptsData = {
+    const transcriptsConfigData: api.ODTranscriptsJsonConfig_TranscriptsData = {
         general:{
             enabled:(typeof quickSetupStorage.logChannel == "string"),
 

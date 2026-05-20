@@ -17,7 +17,11 @@ otdebug.txt
 */*/*/.DS_Store
 **/.DS_Store
 
-.docs/*
-!.docs/createDocs.js
-!.docs/mergeTranslations.js
-!.docs/typedoc-config.json
+.backup/*
+.tools/*
+!.tools/createDocs.js
+!.tools/mergeTranslations.js
+!.tools/typedoc-config.json
+!.tools/pterodactyl-eggs/
+!.tools/docker-compose.yml
+!.tools/dockerfile
