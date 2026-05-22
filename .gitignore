@@ -20,6 +20,7 @@ otdebug.txt
 .backup/*
 .tools/*
 !.tools/createSponsors.ts
+!.tools/createContributors.ts
 !.tools/mergeTranslations.ts
 !.tools/docker-compose.yml
 !.tools/dockerfile

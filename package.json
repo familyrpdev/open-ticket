@@ -20,7 +20,8 @@
         "testsetup": "node index.js --cli --dev-config --dev-database --soft-plugins",
         "testnc": "node index.js --no-compile --dev-config --dev-database --soft-plugins",
         "tools:mergelang": "bun run .tools/mergeTranslations.js",
-        "tools:sponsors": "bun run .tools/createSponsors.ts"
+        "tools:sponsors": "bun run .tools/createSponsors.ts",
+        "tools:contributors": "bun run .tools/createContributors.ts"
     },
     "type": "module",
     "license": "GPL-3.0-only",

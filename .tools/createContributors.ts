@@ -3,7 +3,7 @@ import fs from "fs"
 import path from "path"
 import crypto from "crypto"
 
-const sponsorData: {sponsors:Sponsor[],sections:Section[]} = JSON.parse(fs.readFileSync(path.join(process.cwd(),"./.github/SPONSORS.json")).toString())
+const contributorData: {contributors:Contributor[],sections:Section[]} = JSON.parse(fs.readFileSync(path.join(process.cwd(),"./.github/CONTRIBUTORS.json")).toString())
 
 //CONSTANTS
 const CORNER_RADIUS = 10
@@ -11,7 +11,7 @@ const SPACE_MULTIPLIER = 1.2
 const SVG_WIDTH = 1000
 
 //TYPES
-interface Sponsor {
+interface Contributor {
     name:string,
     pictureUrl:string,
     profileUrl:string,
@@ -36,47 +36,46 @@ async function downloadPfpToBase64URL(url:string){
 }
 
 function createTitle(yPos:number,name:string){
-    return `<text x="${Math.round(SVG_WIDTH/2)}" y="${yPos+20}" text-anchor="middle" class="sponsor-tier-title">${name}</text>`
+    return `<text x="${20}" y="${yPos+20}" text-anchor="start" class="contributor-tier-title">${name}</text>`
 }
 
-async function createPfp(yPos:number,xPos:number,size:number,sponsor:Sponsor,withNames:boolean){
+async function createPfp(yPos:number,xPos:number,size:number,contributor:Contributor,withNames:boolean){
     const randomId = crypto.randomBytes(8).toString("hex")
-    const nameElement = (withNames) ? `<text x="${Math.round(xPos+(size/2))}" y="${yPos+size+20}" text-anchor="middle" fill="currentColor">${sponsor.name}</text>` : ""
+    const nameElement = (withNames) ? `<text x="${Math.round(xPos+(size/2))}" y="${yPos+size+20}" text-anchor="middle" fill="currentColor">${contributor.name}</text>` : ""
 
-    return (`<a href="${sponsor.profileUrl}" class="sponsor-link" target="_blank">
+    return (`<a href="${contributor.profileUrl}" class="contributor-link" target="_blank">
         <clipPath id="clipPath-${randomId}">
             <rect x="${xPos}" y="${yPos}" width="${size}" height="${size}" rx="${CORNER_RADIUS}" ry="${CORNER_RADIUS}"/>
         </clipPath>
-        <image x="${xPos}" y="${yPos}" width="${size}" height="${size}" href="${await downloadPfpToBase64URL(sponsor.pictureUrl)}" clip-path="url(#clipPath-${randomId})"/>
+        <image x="${xPos}" y="${yPos}" width="${size}" height="${size}" href="${await downloadPfpToBase64URL(contributor.pictureUrl)}" clip-path="url(#clipPath-${randomId})"/>
         ${nameElement}
     </a>`)
 }
 
-async function generateSection(yPos:number,section:Section,sponsors:Sponsor[]){
+async function generateSection(yPos:number,section:Section,contributors:Contributor[]){
     let sectionHtml: string = ""
     sectionHtml += createTitle(yPos,section.name)
     const nameOffset = (section.withNames) ? 20 : 0
 
-    //divide sponsors in rows
-    const groupedSponsors: Sponsor[][] = []
-    let currentGroup: Sponsor[] = []
-    for (const sponsor of sponsors){
-        currentGroup.push(sponsor)
+    //divide contributors in rows
+    const groupedContributors: Contributor[][] = []
+    let currentGroup: Contributor[] = []
+    for (const contributor of contributors){
+        currentGroup.push(contributor)
         if (currentGroup.length == section.pfpColumns){
-            groupedSponsors.push(currentGroup)
+            groupedContributors.push(currentGroup)
             currentGroup = []
         }
     }
-    if (currentGroup.length > 0) groupedSponsors.push(currentGroup)
+    if (currentGroup.length > 0) groupedContributors.push(currentGroup)
 
     let y = 0
-    for (const sponsorGroup of groupedSponsors){
-        const xOffset = Math.round((SVG_WIDTH - (sponsorGroup.length * section.pfpSize * SPACE_MULTIPLIER))/2)
+    for (const contributorGroup of groupedContributors){
         let x = 0
-        for (const sponsor of sponsorGroup){
+        for (const contributor of contributorGroup){
             const pfpYPos = 40 + yPos + (y * ((section.pfpSize * SPACE_MULTIPLIER) + nameOffset))
-            const pfpXPos = xOffset + (x * section.pfpSize * SPACE_MULTIPLIER)
-            sectionHtml += await createPfp(pfpYPos,pfpXPos,section.pfpSize,sponsor,section.withNames)
+            const pfpXPos = 20 + (x * section.pfpSize * SPACE_MULTIPLIER)
+            sectionHtml += await createPfp(pfpYPos,pfpXPos,section.pfpSize,contributor,section.withNames)
             x++
         }
         y++
@@ -86,13 +85,13 @@ async function generateSection(yPos:number,section:Section,sponsors:Sponsor[]){
     return {sectionHtml,sectionHeight}
 }
 
-async function generateSections(sections:Section[],sponsors:Sponsor[]){
+async function generateSections(sections:Section[],contributors:Contributor[]){
     let finalHeight: number = 10
     let finalHtml: string = ""
     for (const section of sections){
-        const sectionSponsors = sponsors.filter((s) => s.sectionId === section.id)
-        if (sectionSponsors.length < 1) continue
-        const {sectionHtml,sectionHeight} = await generateSection(finalHeight,section,sectionSponsors)
+        const sectionContributors = contributors.filter((s) => s.sectionId === section.id)
+        if (sectionContributors.length < 1) continue
+        const {sectionHtml,sectionHeight} = await generateSection(finalHeight,section,sectionContributors)
         
         finalHeight += sectionHeight
         finalHtml += sectionHtml
@@ -111,22 +110,21 @@ function generateFinalHtml(sectionsHtml:string,sectionHeight:number){
         fill: #777777;
         font-family: 'Open Sans', 'Helvetica Neue', sans-serif;
         }
-        .sponsor-link {
+        .contributor-link {
         cursor: pointer;
         }
-        .sponsor-tier-title {
+        .contributor-tier-title {
         font-weight: 500;
         font-size: 20px;
         }
         </style>
-        <rect x="2" y="2" width="${SVG_WIDTH-4}" height="${sectionHeight-4}" rx="20" ry="20" style="fill:transparent;stroke:#f8ba00;stroke-width:3"></rect>
         ${sectionsHtml}
     </svg>`)
 }
 
-//GENERATE SPONSORS SVG
+//GENERATE CONTRIBUTORS SVG
 async function main(){
-    const {finalHeight,finalHtml} = await generateSections(sponsorData.sections,sponsorData.sponsors) 
-    fs.writeFileSync(path.join(process.cwd(),"./.github/SPONSORS.svg"),generateFinalHtml(finalHtml,finalHeight))
+    const {finalHeight,finalHtml} = await generateSections(contributorData.sections,contributorData.contributors) 
+    fs.writeFileSync(path.join(process.cwd(),"./.github/CONTRIBUTORS.svg"),generateFinalHtml(finalHtml,finalHeight))
 }
 main()
