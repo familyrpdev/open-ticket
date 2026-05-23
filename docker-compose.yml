@@ -1,7 +1,7 @@
-# Docker Compose for Open Ticket v4
+# Docker Compose for Open Ticket
 services:
   openticket:
-    build: .
+    image: djj123dj/open-ticket:latest
     volumes:
       - config:/home/container/config
       - database:/home/container/database
