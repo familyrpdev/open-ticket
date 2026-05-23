@@ -330,7 +330,7 @@ const errorEmbeds = () => {
         new api.ODWorker("opendiscord:error-channel-rename",0,async (instance,params,origin) => {
             const {channel,user,originalName,newName} = params
             
-            const method = (origin == "ticket-move" || origin == "ticket-pin" || origin == "ticket-rename" || origin == "ticket-unpin" || origin == "ticket-priority" || origin == "ticket-transfer") ? origin : getMethodFromOrigin(origin)
+            const method = (origin == "ticket-move" || origin == "ticket-pin" || origin == "ticket-close" || origin == "ticket-reopen" || origin == "ticket-rename" || origin == "ticket-unpin" || origin == "ticket-priority" || origin == "ticket-transfer") ? origin : getMethodFromOrigin(origin)
 
             instance.setColor(generalConfig.data.ticketSystem.useRedErrorEmbeds ? "Red" : generalConfig.data.mainColor)
             instance.setTitle(utilities.emojiTitle("❌",lang.getTranslation("errors.titles.channelRename")))

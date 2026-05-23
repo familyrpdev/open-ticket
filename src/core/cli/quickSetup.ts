@@ -1253,7 +1253,7 @@ async function saveQuickSetupConfig(){
             alwaysShowReason:false,
             emojiStyle:quickSetupStorage.emojiStyle ?? "before",
             pinEmoji:"📌",
-            closeEmoji:"🔒",
+            closeEmoji:"",
             
             replyOnTicketCreation:true,
             replyOnReactionRole:true,

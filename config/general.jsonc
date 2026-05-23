@@ -78,7 +78,7 @@
         "alwaysShowReason":false, //Show reason even if none is provided
         "emojiStyle":"before", //The style of emoji's in embeds. Choices: before, after, double, disabled
         "pinEmoji":"📌", //Channel emoji of pinned tickets (Leave empty to disable)
-        "closeEmoji":"🔒", //Channel emoji of closed tickets (Leave empty to disable)
+        "closeEmoji":"", //Channel emoji of closed tickets (Leave empty to disable)
         
         "replyOnTicketCreation":true, //Reply with a msg when a ticket is created
         "replyOnReactionRole":true, //Reply with a msg when a reaction role is used

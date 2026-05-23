@@ -20,9 +20,10 @@ export async function registerActions(){
 
             //calculate status emojis
             const pinEmoji = (ticket && ticket.get("opendiscord:pinned").value) ? generalConfig.data.ticketSystem.pinEmoji : ""
+            const closeEmoji = (ticket && ticket.get("opendiscord:closed").value) ? generalConfig.data.ticketSystem.closeEmoji : ""
             const priorityEmoji = (ticket) ? (opendiscord.priorities.getFromPriorityLevel(ticket.get("opendiscord:priority").value).channelEmoji ?? "") : ""
 
-            instance.newChannelName = pinEmoji+priorityEmoji+baseChannelName
+            instance.newChannelName = pinEmoji+closeEmoji+priorityEmoji+baseChannelName
             instance.newChannelSuffix = channelSuffix
             instance.shouldChangeName = (instance.newChannelName !== currentChannelName)
         })

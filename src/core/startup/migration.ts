@@ -180,7 +180,7 @@ export const migrations = [
 
                 if (!generalConfig.data["system"]) throw new api.ODSystemError("Couldn't find general.jsonc 'system' category.")
                 generalConfig.data.ticketSystem = generalConfig.data["system"]
-                generalConfig.data.ticketSystem.closeEmoji = "🔒"
+                generalConfig.data.ticketSystem.closeEmoji = ""
                 generalConfig.data.ticketSystem.askPriorityOnTicketCreation = true
                 generalConfig.data.ticketSystem.enableCreateTicketForOtherUser = true
                 delete generalConfig.data["system"]

@@ -63,6 +63,25 @@ export async function registerActions(){
                 }
             }
 
+            //calculate channel name
+            const channelNameResult = await opendiscord.actions.get("opendiscord:calculate-ticket-name").run("reopen-ticket",{guild,user,option:ticket.option,channel,ticket,currentChannelName:channel.name})
+            if (channelNameResult && channelNameResult.shouldChangeName && typeof channelNameResult.newChannelName !== "undefined"){
+                const originalName = channel.name
+                const newName = channelNameResult.newChannelName
+                try{
+                    await utilities.timedAwait(channel.setName(newName),2500,(err) => {
+                        opendiscord.log("Failed to rename channel on ticket reopen","error")
+                    })
+                }catch(err){
+                    opendiscord.log("Unable to rename channel while reopening ticket! Waiting until ratelimit expires...","warning",[
+                        {key:"oldName",value:originalName},
+                        {key:"newName",value:newName}
+                    ])
+                    const sentMsg = await channel.send((await opendiscord.builders.messages.getSafe("opendiscord:error-channel-rename").build("ticket-reopen",{guild,channel,user,originalName,newName})).message)
+                    setTimeout(() => {if (sentMsg.deletable) sentMsg.delete()},7000) //autodelete error message
+                }
+            }
+
             //update permissions
             const permissions: discord.OverwriteResolvable[] = [{
                 type:discord.OverwriteType.Role,
