@@ -1,7 +1,9 @@
-# Docker File for Open Ticket v4
+# Docker File for Open Ticket
 FROM node:22-alpine
 
 # /home/container keeps Pterodactyl panel compatibility
+# chown the workdir so node user can create/remove subdirectories
+RUN mkdir -p /home/container && chown node:node /home/container
 WORKDIR /home/container
 
 # Install dependencies
