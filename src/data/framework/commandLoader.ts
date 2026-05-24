@@ -58,7 +58,22 @@ export async function loadAllSlashCommands(){
         description:lang.getTranslation("commands.ticket"),
         contexts:[discord.InteractionContextType.Guild],
         integrationTypes:[discord.ApplicationIntegrationType.GuildInstall],
-        options:[
+        options:(generalConfig.data.ticketSystem.enableCreateTicketForOtherUser) ? [
+            {
+                name:"id",
+                description:lang.getTranslation("commands.ticketId"),
+                type:acot.String,
+                required:true,
+                autocomplete:true
+            },
+            {
+                name:"user",
+                //TODO TRANSLATION!!!
+                description:"Create a ticket for another user.",
+                type:acot.User,
+                required:false,
+            }
+        ] : [
             {
                 name:"id",
                 description:lang.getTranslation("commands.ticketId"),
@@ -87,13 +102,13 @@ export async function loadAllSlashCommands(){
     }))
 
     //DELETE
-    if (allowedCommands.includes("delete") && generalConfig.data.ticketSystem.enableDeleteWithoutTranscript) commands.add(new api.ODSlashCommand("opendiscord:delete",{
+    if (allowedCommands.includes("delete")) commands.add(new api.ODSlashCommand("opendiscord:delete",{
         type:act.ChatInput,
         name:"delete",
         description:lang.getTranslation("commands.delete"),
         contexts:[discord.InteractionContextType.Guild],
         integrationTypes:[discord.ApplicationIntegrationType.GuildInstall],
-        options:[
+        options:(generalConfig.data.ticketSystem.enableDeleteWithoutTranscript) ? [
             {
                 name:"reason",
                 description:lang.getTranslation("commands.reason"),
@@ -106,15 +121,7 @@ export async function loadAllSlashCommands(){
                 type:acot.Boolean,
                 required:false
             }
-        ]
-    }))
-    else if (allowedCommands.includes("delete")) commands.add(new api.ODSlashCommand("opendiscord:delete",{
-        type:act.ChatInput,
-        name:"delete",
-        description:lang.getTranslation("commands.delete"),
-        contexts:[discord.InteractionContextType.Guild],
-        integrationTypes:[discord.ApplicationIntegrationType.GuildInstall],
-        options:[
+        ] : [
             {
                 name:"reason",
                 description:lang.getTranslation("commands.reason"),

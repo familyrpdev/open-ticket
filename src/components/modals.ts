@@ -13,10 +13,10 @@ export async function registerModalComponents(){
     modals.add(new api.ODComponentFactory("opendiscord:ticket-questions"))
     modals.get("opendiscord:ticket-questions").workers.add(
         new api.ODWorker("opendiscord:ticket-questions",0,(instance,params,origin) => {
-            const {option} = params
+            const {option,user} = params
             
             const modal = instance.setComponent(new api.ODModalComponent("opendiscord:questions-modal",{
-                customId:"od:ticket-questions|"+option.id.value+"|"+origin,
+                customId:"od:ticket-questions|"+option.id.value+"|"+origin+"|"+user.id, //add user ID for creating tickets for other users
                 title:lang.getTranslation("params.uppercase.ticket")+": "+(option.exists("opendiscord:name")) ? option.get("opendiscord:name").value : option.id.value
             }))
 
