@@ -22,13 +22,13 @@
         "tools:mergelang": "bun run .tools/mergeTranslations.js",
         "tools:sponsors": "bun run .tools/createSponsors.ts",
         "tools:contributors": "bun run .tools/createContributors.ts",
-        "docker:build":".tools/build-docker.sh djj123dj/open-ticket --no-push"
+        "docker:build": ".tools/build-docker.sh djj123dj/open-ticket --no-push"
     },
     "type": "module",
     "license": "GPL-3.0-only",
     "dependencies": {
         "@discordjs/rest": "^2.6.1",
-        "@open-discord-bots/framework": "^0.5.2",
+        "@open-discord-bots/framework": "^0.5.3",
         "@types/node": "^22.5.0",
         "@types/terminal-kit": "^2.5.7",
         "ansis": "^4.2.0",

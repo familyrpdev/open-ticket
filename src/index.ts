@@ -902,22 +902,22 @@ const main = async () => {
     }
 
     //plugin loading before code
-    await opendiscord.events.get("onPluginBeforeCodeLoad").emit([])
-    await opendiscord.events.get("afterPluginBeforeCodeLoaded").emit([])
+    await opendiscord.events.get("onPluginBeforeTaskLoad").emit([])
+    await opendiscord.events.get("afterPluginBeforeTaskLoaded").emit([])
 
-    //load code
-    opendiscord.log("Loading code...","system")
-    if (opendiscord.sharedFuses.getFuse("codeLoading")){
-        await (await import("./data/framework/codeLoader.js")).loadAllCode()
+    //load background tasks
+    opendiscord.log("Loading background tasks...","system")
+    if (opendiscord.sharedFuses.getFuse("taskLoading")){
+        await (await import("./data/framework/taskLoader.js")).loadAllTasks()
     }
-    await opendiscord.events.get("onCodeLoad").emit([opendiscord.code])
-    await opendiscord.events.get("afterCodeLoaded").emit([opendiscord.code])
+    await opendiscord.events.get("onTaskLoad").emit([opendiscord.tasks])
+    await opendiscord.events.get("afterTasksLoaded").emit([opendiscord.tasks])
 
-    //execute code
-    await opendiscord.events.get("onCodeExecute").emit([opendiscord.code])
-    if (opendiscord.sharedFuses.getFuse("codeExecution")){
-        await opendiscord.code.execute()
-        await opendiscord.events.get("afterCodeExecuted").emit([opendiscord.code])
+    //execute background tasks
+    await opendiscord.events.get("onTaskExecute").emit([opendiscord.tasks])
+    if (opendiscord.sharedFuses.getFuse("taskExecution")){
+        await opendiscord.tasks.execute()
+        await opendiscord.events.get("afterTasksExecuted").emit([opendiscord.tasks])
     }
 
     //finish setup

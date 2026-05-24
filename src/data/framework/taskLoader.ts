@@ -9,20 +9,20 @@ const statsDatabase = opendiscord.databases.get("opendiscord:stats")
 const optionDatabase = opendiscord.databases.get("opendiscord:options")
 const mainServer = opendiscord.client.mainServer
 
-export async function loadAllCode(){
+export async function loadAllTasks(){
     if (!generalConfig || !mainServer || !globalDatabase || !userDatabase || !ticketDatabase || !statsDatabase || !optionDatabase) return
 
-    loadCommandErrorHandlingCode()
-    loadStartListeningInteractionsCode()
-    loadDatabaseCleanersCode()
-    loadPanelAutoUpdateCode()
-    loadDatabaseSaversCode()
-    loadAutoCode()
+    loadCommandErrorHandlingTasks()
+    loadStartListeningInteractionsTasks()
+    loadDatabaseCleanersTasks()
+    loadPanelAutoUpdateTasks()
+    loadDatabaseSaversTasks()
+    loadAutoTasks()
 }
 
-export async function loadCommandErrorHandlingCode(){
+export async function loadCommandErrorHandlingTasks(){
     //COMMAND ERROR HANDLING
-    opendiscord.code.add(new api.ODCode("opendiscord:command-error-handling",14,() => {
+    opendiscord.tasks.add(new api.ODTask("opendiscord:command-error-handling",14,() => {
         //invalid/missing options
         opendiscord.client.textCommands.onError(async (error) => {
             if (error.msg.channel.type == discord.ChannelType.GroupDM) return
@@ -56,9 +56,9 @@ export async function loadCommandErrorHandlingCode(){
     }))
 }
 
-export async function loadStartListeningInteractionsCode(){
+export async function loadStartListeningInteractionsTasks(){
     //START LISTENING TO INTERACTIONS
-    opendiscord.code.add(new api.ODCode("opendiscord:start-listening-interactions",13,() => {
+    opendiscord.tasks.add(new api.ODTask("opendiscord:start-listening-interactions",13,() => {
         opendiscord.client.slashCommands.startListeningToInteractions()
         opendiscord.client.textCommands.startListeningToInteractions()
         opendiscord.client.contextMenus.startListeningToInteractions()
@@ -66,11 +66,11 @@ export async function loadStartListeningInteractionsCode(){
     }))
 }
 
-export async function loadDatabaseCleanersCode(){
+export async function loadDatabaseCleanersTasks(){
     if (!mainServer) return
     
     //SUFFIX DATABASE CLEANER
-    opendiscord.code.add(new api.ODCode("opendiscord:suffix-database-cleaner",11,async () => {
+    opendiscord.tasks.add(new api.ODTask("opendiscord:suffix-database-cleaner",11,async () => {
         const validSuffixCounters: string[] = []
         const validSuffixHistories: string[] = []
 
@@ -104,7 +104,7 @@ export async function loadDatabaseCleanersCode(){
     }))
 
     //OPTION DATABASE CLEANER
-    opendiscord.code.add(new api.ODCode("opendiscord:option-database-cleaner",10,async () => {
+    opendiscord.tasks.add(new api.ODTask("opendiscord:option-database-cleaner",10,async () => {
         //delete all unused options (async)
         for (const option of (await optionDatabase.getCategory("opendiscord:used-option") ?? [])){
             if (!opendiscord.options.exists(option.key)){
@@ -118,7 +118,7 @@ export async function loadDatabaseCleanersCode(){
     }))
 
     //USER DATABASE CLEANER (full async/parallel because it takes a lot of time)
-    opendiscord.code.add(new api.ODCode("opendiscord:user-database-cleaner",9,() => {
+    opendiscord.tasks.add(new api.ODTask("opendiscord:user-database-cleaner",9,() => {
         utilities.runAsync(async () => {  
             const validUsers: string[] = []
 
@@ -184,7 +184,7 @@ export async function loadDatabaseCleanersCode(){
     }))
 
     //TICKET DATABASE CLEANER
-    opendiscord.code.add(new api.ODCode("opendiscord:ticket-database-cleaner",8,async () => {
+    opendiscord.tasks.add(new api.ODTask("opendiscord:ticket-database-cleaner",8,async () => {
         const validTickets: string[] = []
 
         //check ticket database for valid tickets
@@ -250,10 +250,10 @@ export async function loadDatabaseCleanersCode(){
     }))
 }
 
-export async function loadPanelAutoUpdateCode(){
+export async function loadPanelAutoUpdateTasks(){
     //PANEL AUTO UPDATE
     const panelMsgState = opendiscord.states.get("opendiscord:panel-message")
-    opendiscord.code.add(new api.ODCode("opendiscord:panel-auto-update",7,async () => {
+    opendiscord.tasks.add(new api.ODTask("opendiscord:panel-auto-update",7,async () => {
         if (!mainServer) return
 
         for (const panelState of (await panelMsgState.listMsgStates()).map((rawState) => rawState.value)){
@@ -294,9 +294,9 @@ export async function loadPanelAutoUpdateCode(){
     }))
 }
 
-export async function loadDatabaseSaversCode(){
+export async function loadDatabaseSaversTasks(){
     //TICKET SAVER
-    opendiscord.code.add(new api.ODCode("opendiscord:ticket-saver",6,() => {
+    opendiscord.tasks.add(new api.ODTask("opendiscord:ticket-saver",6,() => {
         const mainVersion = opendiscord.versions.get("opendiscord:version")
 
         opendiscord.tickets.onAdd(async (ticket) => {
@@ -333,7 +333,7 @@ export async function loadDatabaseSaversCode(){
     }))
 
     //BLACKLIST SAVER
-    opendiscord.code.add(new api.ODCode("opendiscord:blacklist-saver",5,() => {
+    opendiscord.tasks.add(new api.ODTask("opendiscord:blacklist-saver",5,() => {
         opendiscord.blacklist.onAdd(async (blacklist) => {
             await userDatabase.set("opendiscord:blacklist",blacklist.id.value,blacklist.reason)
         })
@@ -346,7 +346,7 @@ export async function loadDatabaseSaversCode(){
     }))
 
     //AUTO ROLE ON JOIN
-    opendiscord.code.add(new api.ODCode("opendiscord:auto-role-on-join",4,() => {
+    opendiscord.tasks.add(new api.ODTask("opendiscord:auto-role-on-join",4,() => {
         opendiscord.client.client.on("guildMemberAdd",async (member) => {
             for (const option of opendiscord.options.getAll()){
                 if (option instanceof api.ODRoleOption && option.get("opendiscord:add-on-join").value){
@@ -358,11 +358,11 @@ export async function loadDatabaseSaversCode(){
     }))
 }
 
-const loadAutoCode = () => {
+export async function loadAutoTasks(){
     const interactiveMsgState = opendiscord.states.get("opendiscord:interactive-message")
 
     //AUTOCLOSE TIMEOUT
-    opendiscord.code.add(new api.ODCode("opendiscord:autoclose-timeout",3,() => {
+    opendiscord.tasks.add(new api.ODTask("opendiscord:autoclose-timeout",3,() => {
         setInterval(async () => {
             let count = 0
             for (const ticket of opendiscord.tickets.getAll()){
@@ -399,7 +399,7 @@ const loadAutoCode = () => {
     }))
 
     //AUTOCLOSE LEAVE
-    opendiscord.code.add(new api.ODCode("opendiscord:autoclose-leave",2,() => {
+    opendiscord.tasks.add(new api.ODTask("opendiscord:autoclose-leave",2,() => {
         opendiscord.client.client.on("guildMemberRemove",async (member) => {
             for (const ticket of opendiscord.tickets.getAll()){
                 if (ticket.get("opendiscord:opened-by").value == member.id){
@@ -427,7 +427,7 @@ const loadAutoCode = () => {
     }))
 
     //AUTODELETE TIMEOUT
-    opendiscord.code.add(new api.ODCode("opendiscord:autodelete-timeout",1,() => {
+    opendiscord.tasks.add(new api.ODTask("opendiscord:autodelete-timeout",1,() => {
         setInterval(async () => {
             let count = 0
             for (const ticket of opendiscord.tickets.getAll()){
@@ -460,7 +460,7 @@ const loadAutoCode = () => {
     }))
 
     //AUTODELETE LEAVE
-    opendiscord.code.add(new api.ODCode("opendiscord:autodelete-leave",0,() => {
+    opendiscord.tasks.add(new api.ODTask("opendiscord:autodelete-leave",0,() => {
         opendiscord.client.client.on("guildMemberRemove",async (member) => {
             for (const ticket of opendiscord.tickets.getAll()){
                 if (ticket.get("opendiscord:opened-by").value == member.id){
@@ -483,7 +483,7 @@ const loadAutoCode = () => {
     }))
 
     //TICKET ANTI BUSY (+ sync version of tickets with latest OT version in database)
-    opendiscord.code.add(new api.ODCode("opendiscord:ticket-anti-busy",-1,() => {
+    opendiscord.tasks.add(new api.ODTask("opendiscord:ticket-anti-busy",-1,() => {
         for (const ticket of opendiscord.tickets.getAll()){
             //free tickets from corruption due to opendiscord:busy variable
             ticket.get("opendiscord:busy").value = false

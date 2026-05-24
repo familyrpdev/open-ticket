@@ -282,15 +282,15 @@ export const loadAllEvents = () => {
         "onStatisticInit",
         "afterStatisticsInitiated",
 
-        //plugin loading before code
-        "onPluginBeforeCodeLoad",
-        "afterPluginBeforeCodeLoaded",
+        //plugin loading before tasks
+        "onPluginBeforeTaskLoad",
+        "afterPluginBeforeTaskLoaded",
 
-        //code
-        "onCodeLoad",
-        "afterCodeLoaded",
-        "onCodeExecute",
-        "afterCodeExecuted",
+        //background tasks
+        "onTaskLoad",
+        "afterTasksLoaded",
+        "onTaskExecute",
+        "afterTasksExecuted",
 
         //livestatus
         "onLiveStatusSourceLoad",

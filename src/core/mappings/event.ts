@@ -21,7 +21,7 @@ import { ODMappedActionManager } from "./action.js"
 import { ODMappedPermissionManager } from "./permission.js"
 import { ODMappedHelpMenuManager } from "./helpmenu.js"
 import { ODMappedStatisticManager } from "./statistic.js"
-import { ODMappedCodeManager } from "./code.js"
+import { ODMappedTaskManager } from "./task.js"
 import { ODMappedCooldownManager } from "./cooldown.js"
 import { ODMappedPostManager } from "./post.js"
 import { ODMappedVerifyBarManager } from "./verifybar.js"
@@ -326,15 +326,15 @@ export interface ODEventManagerIdMappings extends api.ODEventManagerIdConstraint
     "onStatisticInit": api.ODEvent<(stats:ODMappedStatisticManager) => api.ODPromiseVoid>
     "afterStatisticsInitiated": api.ODEvent<(stats:ODMappedStatisticManager) => api.ODPromiseVoid>
 
-    //plugin loading before code
-    "onPluginBeforeCodeLoad": api.ODEvent<() => api.ODPromiseVoid>,
-    "afterPluginBeforeCodeLoaded": api.ODEvent<() => api.ODPromiseVoid>,
+    //plugin loading before tasks
+    "onPluginBeforeTaskLoad": api.ODEvent<() => api.ODPromiseVoid>,
+    "afterPluginBeforeTaskLoaded": api.ODEvent<() => api.ODPromiseVoid>,
 
-    //code
-    "onCodeLoad": api.ODEvent<(code:ODMappedCodeManager) => api.ODPromiseVoid>
-    "afterCodeLoaded": api.ODEvent<(code:ODMappedCodeManager) => api.ODPromiseVoid>
-    "onCodeExecute": api.ODEvent<(code:ODMappedCodeManager) => api.ODPromiseVoid>
-    "afterCodeExecuted": api.ODEvent<(code:ODMappedCodeManager) => api.ODPromiseVoid>
+    //background tasks
+    "onTaskLoad": api.ODEvent<(tasks:ODMappedTaskManager) => api.ODPromiseVoid>
+    "afterTasksLoaded": api.ODEvent<(tasks:ODMappedTaskManager) => api.ODPromiseVoid>
+    "onTaskExecute": api.ODEvent<(tasks:ODMappedTaskManager) => api.ODPromiseVoid>
+    "afterTasksExecuted": api.ODEvent<(tasks:ODMappedTaskManager) => api.ODPromiseVoid>
 
     //livestatus
     "onLiveStatusSourceLoad": api.ODEvent<(livestatus:ODMappedLiveStatusManager) => api.ODPromiseVoid>

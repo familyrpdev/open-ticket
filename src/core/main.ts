@@ -26,7 +26,7 @@ export class ODOpenTicketMain extends api.ODMain {
     declare cooldowns: api.ODMappedCooldownManager
     declare helpmenu: api.ODMappedHelpMenuManager
     declare statistics: api.ODMappedStatisticManager
-    declare code: api.ODMappedCodeManager
+    declare tasks: api.ODMappedTaskManager
     declare posts: api.ODMappedPostManager
     declare states: api.ODMappedStateManager
     
@@ -97,7 +97,7 @@ export class ODOpenTicketMain extends api.ODMain {
             cooldowns:new api.ODMappedCooldownManager(debug),
             helpmenu:new api.ODMappedHelpMenuManager(debug),
             statistics:new api.ODMappedStatisticManager(debug),
-            code:new api.ODMappedCodeManager(debug),
+            tasks:new api.ODMappedTaskManager(debug),
             posts:new api.ODMappedPostManager(debug),
             states:new api.ODMappedStateManager(debug),
             
