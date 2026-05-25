@@ -6,6 +6,7 @@ import * as discord from "discord.js"
 
 const generalConfig = opendiscord.configs.get("opendiscord:general")
 const clearMsgState = opendiscord.states.get("opendiscord:clear-message")
+const lang = opendiscord.languages
 
 export async function registerCommandResponders(){
     //CLEAR COMMAND RESPONDER
@@ -72,8 +73,7 @@ export async function registerButtonResponders(){
             //check message state
             const state = await clearMsgState.getMsgState({channel,message,user})
             if (!state){
-                //TODO TRANSLATION!!!
-                await instance.reply(await opendiscord.builders.messages.getSafe("opendiscord:error").build(origin,{guild,channel,user,error:"This interaction is no longer valid or has expired. Use the command `{0}` instead. It is normal to receive this error after a major Open Ticket update.".replace("{0}","/clear"),layout:"simple",customTitle:"Message State Expired"}))
+                await instance.reply(await opendiscord.builders.messages.getSafe("opendiscord:error").build(origin,{guild,channel,user,error:lang.getTranslationWithParams("errors.descriptions.stateExpired",["/clear"]),layout:"simple",customTitle:"Message State Expired"}))
                 return cancel()
             }
 

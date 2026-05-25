@@ -161,6 +161,8 @@ export type ODLanguageManagerTranslationIdMappings = (
     "actions.buttons.helpPage"|
     "actions.buttons.withReason"|
     "actions.buttons.withoutTranscript"|
+    "actions.buttons.blacklistAdd"|
+    "actions.buttons.blacklistRemove"|
 
     "actions.titles.created"|
     "actions.titles.close"|
@@ -198,6 +200,7 @@ export type ODLanguageManagerTranslationIdMappings = (
     "actions.titles.prioritySet"|
     "actions.titles.priorityGet"|
     "actions.titles.transfer"|
+    "actions.titles.transcripts"|
 
     "actions.descriptions.create"|
     "actions.descriptions.close"|
@@ -288,7 +291,9 @@ export type ODLanguageManagerTranslationIdMappings = (
     "actions.logs.prioritySetDm"|
     "actions.logs.roleUpdateLog"|
     "actions.logs.roleUpdateDm"|
-
+    "actions.logs.topicSetLog"|
+    "actions.logs.topicSetDm"|
+    
     "transcripts.success.visit"|
     "transcripts.success.ready"|
     "transcripts.success.textFileDescription"|
@@ -306,7 +311,9 @@ export type ODLanguageManagerTranslationIdMappings = (
     "transcripts.errors.backup"|
     "transcripts.errors.error"|
     "transcripts.errors.title"|
-
+    "transcripts.errors.noHistory"|
+    "transcripts.errors.historyNotSupported"|
+    
     "transcripts.text.messagesTitle"|
     "transcripts.text.embedTitle"|
     "transcripts.text.fileTitle"|
@@ -328,6 +335,7 @@ export type ODLanguageManagerTranslationIdMappings = (
     "errors.titles.unknownPanel"|
     "errors.titles.notInGuild"|
     "errors.titles.channelRename"|
+    "errors.titles.channelCategory"|
     "errors.titles.busy"|
     "errors.titles.permissionError"|
 
@@ -350,12 +358,16 @@ export type ODLanguageManagerTranslationIdMappings = (
     "errors.descriptions.deprecatedTicket"|
     "errors.descriptions.notInGuild"|
     "errors.descriptions.channelRename"|
+    "errors.descriptions.channelCategory"|
     "errors.descriptions.channelRenameSource"|
     "errors.descriptions.busy"|
     "errors.descriptions.closeBeforeMessage"|
     "errors.descriptions.closeBeforeAdminMessage"|
     "errors.descriptions.unableToCreateTicket"|
-
+    "errors.descriptions.messageMissing"|
+    "errors.descriptions.stateExpired"|
+    "errors.descriptions.panelStateExpired"|
+    
     "errors.optionInvalidReasons.stringRegex"|
     "errors.optionInvalidReasons.stringMinLength"|
     "errors.optionInvalidReasons.stringMaxLength"|
@@ -410,6 +422,8 @@ export type ODLanguageManagerTranslationIdMappings = (
     "params.uppercase.syntax"|
     "params.uppercase.originalName"|
     "params.uppercase.newName"|
+    "params.uppercase.originalCategory"|
+    "params.uppercase.newCategory"|
     "params.uppercase.until"|
     "params.uppercase.validOptions"|
     "params.uppercase.validPanels"|
@@ -432,6 +446,8 @@ export type ODLanguageManagerTranslationIdMappings = (
     "params.uppercase.participants"|
     "params.uppercase.yes"|
     "params.uppercase.no"|
+    "params.uppercase.accept"|
+    "params.uppercase.cancel"|
     "params.uppercase.option"|
     "params.uppercase.topic"|
     "params.uppercase.uptime"|
@@ -460,6 +476,7 @@ export type ODLanguageManagerTranslationIdMappings = (
     "commands.panelAutoUpdate"|
     "commands.ticket"|
     "commands.ticketId"|
+    "commands.ticketOtherUser"|
     "commands.close"|
     "commands.delete"|
     "commands.deleteNoTranscript"|
@@ -522,6 +539,8 @@ export type ODLanguageManagerTranslationIdMappings = (
     "commands.priorityList"|
     "commands.transfer"|
     "commands.transferUser"|
+    "commands.transcripts"|
+    "commands.transcriptsUser"|
 
     "helpMenu.help"|
     "helpMenu.ticket"|
@@ -604,6 +623,7 @@ export type ODLanguageManagerTranslationIdMappings = (
     "panel.selectTicket"|
     "panel.selectRole"|
     "panel.selectOption"|
+    "panel.selectPriorityLevel"|
 
     "priorities.urgent"|
     "priorities.veryHigh"|

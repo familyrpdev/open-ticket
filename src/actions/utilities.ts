@@ -28,18 +28,17 @@ export async function checkTicketCreationPerms(instance:api.ODButtonResponderIns
 export async function replyInteractiveMessageState(instance:api.ODButtonResponderInstance|api.ODDropdownResponderInstance|api.ODModalResponderInstance,origin:"slash"|"text"|"button"|"dropdown"|"modal"|"other",channel:discord.TextBasedChannel,message:discord.Message|null,replacementCommandName:string){
     //check message state
     const {user,member,guild} = instance
+    const lang = opendiscord.languages
     const interactiveMsgState = opendiscord.states.get("opendiscord:interactive-message")
 
     if (!message){
-        //TODO TRANSLATION!!!
-        await instance.reply(await opendiscord.builders.messages.getSafe("opendiscord:error").build(origin,{guild,channel,user,error:"Unable to locate message of interaction. Use the command `{0}` instead.".replace("{0}",replacementCommandName),layout:"simple",customTitle:"Message State Error"}))
+        await instance.reply(await opendiscord.builders.messages.getSafe("opendiscord:error").build(origin,{guild,channel,user,error:lang.getTranslationWithParams("errors.descriptions.messageMissing",[replacementCommandName]),layout:"simple",customTitle:"Message State Error"}))
         return null
     }
 
     const state = await interactiveMsgState.getMsgState({channel,message})
     if (!state){
-        //TODO TRANSLATION!!!
-        await instance.reply(await opendiscord.builders.messages.getSafe("opendiscord:error").build(origin,{guild,channel,user,error:"This interaction is no longer valid or has expired. Use the command `{0}` instead. It is normal to receive this error after a major Open Ticket update.".replace("{0}",replacementCommandName),layout:"simple",customTitle:"Message State Expired"}))
+        await instance.reply(await opendiscord.builders.messages.getSafe("opendiscord:error").build(origin,{guild,channel,user,error:lang.getTranslationWithParams("errors.descriptions.stateExpired",[replacementCommandName]),layout:"simple",customTitle:"Message State Expired"}))
         return null
     }else return state
 }

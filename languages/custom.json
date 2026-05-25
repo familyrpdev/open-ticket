@@ -2,7 +2,7 @@
     "_TRANSLATION":{
         "otversion":"v4.2.0",
         "translators":["DJj123dj"],
-        "lastedited":"16/02/2026",
+        "lastedited":"25/05/2026",
         "language":"Custom",
         "automated":false
     },
@@ -61,7 +61,7 @@
             
             "booleanTrue":"Boolean must be false",
             "booleanFalse":"Boolean must be true",
-
+            
             "arrayEmptyDisabled":"List must not be empty",
             "arrayEmptyRequired":"List must be empty",
             "arrayTooShort":"List must have at least {0} items",
@@ -69,7 +69,7 @@
             "arrayLengthInvalid":"List must have exactly {0} items",
             "arrayInvalidTypes":"List may only contain the following types: {0}",
             "arrayDouble":"List must not contain duplicate values",
-
+            
             "discordInvalidId":"Invalid Discord {0} ID",
             "discordInvalidIdOptions":"Invalid Discord {0} ID. Alternatively, use one of the following: {1}",
             "discordInvalidToken":"Invalid Discord token",
@@ -86,7 +86,7 @@
             "urlInvalidPath":"Invalid URL path",
             "idNotUnique":"This ID is already in use. Please choose a unique ID",
             "idNonExistent":"ID {0} does not exist",
-
+            
             "invalidType":"Property must be of type: {0}",
             "propertyMissing":"Required property {0} is missing from the object",
             "propertyOptional":"Property {0} is optional in the object",
@@ -99,7 +99,7 @@
             "invalidButton":"Button must have at least an {0} or {1}",
             "unusedOption":"Option {0} is not used anywhere",
             "unusedQuestion":"Question {0} is not used anywhere",
-            "dropdownOption":"Panels with dropdown enabled may only contain options of the 'ticket' type",
+            "dropdownOption":"A panel with dropdown can only contain options of the types: 'ticket', 'role' or 'sub-panel'.",
             "customInvalidVersion":"Config version mismatch. Make sure to update your config to the latest version"
         }
     },
@@ -118,7 +118,9 @@
             "helpSwitchText":"View Text Commands",
             "helpPage":"Page {0}",
             "withReason":"With Reason",
-            "withoutTranscript":"Without Transcript"
+            "withoutTranscript":"Without Transcript",
+            "blacklistAdd":"Blacklist User",
+            "blacklistRemove":"Release User"
         },
         "titles":{
             "created":"Ticket Created",
@@ -156,7 +158,8 @@
             "topicSet":"Topic Changed",
             "prioritySet":"Priority Changed",
             "priorityGet":"Ticket Priority",
-            "transfer":"Ticket Transferred"
+            "transfer":"Ticket Transferred",
+            "transcripts":"Transcript History"
         },
         "descriptions":{
             "create":"Your ticket is ready. Click the button below to view and continue.",
@@ -249,7 +252,9 @@
             "prioritySetLog":"The priority of this ticket has been set to {0} by {1}.",
             "prioritySetDm":"The priority of your ticket has been set to {0}.",
             "roleUpdateLog":"{0} has modified their roles.",
-            "roleUpdateDm":"Your roles have been modified."
+            "roleUpdateDm":"Your roles have been modified.",
+            "topicSetLog":"The priority of this ticket has been set to {0} by {1}.",
+            "topicSetDm":"The priority of your ticket has been set to {0}."
         }
     },
     "transcripts":{
@@ -258,7 +263,7 @@
             "ready":"Transcript Created",
             "textFileDescription":"This is a text transcript of a deleted ticket.",
             "htmlProgress":"Please wait while the HTML transcript is being generated...",
-
+            
             "createdChannel":"A new {0} transcript has been created in the server.",
             "createdCreator":"A new {0} transcript has been created for one of your tickets.",
             "createdParticipant":"A new {0} transcript has been created for a ticket you participated in.",
@@ -271,7 +276,9 @@
             "continue":"Delete Without Transcript",
             "backup":"Create Backup Transcript",
             "error":"Something went wrong while creating the transcript.\nWhat would you like to do?\n\nThis ticket will not be deleted until you select one of the options below.",
-            "title":"Transcript Error"
+            "title":"Transcript Error",
+            "noHistory":"This user does not yet have any transcripts.",
+            "historyNotSupported":"Transcript history is currently only supported with HTML Transcripts.\nText transcript history will be available in future versions."
         },
         "text":{
             "messagesTitle":"MESSAGES",
@@ -298,6 +305,7 @@
             "unknownPanel":"Unknown Panel",
             "notInGuild":"Not In Server",
             "channelRename":"Unable To Rename Channel",
+            "channelCategory":"Unable To Change Category",
             "busy":"Ticket Is Busy",
             "permissionError":"Permission Error"
         },
@@ -321,11 +329,15 @@
             "deprecatedTicket":"This channel is not recognized as a valid ticket. It may have been created with an older version of the bot.",
             "notInGuild":"This {0} cannot be used in direct messages. Please use it in a server.",
             "channelRename":"Due to Discord rate limits, the channel could not be renamed immediately. It will be renamed automatically within 10 minutes if the bot remains online.",
+            "channelCategory":"Due to Discord rate limits, the channel category could not be changed immediately. It will be changed automatically within 10 minutes if the bot remains online.",
             "channelRenameSource":"Error source: {0}",
             "busy":"This {0} is currently unavailable.\nThe ticket is being processed by the bot.\n\nPlease try again in a few seconds.",
             "closeBeforeMessage":"This ticket cannot be closed or deleted before a user has sent a message.",
             "closeBeforeAdminMessage":"This ticket cannot be closed or deleted before a support member or admin has sent a message.",
-            "unableToCreateTicket":"You are currently unable to create a ticket."
+            "unableToCreateTicket":"You are currently unable to create a ticket.",
+            "messageMissing":"Unable to locate message of interaction. Use the command `{0}` instead.",
+            "stateExpired":"This interaction is no longer valid or has expired. Use the command `{0}` instead. It is normal to receive this error after a major Open Ticket update.",
+            "panelStateExpired":"This panel is no longer valid or has expired. Create a new panel using `{0}` to solve the issue. It is normal to receive this error after a major Open Ticket update."
         },
         "optionInvalidReasons":{
             "stringRegex":"The value does not match the required pattern.",
@@ -387,6 +399,8 @@
             "syntax":"Syntax",
             "originalName":"Original Name",
             "newName":"New Name",
+            "originalCategory":"Original Category",
+            "newCategory":"New Category",
             "until":"Until",
             "validOptions":"Valid Options",
             "validPanels":"Valid Panels",
@@ -408,6 +422,8 @@
             "participants":"Participants",
             "yes":"Yes",
             "no":"No",
+            "accept":"Accept",
+            "cancel":"Cancel",
             "option":"Option",
             "topic":"Topic",
             "uptime":"System Uptime",
@@ -439,6 +455,7 @@
         "panelAutoUpdate":"Automatically update this panel when edited.",
         "ticket":"Create a ticket instantly.",
         "ticketId":"ID of the ticket to create.",
+        "ticketOtherUser":"Create a ticket for another user.",
         "close":"Close this ticket.",
         "delete":"Delete this ticket.",
         "deleteNoTranscript":"Delete ticket without saving a transcript.",
@@ -504,7 +521,9 @@
         "priorityGet":"View ticket priority.",
         "priorityList":"List all ticket priorities.",
         "transfer":"Transfer ticket ownership.",
-        "transferUser":"User to transfer to."
+        "transferUser":"User to transfer to.",
+        "transcripts":"View ticket transcript history of a user.",
+        "transcriptsUser":"The user to view."
     },
     "helpMenu":{
         "help":"View all available commands.",
@@ -594,7 +613,8 @@
     "panel":{
         "selectTicket":"Select a ticket",
         "selectRole":"Select a role",
-        "selectOption":"Select an option"
+        "selectOption":"Select an option",
+        "selectPriorityLevel":"Select priority level"
     },
     "priorities":{
         "urgent":"Urgent",

@@ -1,4 +1,4 @@
-
+/// <reference types="node"/>
 import fjs from "formatted-json-stringify"
 import fs from "fs"
 
@@ -124,6 +124,8 @@ const formatter = new fjs.ObjectFormatter(null,true,[
             new fjs.PropertyFormatter("helpPage"),
             new fjs.PropertyFormatter("withReason"),
             new fjs.PropertyFormatter("withoutTranscript"),
+            new fjs.PropertyFormatter("blacklistAdd"),
+            new fjs.PropertyFormatter("blacklistRemove"),
         ]),
         new fjs.ObjectFormatter("titles",true,[
             new fjs.PropertyFormatter("created"),
@@ -162,6 +164,7 @@ const formatter = new fjs.ObjectFormatter(null,true,[
             new fjs.PropertyFormatter("prioritySet"),
             new fjs.PropertyFormatter("priorityGet"),
             new fjs.PropertyFormatter("transfer"),
+            new fjs.PropertyFormatter("transcripts"),
         ]),
         new fjs.ObjectFormatter("descriptions",true,[
             new fjs.PropertyFormatter("create"),
@@ -255,6 +258,8 @@ const formatter = new fjs.ObjectFormatter(null,true,[
             new fjs.PropertyFormatter("prioritySetDm"),
             new fjs.PropertyFormatter("roleUpdateLog"),
             new fjs.PropertyFormatter("roleUpdateDm"),
+            new fjs.PropertyFormatter("topicSetLog"),
+            new fjs.PropertyFormatter("topicSetDm"),
         ]),
     ]),
     new fjs.ObjectFormatter("transcripts",true,[
@@ -277,6 +282,8 @@ const formatter = new fjs.ObjectFormatter(null,true,[
             new fjs.PropertyFormatter("backup"),
             new fjs.PropertyFormatter("error"),
             new fjs.PropertyFormatter("title"),
+            new fjs.PropertyFormatter("noHistory"),
+            new fjs.PropertyFormatter("historyNotSupported"),
         ]),
         new fjs.ObjectFormatter("text",true,[
             new fjs.PropertyFormatter("messagesTitle"),
@@ -303,8 +310,9 @@ const formatter = new fjs.ObjectFormatter(null,true,[
             new fjs.PropertyFormatter("unknownPanel"),
             new fjs.PropertyFormatter("notInGuild"),
             new fjs.PropertyFormatter("channelRename"),
+            new fjs.PropertyFormatter("channelCategory"),
             new fjs.PropertyFormatter("busy"),
-            new fjs.PropertyFormatter("permissionError"),    
+            new fjs.PropertyFormatter("permissionError"),
         ]),
         new fjs.ObjectFormatter("descriptions",true,[
             new fjs.PropertyFormatter("askForInfo"),
@@ -326,11 +334,15 @@ const formatter = new fjs.ObjectFormatter(null,true,[
             new fjs.PropertyFormatter("deprecatedTicket"),
             new fjs.PropertyFormatter("notInGuild"),
             new fjs.PropertyFormatter("channelRename"),
+            new fjs.PropertyFormatter("channelCategory"),
             new fjs.PropertyFormatter("channelRenameSource"),
             new fjs.PropertyFormatter("busy"),
             new fjs.PropertyFormatter("closeBeforeMessage"),
             new fjs.PropertyFormatter("closeBeforeAdminMessage"),
             new fjs.PropertyFormatter("unableToCreateTicket"),
+            new fjs.PropertyFormatter("messageMissing"),
+            new fjs.PropertyFormatter("stateExpired"),
+            new fjs.PropertyFormatter("panelStateExpired"),
         ]),
         new fjs.ObjectFormatter("optionInvalidReasons",true,[
             new fjs.PropertyFormatter("stringRegex"),
@@ -392,6 +404,8 @@ const formatter = new fjs.ObjectFormatter(null,true,[
             new fjs.PropertyFormatter("syntax"),
             new fjs.PropertyFormatter("originalName"),
             new fjs.PropertyFormatter("newName"),
+            new fjs.PropertyFormatter("originalCategory"),
+            new fjs.PropertyFormatter("newCategory"),
             new fjs.PropertyFormatter("until"),
             new fjs.PropertyFormatter("validOptions"),
             new fjs.PropertyFormatter("validPanels"),
@@ -413,6 +427,8 @@ const formatter = new fjs.ObjectFormatter(null,true,[
             new fjs.PropertyFormatter("participants"),
             new fjs.PropertyFormatter("yes"),
             new fjs.PropertyFormatter("no"),
+            new fjs.PropertyFormatter("accept"),
+            new fjs.PropertyFormatter("cancel"),
             new fjs.PropertyFormatter("option"),
             new fjs.PropertyFormatter("topic"),
             new fjs.PropertyFormatter("uptime"),
@@ -425,6 +441,7 @@ const formatter = new fjs.ObjectFormatter(null,true,[
             new fjs.PropertyFormatter("admins"),
             new fjs.PropertyFormatter("roles"),
             new fjs.PropertyFormatter("size"),
+            
         ]),
         new fjs.ObjectFormatter("lowercase",true,[
             new fjs.PropertyFormatter("text"),
@@ -444,6 +461,7 @@ const formatter = new fjs.ObjectFormatter(null,true,[
         new fjs.PropertyFormatter("panelAutoUpdate"),
         new fjs.PropertyFormatter("ticket"),
         new fjs.PropertyFormatter("ticketId"),
+        new fjs.PropertyFormatter("ticketOtherUser"),
         new fjs.PropertyFormatter("close"),
         new fjs.PropertyFormatter("delete"),
         new fjs.PropertyFormatter("deleteNoTranscript"),
@@ -510,6 +528,8 @@ const formatter = new fjs.ObjectFormatter(null,true,[
         new fjs.PropertyFormatter("priorityList"),
         new fjs.PropertyFormatter("transfer"),
         new fjs.PropertyFormatter("transferUser"),
+        new fjs.PropertyFormatter("transcripts"),
+        new fjs.PropertyFormatter("transcriptsUser"),
     ]),
     new fjs.ObjectFormatter("helpMenu",true,[
         new fjs.PropertyFormatter("help"),
@@ -600,6 +620,7 @@ const formatter = new fjs.ObjectFormatter(null,true,[
         new fjs.PropertyFormatter("selectTicket"),
         new fjs.PropertyFormatter("selectRole"),
         new fjs.PropertyFormatter("selectOption"),
+        new fjs.PropertyFormatter("selectPriorityLevel"),
     ]),
     new fjs.ObjectFormatter("priorities",true,[
         new fjs.PropertyFormatter("urgent"),
@@ -612,14 +633,14 @@ const formatter = new fjs.ObjectFormatter(null,true,[
     ]),
 ])
 
-for (const language of fs.readdirSync(".docs/languages/")){
+for (const language of fs.readdirSync(".tools/languages/")){
     if (!fs.existsSync("./languages/"+language)){
         console.log("language:",language,"does not exist yet in the primary ./languages/ folder. Unable to merge!")
         continue
     }
     console.log("merging "+language+"...")
     const original = JSON.parse(fs.readFileSync("./languages/"+language).toString())
-    const newSentences = JSON.parse(fs.readFileSync(".docs/languages/"+language).toString())
+    const newSentences = JSON.parse(fs.readFileSync(".tools/languages/"+language).toString())
     
     for (const key of Object.keys(newSentences)){
         if (key.startsWith("_")) continue
@@ -644,7 +665,7 @@ for (const language of fs.readdirSync(".docs/languages/")){
         }
     }
     original["_TRANSLATION"]["lastedited"] = new Date().toLocaleDateString("nl-BE",{day:"2-digit",month:"2-digit",year:"numeric"})
-    original["_TRANSLATION"]["otversion"] = "v4.1.3"
+    original["_TRANSLATION"]["otversion"] = "v"+JSON.parse(fs.readFileSync("./package.json").toString()).version
     const finalText = formatter.stringify(original)
     fs.writeFileSync("./languages/"+language,finalText)
 }

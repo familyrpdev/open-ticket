@@ -285,9 +285,9 @@ export async function loadAllHelpMenuComponents(){
         }))
         if (allowedCommands.includes("transcripts")) advanced.add(new api.ODHelpMenuCommandComponent("opendiscord:transcripts",0,{
             textName:prefix+"transcripts",
-            textDescription:"View ticket transcript history of a user.", //TODO TRANSLATION!!!
+            textDescription:lang.getTranslation("commands.transcripts"),
             slashName:"/transcripts",
-            slashDescription:"View ticket transcript history of a user.", //TODO TRANSLATION!!!
+            slashDescription:lang.getTranslation("commands.transcripts"),
             textOptions:[{name:"user",optional:false}],
             slashOptions:[{name:"user",optional:false}]
         }))

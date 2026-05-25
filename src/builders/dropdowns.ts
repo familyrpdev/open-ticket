@@ -80,8 +80,7 @@ const panelDropdowns = () => {
             }))
 
             const currentPriority = opendiscord.priorities.getFromPriorityLevel(ticket.get("opendiscord:priority").value)
-            //TODO TRANSLATION!!!
-            const placeholder = (currentPriority.priority < 0) ? "Select priority level" : (lang.getTranslation("params.uppercase.priority")+": "+currentPriority.renderDisplayName())
+            const placeholder = (currentPriority.priority < 0) ? lang.getTranslation("panel.selectPriorityLevel") : (lang.getTranslation("params.uppercase.priority")+": "+currentPriority.renderDisplayName())
             
             instance.setCustomId("od:priority-dropdown")
             instance.setType("string")

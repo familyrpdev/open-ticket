@@ -353,17 +353,13 @@ const errorEmbeds = () => {
             const method = (origin == "ticket-create" || origin == "ticket-close" || origin == "ticket-reopen" || origin == "ticket-claim" || origin == "ticket-unclaim" || origin == "ticket-move") ? origin : getMethodFromOrigin(origin)
 
             instance.setColor(generalConfig.data.ticketSystem.useRedErrorEmbeds ? "Red" : generalConfig.data.mainColor)
-            //TODO TRANSLATION!!!
-            instance.setTitle(utilities.emojiTitle("❌","Unable To Change Category"))
+            instance.setTitle(utilities.emojiTitle("❌",lang.getTranslation("errors.titles.channelCategory")))
             instance.setAuthor(user.displayName,user.displayAvatarURL())
-            //TODO TRANSLATION!!!
-            instance.setDescription("Due to Discord rate limits, the channel category could not be changed immediately. It will be changed automatically within 10 minutes if the bot remains online.")
+            instance.setDescription(lang.getTranslation("errors.descriptions.channelCategory"))
             instance.setFooter(lang.getTranslationWithParams("errors.descriptions.channelRenameSource",[method]))
             instance.addFields(
-                //TODO TRANSLATION!!!
-                {name:"Original Category"+":",value:"```"+originalCategory+"```",inline:true},
-                //TODO TRANSLATION!!!
-                {name:"New Category"+":",value:"```"+newCategory+"```",inline:true}
+                {name:lang.getTranslation("params.uppercase.originalCategory")+":",value:"```"+originalCategory+"```",inline:true},
+                {name:lang.getTranslation("params.uppercase.newCategory")+":",value:"```"+newCategory+"```",inline:true}
             )
         })
     )
@@ -1141,14 +1137,12 @@ const transcriptEmbeds = () => {
             //transcript history only supports URL (html) transcripts at the moment
             const filteredList = transcriptList.filter((t) => t.transcriptType == "remoteUrl")
             const renderedList = filteredList.map((t) => "- ["+t.ticketName+"]("+t.transcriptUrl+") ("+discord.time(new Date(t.ticketDeletedDate ?? 0),"R")+")").join("\n")
-            //TODO TRANSLATION!!!
-            const contents = (transcriptList.length < 1) ? "This user does not yet have any transcripts." : ((filteredList.length > 0) ? renderedList : "*⚠️ Transcript history is currently only supported with HTML Transcripts.\nText transcript history will be available soon.*")
+            const contents = (transcriptList.length < 1) ? lang.getTranslation("transcripts.errors.noHistory") : ((filteredList.length > 0) ? renderedList : "⚠️ "+lang.getTranslation("transcripts.errors.historyNotSupported"))
 
             instance.setAuthor(transcriptUser.displayName,transcriptUser.displayAvatarURL())
             instance.setThumbnail(transcriptUser.displayAvatarURL())
             instance.setColor(generalConfig.data.mainColor)
-            //TODO TRANSLATION!!!
-            instance.setTitle(utilities.emojiTitle("📄","Transcript History"))
+            instance.setTitle(utilities.emojiTitle("📄",lang.getTranslation("actions.titles.transcripts")))
             instance.setDescription(contents)
         })
     )

@@ -68,8 +68,7 @@ export async function loadAllSlashCommands(){
             },
             {
                 name:"user",
-                //TODO TRANSLATION!!!
-                description:"Create a ticket for another user.",
+                description:lang.getTranslation("commands.ticketOtherUser"),
                 type:acot.User,
                 required:false,
             }
@@ -642,15 +641,13 @@ export async function loadAllSlashCommands(){
     if (allowedCommands.includes("transcripts")) commands.add(new api.ODSlashCommand("opendiscord:transcripts",{
         type:act.ChatInput,
         name:"transcripts",
-        //TODO TRANSLATION!!!
-        description:"View ticket transcript history of a user.",
+        description:lang.getTranslation("commands.transcripts"),
         contexts:[discord.InteractionContextType.Guild],
         integrationTypes:[discord.ApplicationIntegrationType.GuildInstall],
         options:[
             {
                 name:"user",
-                //TODO TRANSLATION!!!
-                description:"The user to view.",
+                description:lang.getTranslation("commands.transcriptsUser"),
                 type:acot.User,
                 required:true
             }

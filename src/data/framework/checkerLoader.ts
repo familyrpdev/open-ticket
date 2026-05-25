@@ -123,8 +123,7 @@ export function registerDefaultCheckerCustomTranslations(tm:api.ODMappedCheckerT
     tm.quickTranslate(lm,"checker.messages.invalidButton","message","opendiscord:invalid-button") // This button needs to have at least an {0} or {1}!
     tm.quickTranslate(lm,"checker.messages.unusedOption","message","opendiscord:unused-option") // The option {0} isn't used anywhere!
     tm.quickTranslate(lm,"checker.messages.unusedQuestion","message","opendiscord:unused-question") // The question {0} isn't used anywhere!
-    //TODO TRANSLATION!!! (changed)
-    //tm.quickTranslate(lm,"checker.messages.dropdownOption","message","opendiscord:dropdown-option") // A panel with dropdown can only contain options of the types: 'ticket', 'role' or 'sub-panel'.
+    tm.quickTranslate(lm,"checker.messages.dropdownOption","message","opendiscord:dropdown-option") // A panel with dropdown can only contain options of the types: 'ticket', 'role' or 'sub-panel'.
     tm.quickTranslate(lm,"checker.messages.customInvalidVersion","message","opendiscord:invalid-version") // The version specified in your config does not match! Make sure you have updated the config to the latest version!
 }
 

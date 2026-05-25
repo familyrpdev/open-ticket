@@ -6,6 +6,7 @@ import * as discord from "discord.js"
 
 const generalConfig = opendiscord.configs.get("opendiscord:general")
 const panelMsgState = opendiscord.states.get("opendiscord:panel-message")
+const lang = opendiscord.languages
 
 export async function registerButtonResponders(){
     //ROLE OPTION BUTTON RESPONDER
@@ -21,8 +22,7 @@ export async function registerButtonResponders(){
             //check message state
             const state = await panelMsgState.getMsgState({channel,message})
             if (!state){
-                //TODO TRANSLATION!!!
-                await instance.reply(await opendiscord.builders.messages.getSafe("opendiscord:error").build(origin,{guild,channel,user,error:"This panel is no longer valid or has expired. Create a new panel using `{0}` to solve the issue. It is normal to receive this error after a major Open Ticket update.".replace("{0}","/panel"),layout:"simple",customTitle:"Message State Expired"}))
+                await instance.reply(await opendiscord.builders.messages.getSafe("opendiscord:error").build(origin,{guild,channel,user,error:lang.getTranslationWithParams("errors.descriptions.panelStateExpired",["/panel"]),layout:"simple",customTitle:"Message State Expired"}))
                 return cancel()
             }
             

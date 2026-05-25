@@ -17,8 +17,7 @@ export async function registerAllButtons(){
             if (params.verifyButtonId.length > 40) throw new api.ODSystemError("ODButton:opendiscord:verifybar-button => verifyButtonId '"+verifyButtonId+"' exceeds 40 characters limit!")
 
             const color = ("customColor" in params && params.customColor) ? params.customColor : "gray"
-            //TODO TRANSLATION!!!
-            const defaultLabel = (params.defaultButtonType == "✅") ? "Accept" : "Cancel"
+            const defaultLabel = (params.defaultButtonType == "✅") ? lang.getTranslation("params.uppercase.accept") : lang.getTranslation("params.uppercase.cancel")
             const defaultEmoji = (params.defaultButtonType == "✅") ? "✅" : "❌"
             
             const label = ("customLabel" in params && params.customLabel) ? params.customLabel : (params.useDefaultLabels ? defaultLabel : null)
