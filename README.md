@@ -21,7 +21,7 @@ The bot is fully translated into <b>38+ languages</b> and has been battle-tested
 
 <h3 align="center"><b>⭐️ Support Open Ticket’s growth by starring this repo! ⭐️</b></h3>
 <p align="center"><sup>❤️ Love Open Ticket? <a href="https://github.com/sponsors/DJj123dj">Sponsorships</a> help fuel our HTML transcript servers and future features! ❤️</sup><br>
-<img align="center" src=".github/SPONSORS.svg" alt="Open Ticket" width="800px">
+<img align="center" src="https://raw.githubusercontent.com/open-discord-bots/hall-of-fame/refs/heads/main/svg/SPONSORS_YELLOW.svg" alt="A list of Open Ticket Sponsors" width="800px">
 </p>
 
 ---
@@ -33,59 +33,59 @@ The bot is fully translated into <b>38+ languages</b> and has been battle-tested
 
 ### 📌 Features
 #### Core Features
-- <img align="center" src="https://apis.dj-dj.be/cdn/openticket/readme-icons/core-management.svg"></img> **Ticket Management** - Close, reopen, delete, claim or pin tickets with ease.
-- <img align="center" src="https://apis.dj-dj.be/cdn/openticket/readme-icons/core-commands.svg"></img> **Powerful Commands** - Manage your support system with **30+ commands** for staff & users.
-- <img align="center" src="https://apis.dj-dj.be/cdn/openticket/readme-icons/core-questions.svg"></img> **Modal Questions** - Ask users **custom questions** before a ticket is created.
-- <img align="center" src="https://apis.dj-dj.be/cdn/openticket/readme-icons/core-priorities.svg"></img> **Priorities** - Assign **priority levels** to tickets to highlight urgent requests.
-- <img align="center" src="https://apis.dj-dj.be/cdn/openticket/readme-icons/core-participants.svg"></img> **Participants** - Add or remove participants & transfer ownership from one user to another.
-- <img align="center" src="https://apis.dj-dj.be/cdn/openticket/readme-icons/core-adjustments.svg"></img> **Adjustments** - Rename tickets, change ticket types or transfer ownership.
-- <img align="center" src="https://apis.dj-dj.be/cdn/openticket/readme-icons/core-blacklist.svg"></img> **Blacklist & Limits** - Prevent users from creating tickets and set per-user or global ticket limits.
-- <img align="center" src="https://apis.dj-dj.be/cdn/openticket/readme-icons/core-customisable.svg"></img> **Highly Customisable** - Configure **350+ settings** covering appearance and behaviour.
+- <img align="top" src="https://apis.dj-dj.be/cdn/openticket/readme-icons/core-management.svg"></img> **Ticket Management** - Close, reopen, delete, claim or pin tickets with ease.
+- <img align="top" src="https://apis.dj-dj.be/cdn/openticket/readme-icons/core-commands.svg"></img> **Powerful Commands** - Manage your support system with **30+ commands** for staff & users.
+- <img align="top" src="https://apis.dj-dj.be/cdn/openticket/readme-icons/core-questions.svg"></img> **Modal Questions** - Ask users **custom questions** before a ticket is created.
+- <img align="top" src="https://apis.dj-dj.be/cdn/openticket/readme-icons/core-priorities.svg"></img> **Priorities** - Assign **priority levels** to tickets to highlight urgent requests.
+- <img align="top" src="https://apis.dj-dj.be/cdn/openticket/readme-icons/core-participants.svg"></img> **Participants** - Add or remove participants & transfer ownership from one user to another.
+- <img align="top" src="https://apis.dj-dj.be/cdn/openticket/readme-icons/core-adjustments.svg"></img> **Adjustments** - Rename tickets, change ticket types or transfer ownership.
+- <img align="top" src="https://apis.dj-dj.be/cdn/openticket/readme-icons/core-blacklist.svg"></img> **Blacklist & Limits** - Prevent users from creating tickets and set per-user or global ticket limits.
+- <img align="top" src="https://apis.dj-dj.be/cdn/openticket/readme-icons/core-customisable.svg"></img> **Highly Customisable** - Configure **350+ settings** covering appearance and behaviour.
 
 #### Ticket Automation & Workflows
-- <img align="center" src="https://apis.dj-dj.be/cdn/openticket/readme-icons/automation-unlimited.svg"></img> **Unlimited Possibilities** - Create unlimited tickets, panels & question flows.
-- <img align="center" src="https://apis.dj-dj.be/cdn/openticket/readme-icons/automation-autoclose.svg"></img> **Autoclose Tickets** - Automatically **close tickets** after predefined conditions.
-- <img align="center" src="https://apis.dj-dj.be/cdn/openticket/readme-icons/automation-autodelete.svg"></img> **Autodelete Tickets** - Automatically **delete closed tickets** to keep channels clean.
-- <img align="center" src="https://apis.dj-dj.be/cdn/openticket/readme-icons/automation-categories.svg"></img> **Category Routing** - Move tickets between categories based on claim or close state.
+- <img align="top" src="https://apis.dj-dj.be/cdn/openticket/readme-icons/automation-unlimited.svg"></img> **Unlimited Possibilities** - Create unlimited tickets, panels & question flows.
+- <img align="top" src="https://apis.dj-dj.be/cdn/openticket/readme-icons/automation-autoclose.svg"></img> **Autoclose Tickets** - Automatically **close tickets** after predefined conditions.
+- <img align="top" src="https://apis.dj-dj.be/cdn/openticket/readme-icons/automation-autodelete.svg"></img> **Autodelete Tickets** - Automatically **delete closed tickets** to keep channels clean.
+- <img align="top" src="https://apis.dj-dj.be/cdn/openticket/readme-icons/automation-categories.svg"></img> **Category Routing** - Move tickets between categories based on claim or close state.
 
 #### Transcripts & Insights
-- <img align="center" src="https://apis.dj-dj.be/cdn/openticket/readme-icons/insights-transcripts.svg"></img> **HTML Transcripts** - Generate beautiful, easy-to-read **HTML transcripts** for every ticket.
-- <img align="center" src="https://apis.dj-dj.be/cdn/openticket/readme-icons/insights-stats.svg"></img> **Detailed Statistics** - Track **50+ statistics** for tickets, users and server activity.
-- <img align="center" src="https://apis.dj-dj.be/cdn/openticket/readme-icons/insights-logs.svg"></img> **Ticket Logs** - Track **all ticket events** such as creation, closures, and staff actions.
+- <img align="top" src="https://apis.dj-dj.be/cdn/openticket/readme-icons/insights-transcripts.svg"></img> **HTML Transcripts** - Generate beautiful, easy-to-read **HTML transcripts** for every ticket.
+- <img align="top" src="https://apis.dj-dj.be/cdn/openticket/readme-icons/insights-stats.svg"></img> **Detailed Statistics** - Track **50+ statistics** for tickets, users and server activity.
+- <img align="top" src="https://apis.dj-dj.be/cdn/openticket/readme-icons/insights-logs.svg"></img> **Ticket Logs** - Track **all ticket events** such as creation, closures, and staff actions.
 
 #### User Experience
-- <img align="center" src="https://apis.dj-dj.be/cdn/openticket/readme-icons/ux-translated.svg"></img> **Fully Translated** - Available in **38+ languages**, translated and maintained by the community.
-- <img align="center" src="https://apis.dj-dj.be/cdn/openticket/readme-icons/ux-interactions.svg"></img> **Modern Interactions** - Full support for buttons, dropdowns, slash/text commands & modals.
-- <img align="center" src="https://apis.dj-dj.be/cdn/openticket/readme-icons/ux-panels.svg"></img> **Panels** - Create messages with buttons or a dropdown for users to open tickets.
-- <img align="center" src="https://apis.dj-dj.be/cdn/openticket/readme-icons/ux-sub-panels.svg"></img> **Sub-Panels** - One panel not enough? Use multiple panels to offer more choices.
+- <img align="top" src="https://apis.dj-dj.be/cdn/openticket/readme-icons/ux-translated.svg"></img> **Fully Translated** - Available in **38+ languages**, translated and maintained by the community.
+- <img align="top" src="https://apis.dj-dj.be/cdn/openticket/readme-icons/ux-interactions.svg"></img> **Modern Interactions** - Full support for buttons, dropdowns, slash/text commands & modals.
+- <img align="top" src="https://apis.dj-dj.be/cdn/openticket/readme-icons/ux-panels.svg"></img> **Panels** - Create messages with buttons or a dropdown for users to open tickets.
+- <img align="top" src="https://apis.dj-dj.be/cdn/openticket/readme-icons/ux-sub-panels.svg"></img> **Sub-Panels** - One panel not enough? Use multiple panels to offer more choices.
 
 #### Plugins & Ecosystem
-- <img align="center" src="https://apis.dj-dj.be/cdn/openticket/readme-icons/ecosystem-plugins.svg"></img> **Plugin System** - Use custom plugins to **add new features** or **modify existing behavior** of the bot.
-- <img align="center" src="https://apis.dj-dj.be/cdn/openticket/readme-icons/ecosystem-community.svg"></img> **Community Plugins** - Use and share plugins built by the community.
-- <img align="center" src="https://apis.dj-dj.be/cdn/openticket/readme-icons/ecosystem-api.svg"></img> **Advanced API** - Build advanced plugins with access to ticket events and internal systems.
-- <img align="center" src="https://apis.dj-dj.be/cdn/openticket/readme-icons/ecosystem-integrations.svg"></img> **Integrations** - Connect Open Ticket with external services to automate workflows across platforms.
-- <img align="center" src="https://apis.dj-dj.be/cdn/openticket/readme-icons/ecosystem-bonus.svg"></img> **Bonus Features** - Somehow, we included Reaction Roles and URL Button support as well.
+- <img align="top" src="https://apis.dj-dj.be/cdn/openticket/readme-icons/ecosystem-plugins.svg"></img> **Plugin System** - Use custom plugins to **add new features** or **modify existing behavior** of the bot.
+- <img align="top" src="https://apis.dj-dj.be/cdn/openticket/readme-icons/ecosystem-community.svg"></img> **Community Plugins** - Use and share plugins built by the community.
+- <img align="top" src="https://apis.dj-dj.be/cdn/openticket/readme-icons/ecosystem-api.svg"></img> **Advanced API** - Build advanced plugins with access to ticket events and internal systems.
+- <img align="top" src="https://apis.dj-dj.be/cdn/openticket/readme-icons/ecosystem-integrations.svg"></img> **Integrations** - Connect Open Ticket with external services to automate workflows across platforms.
+- <img align="top" src="https://apis.dj-dj.be/cdn/openticket/readme-icons/ecosystem-bonus.svg"></img> **Bonus Features** - Somehow, we included Reaction Roles and URL Button support as well.
 
 #### Deployment
-- <img align="center" src="https://apis.dj-dj.be/cdn/openticket/readme-icons/deployment-quick.svg"></img> **Quick Setup** - Easy **5-minute configuration** using the Interactive Setup CLI.
-- <img align="center" src="https://apis.dj-dj.be/cdn/openticket/readme-icons/deployment-scale.svg"></img> **Scalable & Reliable** - Battle-tested in servers with **100k+ members**.
-- <img align="center" src="https://apis.dj-dj.be/cdn/openticket/readme-icons/deployment-secure.svg"></img> **Private & Secure** - Used by thousands of servers with respect for security & privacy.
-- <img align="center" src="https://apis.dj-dj.be/cdn/openticket/readme-icons/deployment-pterodactyl.svg"></img> **Pterodactyl Support** - 100% compatible with Pterodactyl panels. [(Download official eggs)](.eggs/README.md)
-- <img align="center" src="https://apis.dj-dj.be/cdn/openticket/readme-icons/deployment-docker.svg"></img> **Docker Support** - Deploy Open Ticket in minutes with Docker containers.
+- <img align="top" src="https://apis.dj-dj.be/cdn/openticket/readme-icons/deployment-quick.svg"></img> **Quick Setup** - Easy **5-minute configuration** using the Interactive Setup CLI.
+- <img align="top" src="https://apis.dj-dj.be/cdn/openticket/readme-icons/deployment-scale.svg"></img> **Scalable & Reliable** - Battle-tested in servers with **100k+ members**.
+- <img align="top" src="https://apis.dj-dj.be/cdn/openticket/readme-icons/deployment-secure.svg"></img> **Private & Secure** - Used by thousands of servers with respect for security & privacy.
+- <img align="top" src="https://apis.dj-dj.be/cdn/openticket/readme-icons/deployment-pterodactyl.svg"></img> **Pterodactyl Support** - 100% compatible with Pterodactyl panels. [(Download official eggs)](.eggs/README.md)
+- <img align="top" src="https://apis.dj-dj.be/cdn/openticket/readme-icons/deployment-docker.svg"></img> **Docker Support** - Deploy Open Ticket in minutes with Docker containers.
 
 #### Extend functionality even more with our [pre-made community plugins](#-plugins)!
-> - <img align="center" src="https://apis.dj-dj.be/cdn/openticket/readme-icons/plugin-reviews.svg"></img> **Reviews** - Create and manage a support review system for tickets.
-> - <img align="center" src="https://apis.dj-dj.be/cdn/openticket/readme-icons/plugin-tags.svg"></img> **Tags** - Define keywords that automatically trigger predefined responses.
-> - <img align="center" src="https://apis.dj-dj.be/cdn/openticket/readme-icons/plugin-reminders.svg"></img> **Reminders** - Create and manage custom reminders for users or staff.
-> - <img align="center" src="https://apis.dj-dj.be/cdn/openticket/readme-icons/plugin-ai.svg"></img> **AI Integrations** - Connect to AI providers such as ChatGPT, Claude, or Gemini.
-> - <img align="center" src="https://apis.dj-dj.be/cdn/openticket/readme-icons/plugin-display.svg"></img> **Channel Display** - Create voice channels that display real-time ticket system statistics.
-> - <img align="center" src="https://apis.dj-dj.be/cdn/openticket/readme-icons/plugin-forms.svg"></img> **Forms** - Build advanced forms for collecting structured information from users.
-> - <img align="center" src="https://apis.dj-dj.be/cdn/openticket/readme-icons/plugin-embeds.svg"></img> **Custom Embeds** - Create and send custom embeds via commands.
-> - <img align="center" src="https://apis.dj-dj.be/cdn/openticket/readme-icons/core-customisable.svg"></img> **Customization Tools** - Additional configuration options for advanced behavior and styling.
-> - <img align="center" src="https://apis.dj-dj.be/cdn/openticket/readme-icons/plugin-dashboard.svg"></img> **Web Dashboard** - Configure and manage the bot through a remote web dashboard.
-> - <img align="center" src="https://apis.dj-dj.be/cdn/openticket/readme-icons/plugin-feedback.svg"></img> **Feedback** - Collect user feedback after ticket deletion using forms.
-> - <img align="center" src="https://apis.dj-dj.be/cdn/openticket/readme-icons/plugin-sqlite.svg"></img> **SQLite Database** - Use an SQLite backend for improved performance and lightweight storage.
-> - <img align="center" src="https://apis.dj-dj.be/cdn/openticket/readme-icons/plugin-more.svg"></img> **And more** - Additional community plugins are available and actively expanding.
+> - <img align="top" src="https://apis.dj-dj.be/cdn/openticket/readme-icons/plugin-reviews.svg"></img> **Reviews** - Create and manage a support review system for tickets.
+> - <img align="top" src="https://apis.dj-dj.be/cdn/openticket/readme-icons/plugin-tags.svg"></img> **Tags** - Define keywords that automatically trigger predefined responses.
+> - <img align="top" src="https://apis.dj-dj.be/cdn/openticket/readme-icons/plugin-reminders.svg"></img> **Reminders** - Create and manage custom reminders for users or staff.
+> - <img align="top" src="https://apis.dj-dj.be/cdn/openticket/readme-icons/plugin-ai.svg"></img> **AI Integrations** - Connect to AI providers such as ChatGPT, Claude, or Gemini.
+> - <img align="top" src="https://apis.dj-dj.be/cdn/openticket/readme-icons/plugin-display.svg"></img> **Channel Display** - Create voice channels that display real-time ticket system statistics.
+> - <img align="top" src="https://apis.dj-dj.be/cdn/openticket/readme-icons/plugin-forms.svg"></img> **Forms** - Build advanced forms for collecting structured information from users.
+> - <img align="top" src="https://apis.dj-dj.be/cdn/openticket/readme-icons/plugin-embeds.svg"></img> **Custom Embeds** - Create and send custom embeds via commands.
+> - <img align="top" src="https://apis.dj-dj.be/cdn/openticket/readme-icons/core-customisable.svg"></img> **Customization Tools** - Additional configuration options for advanced behavior and styling.
+> - <img align="top" src="https://apis.dj-dj.be/cdn/openticket/readme-icons/plugin-dashboard.svg"></img> **Web Dashboard** - Configure and manage the bot through a remote web dashboard.
+> - <img align="top" src="https://apis.dj-dj.be/cdn/openticket/readme-icons/plugin-feedback.svg"></img> **Feedback** - Collect user feedback after ticket deletion using forms.
+> - <img align="top" src="https://apis.dj-dj.be/cdn/openticket/readme-icons/plugin-sqlite.svg"></img> **SQLite Database** - Use an SQLite backend for improved performance and lightweight storage.
+> - <img align="top" src="https://apis.dj-dj.be/cdn/openticket/readme-icons/plugin-more.svg"></img> **And more** - Additional community plugins are available and actively expanding.
 
 ## ⏱️ Quick Start
 > 1. Download the [latest version of Open Ticket](https://github.com/open-discord-bots/open-ticket/releases/latest).
@@ -166,7 +166,7 @@ With the amazing support of our translators, we've been able to translate Open T
 <!--[⭐ Contribute!](.github/CONTRIBUTING.md) -->
 
 ## 😎 Hall Of Fame
-<img alt="The full list of contributors for Open Ticket and Open Discord." src=".github/CONTRIBUTORS.svg">
+<img alt="The full list of contributors for Open Ticket and Open Discord." src="https://raw.githubusercontent.com/open-discord-bots/hall-of-fame/refs/heads/main/svg/CONTRIBUTORS.svg">
 
 ## ⭐️ Star History
 If you enjoy using Open ticket, **consider starring** our repository.  
