@@ -10,8 +10,8 @@ import { ODTicket } from "../api/ticket.js"
  * A list of all available IDs in the default `ODSharedComponentManager` class in `opendiscord`.
  * It's used to generate typescript declarations for this class.
  */
-export interface ODSharedComponentManagerIdMappings extends api.ODComponentManagerIdConstraint {
-    //"opendiscord:example-component":{origin:"slash"|"text"|"other",params:{guild:discord.Guild|null,channel:discord.TextBasedChannel,user:discord.User},workers:"opendiscord:example-component"},
+export interface ODSharedComponentManagerIdMappings extends api.ODSharedComponentManagerIdConstraint {
+    //"opendiscord:example-component":{component:api.ODComponent<object,any>,origin:"slash"|"text"|"other",params:{guild:discord.Guild|null,channel:discord.TextBasedChannel,user:discord.User},workers:"opendiscord:example-component"},
 }
 
 /**## ODMessageComponentManagerIdMappings `interface`
