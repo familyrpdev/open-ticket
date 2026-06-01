@@ -372,7 +372,7 @@ export const migrations = [
                     const message = await opendiscord.client.fetchChannelMessage(channelId,messageId)
                     const autoUpdate = typeof (await globalDatabase.get("opendiscord:panel-update",panelMessage.key)) == "string"
                     //if message still exists
-                    if (message) migratedPanelStates.push({channelId,messageId,panelId:panelMessage.value,autoUpdate})
+                    if (message) migratedPanelStates.push({channelId,messageId,panelId:panelMessage.value as string,autoUpdate})
 
                     await globalDatabase.delete("opendiscord:panel-message",panelMessage.key)
                     await globalDatabase.delete("opendiscord:panel-update",panelMessage.key)

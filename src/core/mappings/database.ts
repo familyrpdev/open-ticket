@@ -29,8 +29,6 @@ export interface ODDatabaseManagerIdMappings extends api.ODDatabaseManagerIdCons
  * It's used to generate typescript declarations for this class.
  */
 export interface ODGlobalDatabaseIdMappings extends api.ODDatabaseIdConstraint {
-    "opendiscord:panel-message":string,
-    "opendiscord:panel-update":string,
     "opendiscord:option-suffix-counter":number,
     "opendiscord:option-suffix-history":string[],
     "opendiscord:last-version":string
