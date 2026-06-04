@@ -1,102 +1,405 @@
 /*
- * OPEN TICKET MODAL QUESTIONS
- * ----------------------------------------------
- * Create customizable modal questions that will be shown before creating a ticket.
- * Each ticket option (config/options.jsonc) can contain a maximum of 5 questions.
- * There are 6 types of questions available: short, paragraph, dropdown, radio-select, checkbox-select, text-display
- * 
- * TIP: Create new questions by copying everything between and including the {...} brackets of a question. Paste it after the last question and make sure that they are seperated by a comma.
+ * questions.jsonc — FamilyRP
+ *
+ * 24 preguntas en español [IGUAL fmly] — solo usamos short y paragraph (v4.1).
+ * Añadido description: "" en todas [NUEVO 4.2] (requerido por el esquema nuevo).
+ *
+ * ── TIPOS DE PREGUNTA ───────────────────────────────────────────────────────
+ *
+ *  v4.1.1 (fmly)          v4.2 (disponibles ahora)
+ *  ─────────────          ─────────────────────────
+ *  short                  short          [IGUAL fmly] — texto corto
+ *  paragraph              paragraph      [IGUAL fmly] — texto largo
+ *                         dropdown       [NUEVO 4.2] — menú desplegable (hasta 25 opciones)
+ *                         radio-select   [NUEVO 4.2] — elegir UNA opción (2-10 choices)
+ *                         checkbox-select[NUEVO 4.2] — elegir VARIAS (con min/max)
+ *                         file-upload    [NUEVO 4.2] — subir archivos (con min/max)
+ *                         text-display   [NUEVO 4.2] — solo texto informativo (no es pregunta)
+ *
+ * ── EJEMPLOS DE TIPOS NUEVOS (no usados en FamilyRP aún) ───────────────────
+ *
+ *  dropdown:
+ *  {
+ *      "id": "ejemplo-dropdown",
+ *      "name": "Elige una opción",
+ *      "description": "",
+ *      "type": "dropdown",
+ *      "required": true,
+ *      "placeholder": "Selecciona...",
+ *      "choices": [
+ *          { "title": "Opción A", "description": "Detalle", "emoji": "🍎" }
+ *      ]
+ *  }
+ *
+ *  radio-select:
+ *  {
+ *      "id": "ejemplo-radio",
+ *      "name": "Elige una",
+ *      "description": "",
+ *      "type": "radio-select",
+ *      "required": true,
+ *      "choices": [
+ *          { "title": "Sí", "description": "", "selectedByDefault": false }
+ *      ]
+ *  }
+ *
+ *  checkbox-select:
+ *  {
+ *      "id": "ejemplo-checkbox",
+ *      "name": "Elige varias",
+ *      "description": "",
+ *      "type": "checkbox-select",
+ *      "required": true,
+ *      "limits": { "enabled": false, "min": 0, "max": 10 },
+ *      "choices": [
+ *          { "title": "A", "description": "", "selectedByDefault": false }
+ *      ]
+ *  }
+ *
+ *  file-upload:
+ *  {
+ *      "id": "ejemplo-archivo",
+ *      "name": "Adjunta prueba",
+ *      "description": "",
+ *      "type": "file-upload",
+ *      "required": true,
+ *      "limits": { "enabled": false, "min": 0, "max": 1 }
+ *  }
+ *
+ *  text-display (no lleva name/required — solo muestra texto):
+ *  {
+ *      "id": "ejemplo-aviso",
+ *      "type": "text-display",
+ *      "textContents": "Lee esto antes de continuar..."
+ *  }
+ *
+ * ───────────────────────────────────────────────────────────────────────────
  */
 [
     {
-        /* A short text input modal question. */
-        "id":"example-question-1",
-        "name":"Example Question 1",
-        "description":"", //Leave empty to disable
-        "type":"short",
-        "required":true,
-        
-        "placeholder":"Insert answer...",
-        "length":{
-            /* Configure length limits for the answer. */
-            "enabled":false,
-            "min":0,
-            "max":1000
+        "id": "tbx-id",
+        "name": "Introduce tu ID de transacción de TBX aquí",
+        "type": "short", // [IGUAL fmly]
+        "description": "", // [NUEVO 4.2] subtítulo opcional en el modal
+        "required": true,
+        "placeholder": "tbx-XXXXXXXXXXXXXX-XXXXXX",
+        "length": {
+            "enabled": true,
+            "min": 0,
+            "max": 25
         }
     },
     {
-        /* A paragraph text input modal question. */
-        "id":"example-question-2",
-        "name":"Example Question 2",
-        "description":"", //Leave empty to disable
-        "type":"paragraph",
-        "required":false,
-        
-        "placeholder":"Insert answer...",
-        "length":{
-            /* Configure length limits for the answer. */
-            "enabled":false,
-            "min":0,
-            "max":1000
+        "id": "re-comentario",
+        "name": "¿Qué ha sucedido?",
+        "type": "paragraph", // [IGUAL fmly]
+        "description": "", // [NUEVO 4.2] subtítulo opcional en el modal
+        "required": true,
+        "placeholder": "Indica breve el motivo de la reclamación",
+        "length": {
+            "enabled": false,
+            "min": 0,
+            "max": 1000
         }
     },
     {
-        /* A dropdown menu input modal question with up to 25 choices. "emoji" & "description" fields are optional. */
-        "id":"example-question-3",
-        "name":"Example Question 3",
-        "description":"This is a dropdown question.", //Leave empty to disable
-        "type":"dropdown",
-        "required":false,
-        
-        "placeholder":"Choose your answer...",
-        "choices":[
-            {"title":"Choice A","description":"Apple","emoji":"🍎"},
-            {"title":"Choice B","description":"Banana","emoji":"🍌"},
-            {"title":"Choice C","description":"Orange","emoji":"🍊"},
-            {"title":"Choice D","description":"Kiwi","emoji":"🥝"}
+        "id": "fecha-hora",
+        "name": "¿Cuándo sucedió?",
+        "type": "short", // [IGUAL fmly]
+        "description": "", // [NUEVO 4.2] subtítulo opcional en el modal
+        "required": true,
+        "placeholder": "DD/MM/AAAA HH:MM",
+        "length": {
+            "enabled": false,
+            "min": 0,
+            "max": 25
+        }
+    },
+    {
+        "id": "nombre-ic",
+        "name": "¿Cuál es tu nombre IC?",
+        "type": "short", // [IGUAL fmly]
+        "description": "", // [NUEVO 4.2] subtítulo opcional en el modal
+        "required": true,
+        "placeholder": "Nombre IC (In Character)",
+        "length": {
+            "enabled": false,
+            "min": 0,
+            "max": 50
+        }
+    },
+    {
+        "id": "rep-nombre",
+        "name": "¿Cuál es el nombre IC de la otra persona?",
+        "type": "short", // [IGUAL fmly]
+        "description": "", // [NUEVO 4.2] subtítulo opcional en el modal
+        "required": false,
+        "placeholder": "Nombre IC de la otra persona",
+        "length": {
+            "enabled": false,
+            "min": 0,
+            "max": 50
+        }
+    },
+    {
+        "id": "rep-descripcion",
+        "name": "Describe lo ocurrido",
+        "type": "paragraph", // [IGUAL fmly]
+        "description": "", // [NUEVO 4.2] subtítulo opcional en el modal
+        "required": true,
+        "placeholder": "Proporciona una descripción detallada de lo ocurrido",
+        "length": {
+            "enabled": false,
+            "min": 0,
+            "max": 1024
+        }
+    },
+    {
+        "id": "bugs-suceso",
+        "name": "¿Qué ha sucedido?",
+        "type": "paragraph", // [IGUAL fmly]
+        "description": "", // [NUEVO 4.2] subtítulo opcional en el modal
+        "required": true,
+        "placeholder": "Describe el error que has encontrado",
+        "length": {
+            "enabled": false,
+            "min": 0,
+            "max": 1024
+        }
+    },
+    {
+        "id": "bugs-pasos",
+        "name": "Pasos a seguir para replicarlo",
+        "type": "paragraph", // [IGUAL fmly]
+        "description": "", // [NUEVO 4.2] subtítulo opcional en el modal
+        "required": false,
+        "placeholder": "Proporciona los pasos necesarios para replicar el error",
+        "length": {
+            "enabled": false,
+            "min": 0,
+            "max": 1024
+        }
+    },
+    {
+        "id": "ck-pendiente",
+        "name": "¿Tienes algun rol pendiente antes del CK?",
+        "type": "paragraph", // [IGUAL fmly]
+        "description": "", // [NUEVO 4.2] subtítulo opcional en el modal
+        "required": true,
+        "placeholder": "Indica el rol pendiente",
+        "length": {
+            "enabled": true,
+            "min": 0,
+            "max": 50
+        }
+    },
+    {
+        "id": "ck-faccion",
+        "name": "¿Perteneces a alguna facción?",
+        "type": "short", // [IGUAL fmly]
+        "description": "", // [NUEVO 4.2] subtítulo opcional en el modal
+        "required": true,
+        "placeholder": "SAMS, Policía, Banda, etc...",
+        "length": {
+            "enabled": true,
+            "min": 0,
+            "max": 50
+        }
+    },
+    {
+        "id": "ck-propiedades",
+        "name": "¿Tienes alguna propiedad?",
+        "type": "paragraph", // [IGUAL fmly]
+        "description": "", // [NUEVO 4.2] subtítulo opcional en el modal
+        "required": true,
+        "placeholder": "Indica las propiedades que posees",
+        "length": {
+            "enabled": true,
+            "min": 0,
+            "max": 100
+        }
+    },
+    {
+        "id": "ck-motivo",
+        "name": "¿Cuál es el motivo del CK?",
+        "type": "paragraph", // [IGUAL fmly]
+        "description": "", // [NUEVO 4.2] subtítulo opcional en el modal
+        "required": true,
+        "placeholder": "Explica brevemente el motivo del CK",
+        "length": {
+            "enabled": false,
+            "min": 0,
+            "max": 1024
+        }
+    },
+    {
+        "id": "ck-citizen",
+        "name": "Citizen ID (InGame en ESC)",
+        "type": "short", // [IGUAL fmly]
+        "description": "", // [NUEVO 4.2] subtítulo opcional en el modal
+        "required": true,
+        "placeholder": "00000",
+        "length": {
+            "enabled": true,
+            "min": 0,
+            "max": 5
+        }
+    },
+    {
+        "id": "staff",
+        "name": "Nombre Staff Reportado",
+        "type": "short", // [IGUAL fmly]
+        "description": "", // [NUEVO 4.2] subtítulo opcional en el modal
+        "required": true,
+        "placeholder": "Indica el nombre del staff reportado",
+        "length": {
+            "enabled": false,
+            "min": 0,
+            "max": 1024
+        }
+    },
+    {
+        "id": "staff-motivo",
+        "name": "Motivo del reporte",
+        "type": "paragraph", // [IGUAL fmly]
+        "description": "", // [NUEVO 4.2] subtítulo opcional en el modal
+        "required": true,
+        "placeholder": "Explica brevemente el motivo por el cual reportas al staff",
+        "length": {
+            "enabled": false,
+            "min": 0,
+            "max": 1024
+        }
+    },
+    {
+        "id": "discord-nick",
+        "name": "Nombre Discord",
+        "type": "short", // [IGUAL fmly]
+        "description": "", // [NUEVO 4.2] subtítulo opcional en el modal
+        "required": true,
+        "placeholder": "Proporciona el Nick de Discord",
+        "length": {
+            "enabled": true,
+            "min": 0,
+            "max": 1024
+        }
+    },
+    {
+        "id": "discord-id",
+        "name": "ID Discord",
+        "type": "short", // [IGUAL fmly]
+        "description": "", // [NUEVO 4.2] subtítulo opcional en el modal
+        "required": true,
+        "placeholder": "Proporciona el ID de Discord",
+        "length": {
+            "enabled": true,
+            "min": 0,
+            "max": 20
+        }
+    },
+    {
+        "id": "redes-sociales",
+        "name": "Redes Sociales",
+        "type": "paragraph", // [IGUAL fmly]
+        "description": "", // [NUEVO 4.2] subtítulo opcional en el modal
+        "required": true,
+        "placeholder": "Proporciona sus redes sociales (Twitch, YouTube, Twitter, etc.)",
+        "length": {
+            "enabled": false,
+            "min": 0,
+            "max": 1024
+        }
+    },
+    {
+        "id": "canal-twitch-kick",
+        "name": "Canal Twitch o Kick",
+        "type": "short", // [IGUAL fmly]
+        "description": "", // [NUEVO 4.2] subtítulo opcional en el modal
+        "required": true,
+        "placeholder": "Proporciona el enlace a tu canal de Twitch o Kick",
+        "length": {
+            "enabled": true,
+            "min": 17,
+            "max": 1024
+        }
+    },
+    {
+        "id": "fecha-nacimiento",
+        "name": "Fecha de Nacimiento",
+        "type": "short", // [IGUAL fmly]
+        "description": "", // [NUEVO 4.2] subtítulo opcional en el modal
+        "required": true,
+        "placeholder": "DD/MM/AAAA",
+        "length": {
+            "enabled": true,
+            "min": 0,
+            "max": 10
+        }
+    },
+    {
+        "id": "zona-housing",
+        "name": "Zona",
+        "type": "short", // [IGUAL fmly]
+        "description": "", // [NUEVO 4.2] subtítulo opcional en el modal
+        "required": true,
+        "placeholder": "Indica la zona donde quieres colocar la casa.",
+        "length": {
+            "enabled": false,
+            "min": 0,
+            "max": 1024
+        }
+    },
+    {
+        "id": "foto-zona",
+        "name": "Fotos de la zona",
+        "type": "file-upload", // [NUEVO 4.2] sustituye paragraph — subir archivos
+        "description": "Adjunta 2 capturas: POV del personaje y vista del mapa",
+        "required": true,
+        "limits": {
+            "enabled": true,
+            "min": 2,
+            "max": 2
+        }
+    },
+    {
+        "id": "borrador-inicial",
+        "name": "Borrador inicial",
+        "type": "file-upload", // [NUEVO 4.2] sustituye paragraph — subir archivos
+        "description": "Adjunta un borrador o referencia de cómo quieres la casa",
+        "required": true,
+        "limits": {
+            "enabled": true,
+            "min": 1,
+            "max": 1
+        }
+    },
+    {
+        "id": "disponibilidad",
+        "name": "Disponibilidad",
+        "type": "paragraph", // [IGUAL fmly]
+        "description": "", // [NUEVO 4.2] subtítulo opcional en el modal
+        "required": true,
+        "placeholder": "Adjunta tu disponibilidad para que sea más fácil contactarte y poder agendar una reunión.",
+        "length": {
+            "enabled": false,
+            "min": 0,
+            "max": 1024
+        }
+    },
+    {
+        "id": "tebex",
+        "name": "¿Es una suscripción de Tebex?",
+        "description": "Indica si es una suscripción de Tebex",
+        "type": "radio-select",
+        "required": true,
+        "choices": [
+            { "title": "Sí", "description": "El código debe empezar por 'tbx-r-'", "selectedByDefault": false },
+            { "title": "No", "description": "El código debe empezar por 'tbx-'", "selectedByDefault": false }
         ]
     },
     {
-        /* A radio select input modal question with up to 10 choices. */
-        "id":"example-question-4",
-        "name":"Example Question 4",
-        "description":"This is a radio select question.", //Leave empty to disable
-        "type":"radio-select",
-        "required":true,
-        
-        "choices":[
-            {"title":"Choice A","description":"Up","selectedByDefault":false},
-            {"title":"Choice B","description":"Down","selectedByDefault":false},
-            {"title":"Choice C","description":"Left","selectedByDefault":false},
-            {"title":"Choice D","description":"Right","selectedByDefault":false}
-        ]
-    },
-    {
-        /* A checkbox select input modal question with up to 10 choices. */
-        "id":"example-question-5",
-        "name":"Example Question 5",
-        "description":"This is a checkbox select question.", //Leave empty to disable
-        "type":"checkbox-select",
-        "required":true,
-        
-        "limits":{
-            /* Configure checkbox amount limits for the answer. */
-            "enabled":false,
-            "min":0,
-            "max":10
-        },
-        "choices":[
-            {"title":"Choice A","description":"Happiness","selectedByDefault":false},
-            {"title":"Choice B","description":"Anger","selectedByDefault":false},
-            {"title":"Choice C","description":"Sadness","selectedByDefault":false},
-            {"title":"Choice D","description":"Fear","selectedByDefault":false}
-        ]
-    },
-    {
-        /* Show text in a modal to provide extra details or explain questions. */
-        "id":"example-text-display",
-        "type":"text-display",
-        
-        "textContents":"This is a text display. It isn't a question, but allows you to display additional details."
+        "id": "aviso-inicio-sesion",
+        "type": "text-display",
+        "textContents": "Debes iniciar sesión en FiveM y entrar al servidor, con la misma cuenta que iniciaste en la tienda, para que los tokens sean asignados automaticamente. "
     }
 ]

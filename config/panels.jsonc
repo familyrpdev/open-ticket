@@ -1,57 +1,223 @@
 /*
- * OPEN TICKET PANELS
- * ----------------------------------------------
- * Create customizable panel messages with buttons or a dropdown.
- * Add up to 25 options to this panel from (config/options.jsonc)
- * Panels can be customised with text, images, colors and more.
- * 
- * Spawn the panel in Discord using: /panel <id>
- * 
- * TIP: Create new panels by copying everything between and including the {...} brackets of an panel. Paste it after the last panel and make sure that they are seperated by a comma.
+ * panels.jsonc — FamilyRP [IGUAL fmly]
+ * 6 paneles: general, especificos, facciones, invitaciones, prio-invitaciones, donaciones
+ *
+ * [NUEVO 4.2] settings.maximumButtonsPerRow — botones por fila (default: 5)
+ *
+ * [PLUGIN] ot-panel-ticket-counter
+ *   Muestra "Abiertos X de Y" si alguna opción del panel tiene showTicketCounter (housing)
  */
 [
     {
-        /* A panel is creates a message with up to 25 options as buttons or dropdown. */
-        "id":"example-panel",
-        "name":"Example Panel",
-        "dropdown":false,
-        
-        /* Add up to 5 option IDs from (config/options.jsonc). */
-        "options":["example-ticket","example-website","example-role"],
-        
-        "text":"", //Leave empty to disable
-        "embed":{
-            "enabled":true,
-            "title":"Tickets:", //Leave empty to disable
-            "description":"Create a ticket by selecting one of the options below. Once selected, a private ticket will be created for you and our support team will be able to assist you directly.", //Leave empty to disable
-            
-            "customColor":"#f8ab00", //Leave empty to use default color
-            "url":"", //URL. Leave empty to disable
-            
-            "image":"", //Image URL. Leave empty to disable
-            "thumbnail":"", //Image URL. Leave empty to disable
-            
-            "footer":"Open Ticket v4.2.1", //Leave empty to disable
-            /* Embed fields. Set to empty list [] to disable. */
-            "fields":[
-                {"name":"Field name","value":"Field value","inline":false}
-            ],
-            "timestamp":false
+        "id": "general",
+        "name": "Sistema de Soporte",
+        "dropdown": false,
+        "options": [
+            "soporte",
+            "reclamaciones",
+            "bugs",
+            "reportes"
+        ],
+        "text": "",
+        "embed": {
+            "enabled": true,
+            "title": "Sistema de Soporte",
+            "description": "¡Bienvenid@ al Sistema de Tickets de FamilyRP!",
+            "customColor": "",
+            "url": "",
+            "image": "",
+            "thumbnail": "",
+            "footer": "",
+            "fields": [],
+            "timestamp": false
         },
-        "settings":{
-            "dropdownPlaceholder":"Create a ticket...", //Leave empty to use default.
-            "maximumButtonsPerRow":5,
-            
-            /* Display the maximum amount of tickets per user. */
-            "enableMaxTicketsWarningInText":false,
-            "enableMaxTicketsWarningInEmbed":true,
-            
-            /* Automatically generate option descriptions from (config/options.jsonc). */
-            "describeOptionsLayout":"normal", //Choices: simple, normal, detailed
-            "describeOptionsCustomTitle":"",
-            "describeOptionsInText":false,
-            "describeOptionsInEmbedFields":true,
-            "describeOptionsInEmbedDescription":false
+        "settings": {
+            "maximumButtonsPerRow": 5, // [NUEVO 4.2]
+            "dropdownPlaceholder": "Create a ticket!",
+            "enableMaxTicketsWarningInText": false,
+            "enableMaxTicketsWarningInEmbed": false,
+            "describeOptionsLayout": "normal",
+            "describeOptionsCustomTitle": "",
+            "describeOptionsInText": false,
+            "describeOptionsInEmbedFields": false,
+            "describeOptionsInEmbedDescription": false
+        }
+    },
+    {
+        "id": "especificos",
+        "name": "Soporte Específico",
+        "dropdown": false,
+        "options": [
+            "cks",
+            "streamers",
+            "reportes-staff",
+            "punto-violeta",
+            "feedback"
+        ],
+        "text": "",
+        "embed": {
+            "enabled": true,
+            "title": "Soporte Específico",
+            "description": "¡Bienvenid@ al Sistema de Tickets de FamilyRP!",
+            "customColor": "",
+            "url": "",
+            "image": "",
+            "thumbnail": "",
+            "footer": "",
+            "fields": [],
+            "timestamp": false
+        },
+        "settings": {
+            "maximumButtonsPerRow": 5, // [NUEVO 4.2]
+            "dropdownPlaceholder": "Create a ticket!",
+            "enableMaxTicketsWarningInText": false,
+            "enableMaxTicketsWarningInEmbed": false,
+            "describeOptionsLayout": "normal",
+            "describeOptionsCustomTitle": "",
+            "describeOptionsInText": false,
+            "describeOptionsInEmbedFields": false,
+            "describeOptionsInEmbedDescription": false
+        }
+    },
+    {
+        "id": "facciones",
+        "name": "Soporte de Facciones",
+        "dropdown": false,
+        "options": [
+            "sapd",
+            "sams",
+            "bandas",
+            "comercio",
+            "safd",
+            "doj"
+        ],
+        "text": "",
+        "embed": {
+            "enabled": true,
+            "title": "Soporte de Facciones",
+            "description": "¡Bienvenid@ al Sistema de Tickets de FamilyRP!",
+            "customColor": "",
+            "url": "",
+            "image": "",
+            "thumbnail": "",
+            "footer": "",
+            "fields": [],
+            "timestamp": false
+        },
+        "settings": {
+            "maximumButtonsPerRow": 5, // [NUEVO 4.2]
+            "dropdownPlaceholder": "Create a ticket!",
+            "enableMaxTicketsWarningInText": false,
+            "enableMaxTicketsWarningInEmbed": false,
+            "describeOptionsLayout": "normal",
+            "describeOptionsCustomTitle": "",
+            "describeOptionsInText": false,
+            "describeOptionsInEmbedFields": false,
+            "describeOptionsInEmbedDescription": false
+        }
+    },
+    {
+        "id": "invitaciones",
+        "name": "Invitaciones",
+        "dropdown": false,
+        "options": [
+            "invitaciones",
+            "invitaciones-cc"
+        ],
+        "text": "",
+        "embed": {
+            "enabled": true,
+            "title": "Panel de Invitaciones",
+            "description": "¡Bienvenid@ al Sistema de Tickets de FamilyRP!",
+            "customColor": "",
+            "url": "",
+            "image": "",
+            "thumbnail": "",
+            "footer": "",
+            "fields": [],
+            "timestamp": false
+        },
+        "settings": {
+            "maximumButtonsPerRow": 5, // [NUEVO 4.2]
+            "dropdownPlaceholder": "Create a ticket!",
+            "enableMaxTicketsWarningInText": false,
+            "enableMaxTicketsWarningInEmbed": false,
+            "describeOptionsLayout": "normal",
+            "describeOptionsCustomTitle": "",
+            "describeOptionsInText": false,
+            "describeOptionsInEmbedFields": false,
+            "describeOptionsInEmbedDescription": false
+        }
+    },
+    {
+        "id": "prio-invitaciones",
+        "name": "Invitaciones Tier",
+        "dropdown": false,
+        "options": [
+            "prio-invitaciones",
+            "prio-invitaciones-cc"
+        ],
+        "text": "",
+        "embed": {
+            "enabled": true,
+            "title": "Panel de Invitaciones Tier",
+            "description": "¡Bienvenid@ al Sistema de Tickets de FamilyRP!",
+            "customColor": "",
+            "url": "",
+            "image": "",
+            "thumbnail": "",
+            "footer": "",
+            "fields": [],
+            "timestamp": false
+        },
+        "settings": {
+            "maximumButtonsPerRow": 5, // [NUEVO 4.2]
+            "dropdownPlaceholder": "Create a ticket!",
+            "enableMaxTicketsWarningInText": false,
+            "enableMaxTicketsWarningInEmbed": false,
+            "describeOptionsLayout": "normal",
+            "describeOptionsCustomTitle": "",
+            "describeOptionsInText": false,
+            "describeOptionsInEmbedFields": false,
+            "describeOptionsInEmbedDescription": false
+        }
+    },
+    {
+        "id": "donaciones",
+        "name": "Soporte de Donaciones",
+        "dropdown": false,
+        "options": [
+            "tebex",
+            "ropa",
+            "tatuajes",
+            "segundo-slot",
+            "peds",
+            "housing",
+            "liveries"
+        ],
+        "text": "",
+        "embed": {
+            "enabled": true,
+            "title": "Soporte de Donaciones",
+            "description": "¡Bienvenid@ al Sistema de Tickets de FamilyRP!",
+            "customColor": "",
+            "url": "",
+            "image": "",
+            "thumbnail": "",
+            "footer": "",
+            "fields": [],
+            "timestamp": false
+        },
+        "settings": {
+            "maximumButtonsPerRow": 5, // [NUEVO 4.2]
+            "dropdownPlaceholder": "Create a ticket!",
+            "enableMaxTicketsWarningInText": false,
+            "enableMaxTicketsWarningInEmbed": false,
+            "describeOptionsLayout": "detailed",
+            "describeOptionsCustomTitle": "",
+            "describeOptionsInText": false,
+            "describeOptionsInEmbedFields": false,
+            "describeOptionsInEmbedDescription": false
         }
     }
 ]

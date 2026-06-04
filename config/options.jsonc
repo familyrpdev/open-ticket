@@ -1,165 +1,2576 @@
 /*
- * OPEN TICKET BUTTON OPTIONS
- * ----------------------------------------------
- * Create customizable ticket, website, reaction-role or sub-panel button options.
- * Up to 25 options can be added to each panel in (config/panels.jsonc)
- * There are 4 types of options available: ticket, website, role, sub-panel
- * 
- * TIP: Create new options by copying everything between and including the {...} brackets of an option. Paste it after the last option and make sure that they are seperated by a comma.
+ * options.jsonc — FamilyRP (migrado desde open-fmly v4.1.1)
+ *
+ * LEYENDA:
+ *   [PLUGIN]       → Campo leído por un plugin (no validado por el core)
+ *   [IGUAL fmly]   → Contenido de producción sin cambios
+ *   [NUEVO 4.2]    → Opción/tipo nuevo del core 4.2
+ *   [LEGACY 4.1]   → Existía en fmly pero 4.2 lo movió a general.jsonc (se borra al migrar)
+ *
+ * ── TIPOS DE OPCIÓN (type) ─────────────────────────────────────────────────
+ *
+ *  ticket       [IGUAL fmly] — abre un ticket (27 opciones)
+ *  website      [IGUAL fmly] — botón con enlace externo
+ *  role         [IGUAL fmly] — reaction role
+ *  sub-panel    [NUEVO 4.2] — botón que abre otro panel (no usamos aún)
+ *
+ * ── CAMPOS [PLUGIN] ────────────────────────────────────────────────────────
+ *
+ *  transcriptId (27 opciones)
+ *    Plugin: ot-transcript-channel
+ *    Canal Discord donde se envía copia del transcript al cerrar/borrar ticket
+ *    El canal global sigue en config/transcripts.jsonc (core)
+ *
+ *  showTicketCounter (solo opción "housing")
+ *    Plugin: ot-panel-ticket-counter
+ *    Muestra en el embed del panel: "Abiertos X de Y"
+ *    Usa también limits.enabled y limits.globalMaximum de esa misma opción
+ *
+ * ── CAMPOS [LEGACY 4.1] en channel.* (todas las opciones ticket) ───────────
+ *
+ *  closedCategory, backupCategory, claimedCategory
+ *    En v4.1.1 iban por opción. En v4.2 pasaron a general.jsonc → ticketSystem:
+ *      closedCategory, backupCategory, claimedCategories
+ *    El bot los elimina al arrancar si migra desde 4.1. Configurar ahí en su lugar.
+ *
+ * ── PLUGINS QUE NO TOCAN ESTE ARCHIVO ──────────────────────────────────────
+ *  ot-ticket-count        → general.jsonc → status.text
+ *  ot-translate-cmds      → plugins/ot-translate-cmds/translations.json
+ *  ot-volume-warning      → plugins/ot-volume-warning/config.json
+ *  templates-system       → plugins/templates-system/templates.json
+ *
+ * ───────────────────────────────────────────────────────────────────────────
  */
 [
     {
-        /* A ticket option creates a button to open a ticket. */
-        "id":"example-ticket",
-        "name":"Question",
-        "description":"Want to tell us something? Create this ticket for general questions for our support team.", //Leave empty to disable
-        "type":"ticket",
-        
-        "button":{
-            /* Configure the button style of this option. At least one of "emoji" or "label" must be provided. */
-            "emoji":"🎫",
-            "label":"Question",
-            "color":"gray" //Choices: gray, red, green, blue
+        "id": "soporte",
+        "transcriptId": "1236147109573431319", // [PLUGIN] ot-transcript-channel
+        "name": "Soporte",
+        "description": "",
+        "type": "ticket",
+        "button": {
+            "emoji": "📩",
+            "label": "Ayuda",
+            "color": "blue"
         },
-        
-        /* Add up to 5 modal questions IDs from (config/questions.jsonc). */
-        "questions":["example-question-1","example-question-2"],
-        
-        "ticketAdmins":["DISCORD_ROLE_ID"],
-        "readonlyAdmins":["DISCORD_ROLE_ID"],
-        "allowCreationByBlacklistedUsers":false,
-        
-        "channel":{
-            /* Configure the name, topic and category of the ticket option. */
-            "prefix":"question-",
-            "suffix":"user-name", //Choices: user-name, user-id, random-number, random-hex, counter-dynamic, counter-fixed
-            "category":"DISCORD_CATEGORY_ID", //Leave empty to disable
-            "topic":"The ticket topic shown in the channel." //Leave empty to disable
+        "ticketAdmins": [
+            "1236147107694645349",
+            "1247649698609627256",
+            "1236147107694645350"
+        ],
+        "readonlyAdmins": [],
+        "allowCreationByBlacklistedUsers": false,
+        "questions": [],
+        "channel": {
+            "prefix": "🔧-soporte-",
+            "suffix": "counter-fixed",
+            "category": "1425587892469895188",
+            "closedCategory": "", // [LEGACY 4.1] → usar general.jsonc → ticketSystem.closedCategory
+            "backupCategory": "", // [LEGACY 4.1] → usar general.jsonc → ticketSystem.backupCategory
+            "claimedCategory": [], // [LEGACY 4.1] → usar general.jsonc → ticketSystem.claimedCategories
+            "topic": ""
         },
-        
-        "dmMessage":{
-            /* Send a customisable message in DM when creating a ticket. */
-            "enabled":false,
-            "text":"", //Leave empty to disable
-            "embed":{
-                "enabled":false,
-                "title":"Question Ticket", //Leave empty to disable
-                "description":"Thank you for creating a ticket in our server. We will try to help you as soon as possible.", //Leave empty to disable
-                "customColor":"#f8ab00", //Leave empty to use default color
-                
-                "image":"", //Image URL. Leave empty to disable
-                "thumbnail":"", //Image URL. Leave empty to disable
-                /* Embed fields. Set to empty list [] to disable. */
-                "fields":[
-                    {"name":"FIELD_NAME","value":"FIELD_VALUE","inline":false}
+        "dmMessage": {
+            "enabled": false,
+            "text": "Thank you for creating a ticket in our server! (or leave empty)",
+            "embed": {
+                "enabled": false,
+                "title": "Embed Title! (or leave empty)",
+                "description": "Description (or leave empty)",
+                "customColor": "",
+                "image": "",
+                "thumbnail": "",
+                "fields": [
+                    {
+                        "name": "field name",
+                        "value": "field value",
+                        "inline": false
+                    }
                 ],
-                "timestamp":false
+                "timestamp": false
             }
         },
-        "ticketMessage":{
-            /* Send a customisable message in the ticket with close, claim, delete, ... buttons. */
-            "enabled":true,
-            "text":"", //Leave empty to disable
-            "embed":{
-                "enabled":true,
-                "title":"Question Ticket", //Leave empty to disable
-                "description":"Thank you for creating a ticket in our server.\nOur support team will assist you as soon as possible.", //Leave empty to disable
-                "customColor":"#f8ab00", //Leave empty to use default color
-                
-                "image":"", //Image URL. Leave empty to disable
-                "thumbnail":"", //Image URL. Leave empty to disable
-                /* Embed fields. Set to empty list [] to disable. */
-                "fields":[
-                    {"name":"FIELD_NAME","value":"FIELD_VALUE","inline":false}
-                ],
-                "timestamp":false
+        "ticketMessage": {
+            "enabled": true,
+            "text": "Bienvenido/a alguien de <@&1236147107694645349> o <@&1247649698609627256> te ayudará en breves, expón tu problema de manera concreta!",
+            "embed": {
+                "enabled": true,
+                "title": "Ticket de Ayuda",
+                "description": "La ayuda está en camino",
+                "customColor": "",
+                "image": "",
+                "thumbnail": "",
+                "fields": [],
+                "timestamp": true
             },
-            "ping":{
-                /* Customise the user & role mentions of this ticket message. */
-                "@here":true,
-                "@everyone":false,
-                "custom":["DISCORD_ROLE_ID"]
+            "ping": {
+                "@here": false,
+                "@everyone": false,
+                "custom": []
             }
         },
-        "autoclose":{
-            /* Autoclose this ticket after a period of inactivity or when the creator leaves the server. */
-            "enableInactiveHours":false,
-            "inactiveHours":24,
-            "enableUserLeave":false,
-            "disableOnClaim":false
+        "autoclose": {
+            "enableInactiveHours": false,
+            "inactiveHours": 24,
+            "enableUserLeave": false,
+            "disableOnClaim": false
         },
-        "autodelete":{
-            /* Autodelete this ticket after a period of inactivity or when the creator leaves the server. */
-            "enableInactiveDays":false,
-            "inactiveDays":7,
-            "enableUserLeave":false,
-            "disableOnClaim":false
+        "autodelete": {
+            "enableInactiveDays": false,
+            "inactiveDays": 7,
+            "enableUserLeave": true,
+            "disableOnClaim": false
         },
-        "cooldown":{
-            /* Users must wait a certain period before being able to create another ticket of this type. */
-            "enabled":false,
-            "cooldownMinutes":10
+        "cooldown": {
+            "enabled": true,
+            "cooldownMinutes": 30
         },
-        "limits":{
-            /* Set the maximum amount of simultaneous tickets of this option. */
-            "enabled":false,
-            "globalMaximum":20,
-            "userMaximum":3
+        "limits": {
+            "enabled": true,
+            "globalMaximum": 50,
+            "userMaximum": 1
         },
-        "slowMode":{
-            /* Enable slow-mode in the ticket channel. */
-            "enabled":false,
-            "slowModeSeconds":20
+        "slowMode": {
+            "enabled": false,
+            "slowModeSeconds": 1
         }
     },
     {
-        /* A website option creates a button with a URL to an external website. */
-        "id":"example-website",
-        "name":"Website",
-        "description":"Take a look at our amazing website.", //Leave empty to disable
-        "type":"website",
-        
-        "button":{
-            /* Configure the button style of this option. At least one of "emoji" or "label" must be provided. */
-            "emoji":"😃",
-            "label":"Visit Website"
+        "id": "cks",
+        "transcriptId": "1364914609143676958",
+        "name": "CK",
+        "description": "",
+        "type": "ticket",
+        "button": {
+            "emoji": "💀",
+            "label": "CK",
+            "color": "blue"
         },
-        
-        "url":"https://www.dj-dj.be"
+        "ticketAdmins": [
+            "1236147107711160363"
+        ],
+        "readonlyAdmins": [],
+        "allowCreationByBlacklistedUsers": false,
+        "questions": [
+            "nombre-ic",
+            "ck-pendiente",
+            "ck-faccion",
+            "ck-citizen",
+            "ck-motivo"
+        ],
+        "channel": {
+            "prefix": "💀-ck-",
+            "suffix": "counter-fixed",
+            "category": "1425589467204423751",
+            "closedCategory": "",
+            "backupCategory": "",
+            "claimedCategory": [],
+            "topic": ""
+        },
+        "dmMessage": {
+            "enabled": false,
+            "text": "Thank you for creating a ticket in our server! (or leave empty)",
+            "embed": {
+                "enabled": false,
+                "title": "Embed Title! (or leave empty)",
+                "description": "Description (or leave empty)",
+                "customColor": "",
+                "image": "",
+                "thumbnail": "",
+                "fields": [
+                    {
+                        "name": "field name",
+                        "value": "field value",
+                        "inline": false
+                    }
+                ],
+                "timestamp": false
+            }
+        },
+        "ticketMessage": {
+            "enabled": true,
+            "text": "Bienvenido/a alguien de <@&1236147107669213263> te ayudará en breves, expón tu problema de manera concreta!",
+            "embed": {
+                "enabled": true,
+                "title": "Ticket de CK",
+                "description": "La ayuda está en camino",
+                "customColor": "",
+                "image": "",
+                "thumbnail": "",
+                "fields": [],
+                "timestamp": true
+            },
+            "ping": {
+                "@here": false,
+                "@everyone": false,
+                "custom": []
+            }
+        },
+        "autoclose": {
+            "enableInactiveHours": false,
+            "inactiveHours": 24,
+            "enableUserLeave": false,
+            "disableOnClaim": false
+        },
+        "autodelete": {
+            "enableInactiveDays": false,
+            "inactiveDays": 7,
+            "enableUserLeave": true,
+            "disableOnClaim": false
+        },
+        "cooldown": {
+            "enabled": true,
+            "cooldownMinutes": 30
+        },
+        "limits": {
+            "enabled": true,
+            "globalMaximum": 50,
+            "userMaximum": 1
+        },
+        "slowMode": {
+            "enabled": false,
+            "slowModeSeconds": 1
+        }
     },
     {
-        /* A reaction-role option creates a button for members to choose roles. */
-        "id":"example-role",
-        "name":"Update Ping",
-        "description":"Receive notifications about updates in our server.", //Leave empty to disable
-        "type":"role",
-        
-        "button":{
-            /* Configure the button style of this option. At least one of "emoji" or "label" must be provided. */
-            "emoji":"📢",
-            "label":"Update Ping",
-            "color":"gray" //Choices: gray, red, green, blue
+        "id": "streamers",
+        "transcriptId": "1364914573001363506",
+        "name": "Streamers",
+        "description": "",
+        "type": "ticket",
+        "button": {
+            "emoji": "🎥",
+            "label": "Streamers",
+            "color": "blue"
         },
-        
-        "roles":["DISCORD_ROLE_ID"],
-        "mode":"add&remove OR remove OR add", //What to do with the roles. Choices: add&remove, add, remove
-        "removeRolesOnAdd":["DISCORD_ROLE_ID"], //Remove these old roles when new roles are added.
-        "addOnMemberJoin":false //Add these roles automatically when joining the server.
+        "ticketAdmins": [
+            "1236147107694645348"
+        ],
+        "readonlyAdmins": [],
+        "allowCreationByBlacklistedUsers": false,
+        "questions": [],
+        "channel": {
+            "prefix": "🎥-streamers-",
+            "suffix": "counter-fixed",
+            "category": "1425590413598654665",
+            "closedCategory": "",
+            "backupCategory": "",
+            "claimedCategory": [],
+            "topic": ""
+        },
+        "dmMessage": {
+            "enabled": false,
+            "text": "Thank you for creating a ticket in our server! (or leave empty)",
+            "embed": {
+                "enabled": false,
+                "title": "Embed Title! (or leave empty)",
+                "description": "Description (or leave empty)",
+                "customColor": "",
+                "image": "",
+                "thumbnail": "",
+                "fields": [
+                    {
+                        "name": "field name",
+                        "value": "field value",
+                        "inline": false
+                    }
+                ],
+                "timestamp": false
+            }
+        },
+        "ticketMessage": {
+            "enabled": true,
+            "text": "Bienvenido/a alguien de <@&1236147107694645348> te ayudará en breves, expón tu problema de manera concreta!",
+            "embed": {
+                "enabled": true,
+                "title": "Ticket de Streamers",
+                "description": "La ayuda está en camino",
+                "customColor": "",
+                "image": "",
+                "thumbnail": "",
+                "fields": [],
+                "timestamp": true
+            },
+            "ping": {
+                "@here": false,
+                "@everyone": false,
+                "custom": []
+            }
+        },
+        "autoclose": {
+            "enableInactiveHours": false,
+            "inactiveHours": 24,
+            "enableUserLeave": false,
+            "disableOnClaim": false
+        },
+        "autodelete": {
+            "enableInactiveDays": false,
+            "inactiveDays": 7,
+            "enableUserLeave": true,
+            "disableOnClaim": false
+        },
+        "cooldown": {
+            "enabled": true,
+            "cooldownMinutes": 360
+        },
+        "limits": {
+            "enabled": true,
+            "globalMaximum": 50,
+            "userMaximum": 1
+        },
+        "slowMode": {
+            "enabled": false,
+            "slowModeSeconds": 1
+        }
     },
     {
-        /* A sub-panel option creates a button which sends another panel for additional options. */
-        "id":"example-sub-panel",
-        "name":"Example Sub-Panel",
-        "description":"This is an example of how to implement a sub-panel in Open Ticket.", //Leave empty to disable
-        "type":"sub-panel",
-        
-        "button":{
-            /* Configure the button style of this option. At least one of "emoji" or "label" must be provided. */
-            "emoji":"📋",
-            "label":"Sub-Panel Example",
-            "color":"gray" //Choices: gray, red, green, blue
+        "id": "reclamaciones",
+        "transcriptId": "1364914668149276803",
+        "name": "Reclamaciones",
+        "description": "",
+        "type": "ticket",
+        "button": {
+            "emoji": "📦",
+            "label": "Reclamaciones",
+            "color": "blue"
         },
-        
-        "subPanelId":"example-panel" //Choose a panel ID from (config/panels.jsonc)
+        "ticketAdmins": [
+            "1236147107694645349",
+            "1247649698609627256",
+            "1236147107694645350"
+        ],
+        "readonlyAdmins": [],
+        "allowCreationByBlacklistedUsers": false,
+        "questions": [],
+        "channel": {
+            "prefix": "📦-reclamaciones-",
+            "suffix": "counter-fixed",
+            "category": "1425591157777367161",
+            "closedCategory": "",
+            "backupCategory": "",
+            "claimedCategory": [],
+            "topic": ""
+        },
+        "dmMessage": {
+            "enabled": false,
+            "text": "Thank you for creating a ticket in our server! (or leave empty)",
+            "embed": {
+                "enabled": false,
+                "title": "Embed Title! (or leave empty)",
+                "description": "Description (or leave empty)",
+                "customColor": "",
+                "image": "",
+                "thumbnail": "",
+                "fields": [
+                    {
+                        "name": "field name",
+                        "value": "field value",
+                        "inline": false
+                    }
+                ],
+                "timestamp": false
+            }
+        },
+        "ticketMessage": {
+            "enabled": true,
+            "text": "Bienvenido/a alguien de <@&1236147107694645349> o <@&1247649698609627256> te ayudará en breves, expón tu problema de manera concreta!",
+            "embed": {
+                "enabled": true,
+                "title": "Ticket de Reclamaciones",
+                "description": "La ayuda está en camino",
+                "customColor": "",
+                "image": "",
+                "thumbnail": "",
+                "fields": [],
+                "timestamp": true
+            },
+            "ping": {
+                "@here": false,
+                "@everyone": false,
+                "custom": []
+            }
+        },
+        "autoclose": {
+            "enableInactiveHours": false,
+            "inactiveHours": 24,
+            "enableUserLeave": false,
+            "disableOnClaim": false
+        },
+        "autodelete": {
+            "enableInactiveDays": false,
+            "inactiveDays": 7,
+            "enableUserLeave": true,
+            "disableOnClaim": false
+        },
+        "cooldown": {
+            "enabled": true,
+            "cooldownMinutes": 60
+        },
+        "limits": {
+            "enabled": true,
+            "globalMaximum": 50,
+            "userMaximum": 1
+        },
+        "slowMode": {
+            "enabled": false,
+            "slowModeSeconds": 1
+        }
+    },
+    {
+        "id": "tebex",
+        "transcriptId": "1364913742243954748",
+        "name": "Tebex",
+        "description": "Estos tickets son para soporte de tebex, es decir he comprado tokens y no me han llegado (Cuando compras tokens revisa que en el launcher de Fivem, tengas iniciada la misma sesión que en la store).",
+        "type": "ticket",
+        "button": {
+            "emoji": "💰",
+            "label": "Tebex",
+            "color": "blue"
+        },
+        "ticketAdmins": [
+            "1253670507979739147"
+        ],
+        "readonlyAdmins": [],
+        "allowCreationByBlacklistedUsers": false,
+        "questions": [
+            "tbx-id",
+            "tebex",
+            "aviso-inicio-sesion"
+        ],
+        "channel": {
+            "prefix": "💰-tebex-",
+            "suffix": "counter-fixed",
+            "category": "1425591785949888724",
+            "closedCategory": "",
+            "backupCategory": "",
+            "claimedCategory": [],
+            "topic": ""
+        },
+        "dmMessage": {
+            "enabled": false,
+            "text": "Thank you for creating a ticket in our server! (or leave empty)",
+            "embed": {
+                "enabled": false,
+                "title": "Embed Title! (or leave empty)",
+                "description": "Description (or leave empty)",
+                "customColor": "",
+                "image": "",
+                "thumbnail": "",
+                "fields": [
+                    {
+                        "name": "field name",
+                        "value": "field value",
+                        "inline": false
+                    }
+                ],
+                "timestamp": false
+            }
+        },
+        "ticketMessage": {
+            "enabled": true,
+            "text": "Bienvenido/a un <@&1253670507979739147> revisará el contenido lo antes posible",
+            "embed": {
+                "enabled": true,
+                "title": "Ticket de Tebex",
+                "description": "La ayuda está en camino",
+                "customColor": "",
+                "image": "",
+                "thumbnail": "",
+                "fields": [],
+                "timestamp": true
+            },
+            "ping": {
+                "@here": false,
+                "@everyone": false,
+                "custom": []
+            }
+        },
+        "autoclose": {
+            "enableInactiveHours": false,
+            "inactiveHours": 24,
+            "enableUserLeave": false,
+            "disableOnClaim": false
+        },
+        "autodelete": {
+            "enableInactiveDays": false,
+            "inactiveDays": 7,
+            "enableUserLeave": true,
+            "disableOnClaim": false
+        },
+        "cooldown": {
+            "enabled": true,
+            "cooldownMinutes": 30
+        },
+        "limits": {
+            "enabled": true,
+            "globalMaximum": 50,
+            "userMaximum": 1
+        },
+        "slowMode": {
+            "enabled": false,
+            "slowModeSeconds": 1
+        }
+    },
+    {
+        "id": "housing",
+        "transcriptId": "1465785966932529365",
+        "name": "Housing",
+        "description": "",
+        "type": "ticket",
+        "button": {
+            "emoji": "🏠",
+            "label": "Housing",
+            "color": "blue"
+        },
+        "ticketAdmins": [
+            "1253670507979739147"
+        ],
+        "readonlyAdmins": [],
+        "allowCreationByBlacklistedUsers": false,
+        "questions": [
+            "zona-housing",
+            "foto-zona",
+            "borrador-inicial",
+            "disponibilidad"
+        ],
+        "channel": {
+            "prefix": "🏠-housing-",
+            "suffix": "counter-fixed",
+            "category": "1465786114022445137",
+            "closedCategory": "",
+            "backupCategory": "",
+            "claimedCategory": [],
+            "topic": ""
+        },
+        "dmMessage": {
+            "enabled": false,
+            "text": "Thank you for creating a ticket in our server! (or leave empty)",
+            "embed": {
+                "enabled": false,
+                "title": "Embed Title! (or leave empty)",
+                "description": "Description (or leave empty)",
+                "customColor": "",
+                "image": "",
+                "thumbnail": "",
+                "fields": [
+                    {
+                        "name": "field name",
+                        "value": "field value",
+                        "inline": false
+                    }
+                ],
+                "timestamp": false
+            }
+        },
+        "ticketMessage": {
+            "enabled": true,
+            "text": "Bienvenido/a. Un miembro de <@&1253670507979739147> revisará tu solicitud. Lee los **Términos del Servicio** en el embed, confirma su aceptación en este canal y aporta toda la información de tu pedido. Tu ticket se atenderá cuando se añada el emoji 🟢.",
+            "embed": {
+                "enabled": true,
+                "title": "Términos del Servicio – Sistema Housing",
+                "description": "### 1. Costos del Servicio\n- Cada mapeado (MLO) es evaluado de manera individual.\n- El precio final dependerá de distintos factores, incluyendo, pero no limitado a:\n  - Nivel de dificultad en la creación o adaptación del MLO.\n  - Número de habitaciones.\n  - Complejidad estructural.\n  - Zona donde será ubicado el mapeado.\n  - Requerimientos adicionales solicitados por el cliente.\n- El costo será informado únicamente después de realizar una revisión previa del proyecto.\n\n> No se brindan precios estimados sin evaluación.\n\n### 2. Alcance del Servicio\nEl servicio incluye:\n- Integración del mapeado (MLO) en la zona seleccionada dentro del servidor.\n- Configuración para que la propiedad funcione con todas las mecánicas estándar del sistema, tales como:\n  - Compra de muebles.\n  - Expansión de almacenamiento.\n  - Uso de garaje (si aplica).\n  - Funciones adicionales propias del sistema housing activo en el servidor.\n\n### 3. Consideraciones Importantes\n- El pago del servicio corresponde únicamente al trabajo de integración y configuración del mapeado dentro del sistema housing.\n- El servicio no incluye la entrega de la propiedad con mejoras desbloqueadas, almacenamiento ampliado, muebles comprados ni garaje expandido.\n- Todas las mejoras deberán adquirirse mediante los métodos normales ya establecidos dentro del servidor (Dinero IC | Tokens).\n\n### 4. Entrega y Garantía de Revisión\n- Una vez entregado el mapeado e integrado al sistema housing, el cliente contará con un plazo de 24 horas para notificar cualquier disconformidad relacionada con bugs, errores técnicos o fallas de funcionamiento. Pasado este plazo, se asumirá que el servicio fue recibido conforme.\n\n### 5. Solicitudes de Edición Posterior\nCualquier modificación adicional al mapeado después de la entrega deberá solicitarse mediante un nuevo ticket de housing. Dichas solicitudes serán evaluadas nuevamente de manera individual.\n\n> Las ediciones pueden generar costos adicionales dependiendo del alcance de los cambios requeridos.\n\n### IMPORTANTE\nEl usuario sabrá que su ticket está siendo atendido cuando se añada el emoji 🟢 en el mismo. Hasta que dicho indicador sea colocado, el solicitante deberá:\n- Confirmar la lectura y aceptación de estos términos.\n- Brindar el máximo de información posible sobre su pedido.\n\n> El envío de información adicional fuera del alcance del pedido podrá retrasar la evaluación.\n> En caso de ser atendido y no tener respuesta en un plazo de 5 días, el ticket procederá a cerrarse.",
+                "customColor": "",
+                "image": "",
+                "thumbnail": "",
+                "fields": [],
+                "timestamp": true
+            },
+            "ping": {
+                "@here": false,
+                "@everyone": false,
+                "custom": []
+            }
+        },
+        "autoclose": {
+            "enableInactiveHours": false,
+            "inactiveHours": 24,
+            "enableUserLeave": false,
+            "disableOnClaim": false
+        },
+        "autodelete": {
+            "enableInactiveDays": false,
+            "inactiveDays": 7,
+            "enableUserLeave": true,
+            "disableOnClaim": false
+        },
+        "cooldown": {
+            "enabled": true,
+            "cooldownMinutes": 1440
+        },
+        "limits": {
+            "enabled": true,
+            "globalMaximum": 15,
+            "userMaximum": 1
+        },
+        "slowMode": {
+            "enabled": false,
+            "slowModeSeconds": 1
+        },
+        "showTicketCounter": true // [PLUGIN] ot-panel-ticket-counter — única opción con contador en panel
+    },
+    {
+        "id": "segundo-slot",
+        "transcriptId": "1445397279535140936", // [PLUGIN] ot-transcript-channel
+        "name": "Segundo Slot",
+        "description": "",
+        "type": "ticket",
+        "button": {
+            "emoji": "🕴️",
+            "label": "Segundo Slot",
+            "color": "blue"
+        },
+        "ticketAdmins": [
+            "1253670507979739147"
+        ],
+        "readonlyAdmins": [],
+        "allowCreationByBlacklistedUsers": false,
+        "questions": [],
+        "channel": {
+            "prefix": "🕴️-segundo-slot-",
+            "suffix": "counter-fixed",
+            "category": "1443542326084632616",
+            "closedCategory": "",
+            "backupCategory": "",
+            "claimedCategory": [],
+            "topic": ""
+        },
+        "dmMessage": {
+            "enabled": false,
+            "text": "Thank you for creating a ticket in our server! (or leave empty)",
+            "embed": {
+                "enabled": false,
+                "title": "Embed Title! (or leave empty)",
+                "description": "Description (or leave empty)",
+                "customColor": "",
+                "image": "",
+                "thumbnail": "",
+                "fields": [
+                    {
+                        "name": "field name",
+                        "value": "field value",
+                        "inline": false
+                    }
+                ],
+                "timestamp": false
+            }
+        },
+        "ticketMessage": {
+            "enabled": true,
+            "text": "Bienvenido/a un <@&1253670507979739147> revisará el contenido lo antes posible, por favor revisa que tengas los tokens ya comprados utilizando `/tokens` dentro del juego.",
+            "embed": {
+                "enabled": true,
+                "title": "Ticket de Segundo Slot",
+                "description": "**Información de Interes:**\n\n- Segundo slot:\nDesbloqueo segundo slot: 500 TOKENS\n\n**Condiciones segundo slot:**\n\n- El segundo slot es únicamente para personajes que no pertenezcan a ninguna facción oficial (policía, bomberos, médicos, etc.).\n- No se podrá tener un PJ de una banda y otro que pertenezca a la policía (No se puede pertenecer a la policía).\n- El segundo PJ no podrás ser familiar de tu primer PJ (nada de lazos familiares, amigos en común, etc.)",
+                "customColor": "",
+                "image": "",
+                "thumbnail": "",
+                "fields": [],
+                "timestamp": true
+            },
+            "ping": {
+                "@here": false,
+                "@everyone": false,
+                "custom": []
+            }
+        },
+        "autoclose": {
+            "enableInactiveHours": false,
+            "inactiveHours": 24,
+            "enableUserLeave": false,
+            "disableOnClaim": false
+        },
+        "autodelete": {
+            "enableInactiveDays": false,
+            "inactiveDays": 7,
+            "enableUserLeave": true,
+            "disableOnClaim": false
+        },
+        "cooldown": {
+            "enabled": true,
+            "cooldownMinutes": 30
+        },
+        "limits": {
+            "enabled": true,
+            "globalMaximum": 50,
+            "userMaximum": 1
+        },
+        "slowMode": {
+            "enabled": false,
+            "slowModeSeconds": 1
+        }
+    },
+    {
+        "id": "peds",
+        "transcriptId": "1445397304579461120",
+        "name": "Peds",
+        "description": "",
+        "type": "ticket",
+        "button": {
+            "emoji": "🛀",
+            "label": "Peds",
+            "color": "blue"
+        },
+        "ticketAdmins": [
+            "1253670507979739147"
+        ],
+        "readonlyAdmins": [],
+        "allowCreationByBlacklistedUsers": false,
+        "questions": [],
+        "channel": {
+            "prefix": "🛀-peds-",
+            "suffix": "counter-fixed",
+            "category": "1443542436130590852",
+            "closedCategory": "",
+            "backupCategory": "",
+            "claimedCategory": [],
+            "topic": ""
+        },
+        "dmMessage": {
+            "enabled": false,
+            "text": "Thank you for creating a ticket in our server! (or leave empty)",
+            "embed": {
+                "enabled": false,
+                "title": "Embed Title! (or leave empty)",
+                "description": "Description (or leave empty)",
+                "customColor": "",
+                "image": "",
+                "thumbnail": "",
+                "fields": [
+                    {
+                        "name": "field name",
+                        "value": "field value",
+                        "inline": false
+                    }
+                ],
+                "timestamp": false
+            }
+        },
+        "ticketMessage": {
+            "enabled": true,
+            "text": "Bienvenido/a un <@&1253670507979739147> revisará el contenido lo antes posible. Revisa toda la información de interés para que podamos solventar tus dudas.",
+            "embed": {
+                "enabled": true,
+                "title": "Ticket de Peds",
+                "description": "**Información de Interés:**\n\n## PEDS:\n- Ped vanilla: 300 TOKENS\n- Ped addon: 600 TOKENS\n- Update PED: 150 TOKENS\n",
+                "customColor": "",
+                "image": "",
+                "thumbnail": "",
+                "fields": [],
+                "timestamp": true
+            },
+            "ping": {
+                "@here": false,
+                "@everyone": false,
+                "custom": []
+            }
+        },
+        "autoclose": {
+            "enableInactiveHours": false,
+            "inactiveHours": 24,
+            "enableUserLeave": false,
+            "disableOnClaim": false
+        },
+        "autodelete": {
+            "enableInactiveDays": false,
+            "inactiveDays": 7,
+            "enableUserLeave": true,
+            "disableOnClaim": false
+        },
+        "cooldown": {
+            "enabled": true,
+            "cooldownMinutes": 30
+        },
+        "limits": {
+            "enabled": true,
+            "globalMaximum": 50,
+            "userMaximum": 1
+        },
+        "slowMode": {
+            "enabled": false,
+            "slowModeSeconds": 1
+        }
+    },
+    {
+        "id": "bugs",
+        "transcriptId": "1364914453539323995",
+        "name": "Bugs",
+        "description": "",
+        "type": "ticket",
+        "button": {
+            "emoji": "✍️",
+            "label": "Bugs",
+            "color": "blue"
+        },
+        "ticketAdmins": [
+            "1236147107694645349",
+            "1247649698609627256",
+            "1236147107694645350"
+        ],
+        "readonlyAdmins": [],
+        "allowCreationByBlacklistedUsers": false,
+        "questions": [
+            "bugs-suceso",
+            "bugs-pasos"
+        ],
+        "channel": {
+            "prefix": "✍️-bugs-",
+            "suffix": "counter-fixed",
+            "category": "1425592556200398919",
+            "closedCategory": "",
+            "backupCategory": "",
+            "claimedCategory": [],
+            "topic": ""
+        },
+        "dmMessage": {
+            "enabled": false,
+            "text": "Thank you for creating a ticket in our server! (or leave empty)",
+            "embed": {
+                "enabled": false,
+                "title": "Embed Title! (or leave empty)",
+                "description": "Description (or leave empty)",
+                "customColor": "",
+                "image": "",
+                "thumbnail": "",
+                "fields": [
+                    {
+                        "name": "field name",
+                        "value": "field value",
+                        "inline": false
+                    }
+                ],
+                "timestamp": false
+            }
+        },
+        "ticketMessage": {
+            "enabled": true,
+            "text": "Bienvenido/a alguien de <@&1236147107694645349> te ayudará en breves, expón tu problema de manera concreta!",
+            "embed": {
+                "enabled": true,
+                "title": "Ticket de Bugs",
+                "description": "La ayuda está en camino",
+                "customColor": "",
+                "image": "",
+                "thumbnail": "",
+                "fields": [],
+                "timestamp": true
+            },
+            "ping": {
+                "@here": false,
+                "@everyone": false,
+                "custom": []
+            }
+        },
+        "autoclose": {
+            "enableInactiveHours": false,
+            "inactiveHours": 24,
+            "enableUserLeave": false,
+            "disableOnClaim": false
+        },
+        "autodelete": {
+            "enableInactiveDays": false,
+            "inactiveDays": 7,
+            "enableUserLeave": true,
+            "disableOnClaim": false
+        },
+        "cooldown": {
+            "enabled": true,
+            "cooldownMinutes": 30
+        },
+        "limits": {
+            "enabled": true,
+            "globalMaximum": 50,
+            "userMaximum": 1
+        },
+        "slowMode": {
+            "enabled": false,
+            "slowModeSeconds": 1
+        }
+    },
+    {
+        "id": "reportes",
+        "transcriptId": "1253682492850962576",
+        "name": "Reportes",
+        "description": "",
+        "type": "ticket",
+        "button": {
+            "emoji": "⚔️",
+            "label": "Reportes",
+            "color": "blue"
+        },
+        "ticketAdmins": [
+            "1236147107694645350"
+        ],
+        "readonlyAdmins": [],
+        "allowCreationByBlacklistedUsers": false,
+        "questions": [
+            "rep-nombre",
+            "fecha-hora",
+            "rep-descripcion"
+        ],
+        "channel": {
+            "prefix": "⚔️-reportes-",
+            "suffix": "counter-fixed",
+            "category": "1425593736456568893",
+            "closedCategory": "",
+            "backupCategory": "",
+            "claimedCategory": [],
+            "topic": ""
+        },
+        "dmMessage": {
+            "enabled": false,
+            "text": "Thank you for creating a ticket in our server! (or leave empty)",
+            "embed": {
+                "enabled": false,
+                "title": "Embed Title! (or leave empty)",
+                "description": "Description (or leave empty)",
+                "customColor": "",
+                "image": "",
+                "thumbnail": "",
+                "fields": [
+                    {
+                        "name": "field name",
+                        "value": "field value",
+                        "inline": false
+                    }
+                ],
+                "timestamp": false
+            }
+        },
+        "ticketMessage": {
+            "enabled": true,
+            "text": "Bienvenido/a cuentanos el problema de manera detallada y adjunta las pruebas pertinentes para facilitar el trabajo del equipo de <@&1236147107694645350> pueda atenderte de la mejor manera posible!",
+            "embed": {
+                "enabled": true,
+                "title": "Ticket de Bugs",
+                "description": "La ayuda está en camino",
+                "customColor": "",
+                "image": "",
+                "thumbnail": "",
+                "fields": [],
+                "timestamp": true
+            },
+            "ping": {
+                "@here": false,
+                "@everyone": false,
+                "custom": []
+            }
+        },
+        "autoclose": {
+            "enableInactiveHours": false,
+            "inactiveHours": 24,
+            "enableUserLeave": false,
+            "disableOnClaim": false
+        },
+        "autodelete": {
+            "enableInactiveDays": false,
+            "inactiveDays": 7,
+            "enableUserLeave": true,
+            "disableOnClaim": false
+        },
+        "cooldown": {
+            "enabled": false,
+            "cooldownMinutes": 30
+        },
+        "limits": {
+            "enabled": true,
+            "globalMaximum": 50,
+            "userMaximum": 5
+        },
+        "slowMode": {
+            "enabled": false,
+            "slowModeSeconds": 1
+        }
+    },
+    {
+        "id": "reportes-staff",
+        "transcriptId": "1297649401891917915",
+        "name": "Reportes Staff",
+        "description": "",
+        "type": "ticket",
+        "button": {
+            "emoji": "🛡️",
+            "label": "Staff",
+            "color": "blue"
+        },
+        "ticketAdmins": [
+            "1236147107711160363"
+        ],
+        "readonlyAdmins": [],
+        "allowCreationByBlacklistedUsers": false,
+        "questions": [
+            "staff",
+            "staff-motivo",
+            "fecha-hora"
+        ],
+        "channel": {
+            "prefix": "🛡️-staff-",
+            "suffix": "counter-fixed",
+            "category": "1425807479777792060",
+            "closedCategory": "",
+            "backupCategory": "",
+            "claimedCategory": [],
+            "topic": ""
+        },
+        "dmMessage": {
+            "enabled": false,
+            "text": "Thank you for creating a ticket in our server! (or leave empty)",
+            "embed": {
+                "enabled": false,
+                "title": "Embed Title! (or leave empty)",
+                "description": "Description (or leave empty)",
+                "customColor": "",
+                "image": "",
+                "thumbnail": "",
+                "fields": [
+                    {
+                        "name": "field name",
+                        "value": "field value",
+                        "inline": false
+                    }
+                ],
+                "timestamp": false
+            }
+        },
+        "ticketMessage": {
+            "enabled": true,
+            "text": "Bienvenido/a cuentanos el problema de manera detallada y adjunta las pruebas pertinentes para facilitar el trabajo del equipo de <@&1236147107711160363> pueda atenderte de la mejor manera posible!",
+            "embed": {
+                "enabled": true,
+                "title": "Reporte Staff",
+                "description": "La ayuda está en camino",
+                "customColor": "",
+                "image": "",
+                "thumbnail": "",
+                "fields": [],
+                "timestamp": true
+            },
+            "ping": {
+                "@here": false,
+                "@everyone": false,
+                "custom": []
+            }
+        },
+        "autoclose": {
+            "enableInactiveHours": false,
+            "inactiveHours": 24,
+            "enableUserLeave": false,
+            "disableOnClaim": false
+        },
+        "autodelete": {
+            "enableInactiveDays": false,
+            "inactiveDays": 7,
+            "enableUserLeave": true,
+            "disableOnClaim": false
+        },
+        "cooldown": {
+            "enabled": false,
+            "cooldownMinutes": 30
+        },
+        "limits": {
+            "enabled": true,
+            "globalMaximum": 50,
+            "userMaximum": 3
+        },
+        "slowMode": {
+            "enabled": false,
+            "slowModeSeconds": 1
+        }
+    },
+    {
+        "id": "punto-violeta",
+        "transcriptId": "1364914477966954556",
+        "name": "Punto Violeta",
+        "description": "",
+        "type": "ticket",
+        "button": {
+            "emoji": "🟣",
+            "label": "Punto Violeta",
+            "color": "blue"
+        },
+        "ticketAdmins": [
+            "1236147107711160363"
+        ],
+        "readonlyAdmins": [],
+        "allowCreationByBlacklistedUsers": false,
+        "questions": [],
+        "channel": {
+            "prefix": "🟣-violeta-",
+            "suffix": "counter-fixed",
+            "category": "1425807479777792060",
+            "closedCategory": "",
+            "backupCategory": "",
+            "claimedCategory": [],
+            "topic": ""
+        },
+        "dmMessage": {
+            "enabled": false,
+            "text": "Thank you for creating a ticket in our server! (or leave empty)",
+            "embed": {
+                "enabled": false,
+                "title": "Embed Title! (or leave empty)",
+                "description": "Description (or leave empty)",
+                "customColor": "",
+                "image": "",
+                "thumbnail": "",
+                "fields": [
+                    {
+                        "name": "field name",
+                        "value": "field value",
+                        "inline": false
+                    }
+                ],
+                "timestamp": false
+            }
+        },
+        "ticketMessage": {
+            "enabled": true,
+            "text": "Bienvenido/a un <@&1236147107711160363> te ayudará en breves, expón tu problema de manera concreta!\n\nEste ticket se destina a reportes contra actitudes machistas, racistas o xenófobas hacia usuarias/os de cualquier indole",
+            "embed": {
+                "enabled": true,
+                "title": "Punto Violeta",
+                "description": "La ayuda está en camino",
+                "customColor": "",
+                "image": "",
+                "thumbnail": "",
+                "fields": [],
+                "timestamp": true
+            },
+            "ping": {
+                "@here": false,
+                "@everyone": false,
+                "custom": []
+            }
+        },
+        "autoclose": {
+            "enableInactiveHours": false,
+            "inactiveHours": 24,
+            "enableUserLeave": false,
+            "disableOnClaim": false
+        },
+        "autodelete": {
+            "enableInactiveDays": false,
+            "inactiveDays": 7,
+            "enableUserLeave": true,
+            "disableOnClaim": false
+        },
+        "cooldown": {
+            "enabled": true,
+            "cooldownMinutes": 1
+        },
+        "limits": {
+            "enabled": true,
+            "globalMaximum": 50,
+            "userMaximum": 1
+        },
+        "slowMode": {
+            "enabled": false,
+            "slowModeSeconds": 1
+        }
+    },
+    {
+        "id": "feedback",
+        "transcriptId": "1364915454392537109",
+        "name": "Feedback",
+        "description": "",
+        "type": "ticket",
+        "button": {
+            "emoji": "📁",
+            "label": "Feedback",
+            "color": "blue"
+        },
+        "ticketAdmins": [
+            "1236147107694645349",
+            "1247649698609627256",
+            "1236147107694645350"
+        ],
+        "readonlyAdmins": [],
+        "allowCreationByBlacklistedUsers": false,
+        "questions": [],
+        "channel": {
+            "prefix": "📁-feedback-",
+            "suffix": "counter-fixed",
+            "category": "1425810221623939103",
+            "closedCategory": "",
+            "backupCategory": "",
+            "claimedCategory": [],
+            "topic": ""
+        },
+        "dmMessage": {
+            "enabled": false,
+            "text": "Thank you for creating a ticket in our server! (or leave empty)",
+            "embed": {
+                "enabled": false,
+                "title": "Embed Title! (or leave empty)",
+                "description": "Description (or leave empty)",
+                "customColor": "",
+                "image": "",
+                "thumbnail": "",
+                "fields": [
+                    {
+                        "name": "field name",
+                        "value": "field value",
+                        "inline": false
+                    }
+                ],
+                "timestamp": false
+            }
+        },
+        "ticketMessage": {
+            "enabled": true,
+            "text": "Bienvenido/a alguien de <@&1236147107694645349> o <@&1247649698609627256> te ayudará en breves, expón tu problema de manera concreta!",
+            "embed": {
+                "enabled": true,
+                "title": "Ticket de Feedback",
+                "description": "La ayuda está en camino",
+                "customColor": "",
+                "image": "",
+                "thumbnail": "",
+                "fields": [],
+                "timestamp": true
+            },
+            "ping": {
+                "@here": false,
+                "@everyone": false,
+                "custom": []
+            }
+        },
+        "autoclose": {
+            "enableInactiveHours": false,
+            "inactiveHours": 24,
+            "enableUserLeave": false,
+            "disableOnClaim": false
+        },
+        "autodelete": {
+            "enableInactiveDays": false,
+            "inactiveDays": 7,
+            "enableUserLeave": true,
+            "disableOnClaim": false
+        },
+        "cooldown": {
+            "enabled": true,
+            "cooldownMinutes": 1
+        },
+        "limits": {
+            "enabled": true,
+            "globalMaximum": 50,
+            "userMaximum": 1
+        },
+        "slowMode": {
+            "enabled": false,
+            "slowModeSeconds": 1
+        }
+    },
+    {
+        "id": "admin",
+        "transcriptId": "1364914733786071070",
+        "name": "Ticket de Administración",
+        "description": "",
+        "type": "ticket",
+        "button": {
+            "emoji": "🔨",
+            "label": "Administración",
+            "color": "blue"
+        },
+        "ticketAdmins": [
+            "1236147107711160363",
+            "1236147107694645350"
+        ],
+        "readonlyAdmins": [],
+        "allowCreationByBlacklistedUsers": false,
+        "questions": [],
+        "channel": {
+            "prefix": "🔨-admin-",
+            "suffix": "counter-fixed",
+            "category": "1425811969407062036",
+            "closedCategory": "",
+            "backupCategory": "",
+            "claimedCategory": [],
+            "topic": ""
+        },
+        "dmMessage": {
+            "enabled": false,
+            "text": "Thank you for creating a ticket in our server! (or leave empty)",
+            "embed": {
+                "enabled": false,
+                "title": "Embed Title! (or leave empty)",
+                "description": "Description (or leave empty)",
+                "customColor": "",
+                "image": "",
+                "thumbnail": "",
+                "fields": [
+                    {
+                        "name": "field name",
+                        "value": "field value",
+                        "inline": false
+                    }
+                ],
+                "timestamp": false
+            }
+        },
+        "ticketMessage": {
+            "enabled": true,
+            "text": "Ticket de Administración",
+            "embed": {
+                "enabled": false,
+                "title": "",
+                "description": "La ayuda está en camino",
+                "customColor": "",
+                "image": "",
+                "thumbnail": "",
+                "fields": [],
+                "timestamp": true
+            },
+            "ping": {
+                "@here": false,
+                "@everyone": false,
+                "custom": []
+            }
+        },
+        "autoclose": {
+            "enableInactiveHours": false,
+            "inactiveHours": 24,
+            "enableUserLeave": false,
+            "disableOnClaim": false
+        },
+        "autodelete": {
+            "enableInactiveDays": false,
+            "inactiveDays": 7,
+            "enableUserLeave": true,
+            "disableOnClaim": false
+        },
+        "cooldown": {
+            "enabled": false,
+            "cooldownMinutes": 1
+        },
+        "limits": {
+            "enabled": false,
+            "globalMaximum": 50,
+            "userMaximum": 1
+        },
+        "slowMode": {
+            "enabled": false,
+            "slowModeSeconds": 1
+        }
+    },
+    {
+        "id": "sapd",
+        "transcriptId": "1364914497877442621",
+        "name": "Ticket de SAPD",
+        "description": "",
+        "type": "ticket",
+        "button": {
+            "emoji": "🚔",
+            "label": "SAPD",
+            "color": "blue"
+        },
+        "ticketAdmins": [
+            "1236147107694645343"
+        ],
+        "readonlyAdmins": [],
+        "allowCreationByBlacklistedUsers": false,
+        "questions": [],
+        "channel": {
+            "prefix": "🚔-sapd-",
+            "suffix": "counter-fixed",
+            "category": "1425812486787170335",
+            "closedCategory": "",
+            "backupCategory": "",
+            "claimedCategory": [],
+            "topic": ""
+        },
+        "dmMessage": {
+            "enabled": false,
+            "text": "Thank you for creating a ticket in our server! (or leave empty)",
+            "embed": {
+                "enabled": false,
+                "title": "Embed Title! (or leave empty)",
+                "description": "Description (or leave empty)",
+                "customColor": "",
+                "image": "",
+                "thumbnail": "",
+                "fields": [
+                    {
+                        "name": "field name",
+                        "value": "field value",
+                        "inline": false
+                    }
+                ],
+                "timestamp": false
+            }
+        },
+        "ticketMessage": {
+            "enabled": true,
+            "text": "Bienvenido/a alguien de <@&1236147107694645343> te ayudará en breves, expón tu problema de manera concreta!",
+            "embed": {
+                "enabled": true,
+                "title": "",
+                "description": "La ayuda está en camino",
+                "customColor": "",
+                "image": "",
+                "thumbnail": "",
+                "fields": [],
+                "timestamp": true
+            },
+            "ping": {
+                "@here": false,
+                "@everyone": false,
+                "custom": []
+            }
+        },
+        "autoclose": {
+            "enableInactiveHours": false,
+            "inactiveHours": 24,
+            "enableUserLeave": false,
+            "disableOnClaim": false
+        },
+        "autodelete": {
+            "enableInactiveDays": false,
+            "inactiveDays": 7,
+            "enableUserLeave": true,
+            "disableOnClaim": false
+        },
+        "cooldown": {
+            "enabled": true,
+            "cooldownMinutes": 1
+        },
+        "limits": {
+            "enabled": true,
+            "globalMaximum": 50,
+            "userMaximum": 1
+        },
+        "slowMode": {
+            "enabled": false,
+            "slowModeSeconds": 1
+        }
+    },
+    {
+        "id": "sams",
+        "transcriptId": "1364914515837190214",
+        "name": "Ticket de SAMS",
+        "description": "",
+        "type": "ticket",
+        "button": {
+            "emoji": "🚑",
+            "label": "SAMS",
+            "color": "blue"
+        },
+        "ticketAdmins": [
+            "1236147107694645342"
+        ],
+        "readonlyAdmins": [],
+        "allowCreationByBlacklistedUsers": false,
+        "questions": [],
+        "channel": {
+            "prefix": "🚑-sams-",
+            "suffix": "counter-fixed",
+            "category": "1425812816195227658",
+            "closedCategory": "",
+            "backupCategory": "",
+            "claimedCategory": [],
+            "topic": ""
+        },
+        "dmMessage": {
+            "enabled": false,
+            "text": "Thank you for creating a ticket in our server! (or leave empty)",
+            "embed": {
+                "enabled": false,
+                "title": "Embed Title! (or leave empty)",
+                "description": "Description (or leave empty)",
+                "customColor": "",
+                "image": "",
+                "thumbnail": "",
+                "fields": [
+                    {
+                        "name": "field name",
+                        "value": "field value",
+                        "inline": false
+                    }
+                ],
+                "timestamp": false
+            }
+        },
+        "ticketMessage": {
+            "enabled": true,
+            "text": "Bienvenido/a alguien de <@&1236147107694645342> te ayudará en breves, expón tu problema de manera concreta!\nTe dejamos la invitacion al discord privado del SAED\n\nEn caso de que quieras solicitar una cita deberás abrir el ticket en la categoria adecuada.\nhttps://discord.gg/JFBtNmsy28",
+            "embed": {
+                "enabled": false,
+                "title": "SAED - FamilyRP",
+                "description": "Este ticket **NO** es para pedir ningun tipo de cita médica, para esto deberás acceder al Discord Público del SAED (Invitación Arriba)",
+                "customColor": "",
+                "image": "",
+                "thumbnail": "",
+                "fields": [],
+                "timestamp": true
+            },
+            "ping": {
+                "@here": false,
+                "@everyone": false,
+                "custom": []
+            }
+        },
+        "autoclose": {
+            "enableInactiveHours": false,
+            "inactiveHours": 24,
+            "enableUserLeave": false,
+            "disableOnClaim": false
+        },
+        "autodelete": {
+            "enableInactiveDays": false,
+            "inactiveDays": 7,
+            "enableUserLeave": true,
+            "disableOnClaim": false
+        },
+        "cooldown": {
+            "enabled": true,
+            "cooldownMinutes": 1
+        },
+        "limits": {
+            "enabled": true,
+            "globalMaximum": 50,
+            "userMaximum": 1
+        },
+        "slowMode": {
+            "enabled": false,
+            "slowModeSeconds": 1
+        }
+    },
+    {
+        "id": "bandas",
+        "transcriptId": "1364914497877442621",
+        "name": "Ticket de Bandas",
+        "description": "",
+        "type": "ticket",
+        "button": {
+            "emoji": "🔪",
+            "label": "Bandas",
+            "color": "blue"
+        },
+        "ticketAdmins": [
+            "1236147107694645345"
+        ],
+        "readonlyAdmins": [],
+        "allowCreationByBlacklistedUsers": false,
+        "questions": [],
+        "channel": {
+            "prefix": "🔪-bandas-",
+            "suffix": "counter-fixed",
+            "category": "1425814018567831592",
+            "closedCategory": "",
+            "backupCategory": "",
+            "claimedCategory": [],
+            "topic": ""
+        },
+        "dmMessage": {
+            "enabled": false,
+            "text": "Thank you for creating a ticket in our server! (or leave empty)",
+            "embed": {
+                "enabled": false,
+                "title": "Embed Title! (or leave empty)",
+                "description": "Description (or leave empty)",
+                "customColor": "",
+                "image": "",
+                "thumbnail": "",
+                "fields": [
+                    {
+                        "name": "field name",
+                        "value": "field value",
+                        "inline": false
+                    }
+                ],
+                "timestamp": false
+            }
+        },
+        "ticketMessage": {
+            "enabled": true,
+            "text": "Bienvenido/a alguien de <@&1236147107694645345> te ayudará en breves, expón tu problema de manera concreta!",
+            "embed": {
+                "enabled": true,
+                "title": "",
+                "description": "La ayuda está en camino",
+                "customColor": "",
+                "image": "",
+                "thumbnail": "",
+                "fields": [],
+                "timestamp": true
+            },
+            "ping": {
+                "@here": false,
+                "@everyone": false,
+                "custom": []
+            }
+        },
+        "autoclose": {
+            "enableInactiveHours": false,
+            "inactiveHours": 24,
+            "enableUserLeave": false,
+            "disableOnClaim": false
+        },
+        "autodelete": {
+            "enableInactiveDays": false,
+            "inactiveDays": 7,
+            "enableUserLeave": true,
+            "disableOnClaim": false
+        },
+        "cooldown": {
+            "enabled": true,
+            "cooldownMinutes": 1
+        },
+        "limits": {
+            "enabled": true,
+            "globalMaximum": 50,
+            "userMaximum": 1
+        },
+        "slowMode": {
+            "enabled": false,
+            "slowModeSeconds": 1
+        }
+    },
+    {
+        "id": "comercio",
+        "transcriptId": "1428349053871067288",
+        "name": "Ticket de Comercio",
+        "description": "",
+        "type": "ticket",
+        "button": {
+            "emoji": "🛒",
+            "label": "Comercio",
+            "color": "blue"
+        },
+        "ticketAdmins": [
+            "1236147107694645344"
+        ],
+        "readonlyAdmins": [],
+        "allowCreationByBlacklistedUsers": false,
+        "questions": [],
+        "channel": {
+            "prefix": "🛒-comercio-",
+            "suffix": "counter-fixed",
+            "category": "1425814149736435732",
+            "closedCategory": "",
+            "backupCategory": "",
+            "claimedCategory": [],
+            "topic": ""
+        },
+        "dmMessage": {
+            "enabled": false,
+            "text": "Thank you for creating a ticket in our server! (or leave empty)",
+            "embed": {
+                "enabled": false,
+                "title": "Embed Title! (or leave empty)",
+                "description": "Description (or leave empty)",
+                "customColor": "",
+                "image": "",
+                "thumbnail": "",
+                "fields": [
+                    {
+                        "name": "field name",
+                        "value": "field value",
+                        "inline": false
+                    }
+                ],
+                "timestamp": false
+            }
+        },
+        "ticketMessage": {
+            "enabled": true,
+            "text": "Ticket de Comercio",
+            "embed": {
+                "enabled": false,
+                "title": "",
+                "description": "La ayuda está en camino",
+                "customColor": "",
+                "image": "",
+                "thumbnail": "",
+                "fields": [],
+                "timestamp": true
+            },
+            "ping": {
+                "@here": false,
+                "@everyone": false,
+                "custom": []
+            }
+        },
+        "autoclose": {
+            "enableInactiveHours": false,
+            "inactiveHours": 24,
+            "enableUserLeave": false,
+            "disableOnClaim": false
+        },
+        "autodelete": {
+            "enableInactiveDays": false,
+            "inactiveDays": 7,
+            "enableUserLeave": true,
+            "disableOnClaim": false
+        },
+        "cooldown": {
+            "enabled": true,
+            "cooldownMinutes": 1
+        },
+        "limits": {
+            "enabled": true,
+            "globalMaximum": 50,
+            "userMaximum": 1
+        },
+        "slowMode": {
+            "enabled": false,
+            "slowModeSeconds": 1
+        }
+    },
+    {
+        "id": "safd",
+        "transcriptId": "1417592775494336552",
+        "name": "Ticket de SAFD",
+        "description": "",
+        "type": "ticket",
+        "button": {
+            "emoji": "🚒",
+            "label": "SAFD",
+            "color": "blue"
+        },
+        "ticketAdmins": [
+            "1417591416430919751"
+        ],
+        "readonlyAdmins": [],
+        "allowCreationByBlacklistedUsers": false,
+        "questions": [],
+        "channel": {
+            "prefix": "🚒-safd-",
+            "suffix": "counter-fixed",
+            "category": "1425814219856810014",
+            "closedCategory": "",
+            "backupCategory": "",
+            "claimedCategory": [],
+            "topic": ""
+        },
+        "dmMessage": {
+            "enabled": false,
+            "text": "Thank you for creating a ticket in our server! (or leave empty)",
+            "embed": {
+                "enabled": false,
+                "title": "Embed Title! (or leave empty)",
+                "description": "Description (or leave empty)",
+                "customColor": "",
+                "image": "",
+                "thumbnail": "",
+                "fields": [
+                    {
+                        "name": "field name",
+                        "value": "field value",
+                        "inline": false
+                    }
+                ],
+                "timestamp": false
+            }
+        },
+        "ticketMessage": {
+            "enabled": true,
+            "text": "Bienvenido/a alguien de <@&1417591416430919751> te ayudará en breves, expón tu problema de manera concreta!",
+            "embed": {
+                "enabled": false,
+                "title": "SAED - FamilyRP",
+                "description": "La ayuda está en camino",
+                "customColor": "",
+                "image": "",
+                "thumbnail": "",
+                "fields": [],
+                "timestamp": true
+            },
+            "ping": {
+                "@here": false,
+                "@everyone": false,
+                "custom": []
+            }
+        },
+        "autoclose": {
+            "enableInactiveHours": false,
+            "inactiveHours": 24,
+            "enableUserLeave": false,
+            "disableOnClaim": false
+        },
+        "autodelete": {
+            "enableInactiveDays": false,
+            "inactiveDays": 7,
+            "enableUserLeave": true,
+            "disableOnClaim": false
+        },
+        "cooldown": {
+            "enabled": true,
+            "cooldownMinutes": 1
+        },
+        "limits": {
+            "enabled": true,
+            "globalMaximum": 50,
+            "userMaximum": 1
+        },
+        "slowMode": {
+            "enabled": false,
+            "slowModeSeconds": 1
+        }
+    },
+    {
+        "id": "doj",
+        "transcriptId": "1424096573796909067",
+        "name": "Ticket de DOJ",
+        "description": "",
+        "type": "ticket",
+        "button": {
+            "emoji": "📕",
+            "label": "DOJ",
+            "color": "blue"
+        },
+        "ticketAdmins": [
+            "1424073043109482569"
+        ],
+        "readonlyAdmins": [],
+        "allowCreationByBlacklistedUsers": false,
+        "questions": [],
+        "channel": {
+            "prefix": "📕-doj-",
+            "suffix": "counter-fixed",
+            "category": "1425814289293250580",
+            "closedCategory": "",
+            "backupCategory": "",
+            "claimedCategory": [],
+            "topic": ""
+        },
+        "dmMessage": {
+            "enabled": false,
+            "text": "Thank you for creating a ticket in our server! (or leave empty)",
+            "embed": {
+                "enabled": false,
+                "title": "Embed Title! (or leave empty)",
+                "description": "Description (or leave empty)",
+                "customColor": "",
+                "image": "",
+                "thumbnail": "",
+                "fields": [
+                    {
+                        "name": "field name",
+                        "value": "field value",
+                        "inline": false
+                    }
+                ],
+                "timestamp": false
+            }
+        },
+        "ticketMessage": {
+            "enabled": true,
+            "text": "Bienvenido/a alguien de <@&1424073043109482569> te ayudará en breves, expón tu problema de manera concreta!",
+            "embed": {
+                "enabled": true,
+                "title": "Departament Of Justice - FamilyRP",
+                "description": "La ayuda está en camino",
+                "customColor": "",
+                "image": "",
+                "thumbnail": "",
+                "fields": [],
+                "timestamp": true
+            },
+            "ping": {
+                "@here": false,
+                "@everyone": false,
+                "custom": []
+            }
+        },
+        "autoclose": {
+            "enableInactiveHours": false,
+            "inactiveHours": 24,
+            "enableUserLeave": false,
+            "disableOnClaim": false
+        },
+        "autodelete": {
+            "enableInactiveDays": false,
+            "inactiveDays": 7,
+            "enableUserLeave": true,
+            "disableOnClaim": false
+        },
+        "cooldown": {
+            "enabled": true,
+            "cooldownMinutes": 1
+        },
+        "limits": {
+            "enabled": true,
+            "globalMaximum": 50,
+            "userMaximum": 1
+        },
+        "slowMode": {
+            "enabled": false,
+            "slowModeSeconds": 1
+        }
+    },
+    {
+        "id": "invitaciones-cc",
+        "transcriptId": "1428347610313396355",
+        "name": "Invitaciones CC",
+        "description": "",
+        "type": "ticket",
+        "button": {
+            "emoji": "📸",
+            "label": "Invitaciones CC",
+            "color": "blue"
+        },
+        "ticketAdmins": [
+            "1236147107694645348",
+            "1236147107694645349",
+            "1247649698609627256",
+            "1236147107694645350",
+            "1236147107711160363"
+        ],
+        "readonlyAdmins": [],
+        "allowCreationByBlacklistedUsers": false,
+        "questions": [
+            "discord-nick",
+            "discord-id",
+            "redes-sociales",
+            "canal-twitch-kick",
+            "fecha-nacimiento"
+        ],
+        "channel": {
+            "prefix": "📸-invicc-",
+            "suffix": "counter-fixed",
+            "category": "1428109489378431068",
+            "closedCategory": "",
+            "backupCategory": "",
+            "claimedCategory": [],
+            "topic": ""
+        },
+        "dmMessage": {
+            "enabled": false,
+            "text": "Thank you for creating a ticket in our server! (or leave empty)",
+            "embed": {
+                "enabled": false,
+                "title": "Embed Title! (or leave empty)",
+                "description": "Description (or leave empty)",
+                "customColor": "",
+                "image": "",
+                "thumbnail": "",
+                "fields": [
+                    {
+                        "name": "field name",
+                        "value": "field value",
+                        "inline": false
+                    }
+                ],
+                "timestamp": false
+            }
+        },
+        "ticketMessage": {
+            "enabled": true,
+            "text": "Bienvenido/a en breves te asistirán con tu invitación de CC, por favor proporciona toda la información solicitada en las preguntas para agilizar el proceso.",
+            "embed": {
+                "enabled": true,
+                "title": "Ticket de Invitaciones CC",
+                "description": "Recuerda que estas invitaciones son para CC",
+                "customColor": "",
+                "image": "",
+                "thumbnail": "",
+                "fields": [],
+                "timestamp": true
+            },
+            "ping": {
+                "@here": false,
+                "@everyone": false,
+                "custom": []
+            }
+        },
+        "autoclose": {
+            "enableInactiveHours": false,
+            "inactiveHours": 24,
+            "enableUserLeave": false,
+            "disableOnClaim": false
+        },
+        "autodelete": {
+            "enableInactiveDays": false,
+            "inactiveDays": 7,
+            "enableUserLeave": true,
+            "disableOnClaim": false
+        },
+        "cooldown": {
+            "enabled": true,
+            "cooldownMinutes": 1
+        },
+        "limits": {
+            "enabled": true,
+            "globalMaximum": 50,
+            "userMaximum": 1
+        },
+        "slowMode": {
+            "enabled": false,
+            "slowModeSeconds": 1
+        }
+    },
+    {
+        "id": "invitaciones",
+        "transcriptId": "1428347583746543759",
+        "name": "Invitaciones",
+        "description": "",
+        "type": "ticket",
+        "button": {
+            "emoji": "💌",
+            "label": "Invitaciones",
+            "color": "blue"
+        },
+        "ticketAdmins": [
+            "1236147107694645349",
+            "1247649698609627256",
+            "1236147107694645350",
+            "1236147107711160363"
+        ],
+        "readonlyAdmins": [],
+        "allowCreationByBlacklistedUsers": false,
+        "questions": [
+            "discord-nick",
+            "discord-id",
+            "redes-sociales",
+            "canal-twitch-kick",
+            "fecha-nacimiento"
+        ],
+        "channel": {
+            "prefix": "💌-invinocc-",
+            "suffix": "counter-fixed",
+            "category": "1428110844402733189",
+            "closedCategory": "",
+            "backupCategory": "1428842519227269270",
+            "claimedCategory": [],
+            "topic": ""
+        },
+        "dmMessage": {
+            "enabled": false,
+            "text": "Thank you for creating a ticket in our server! (or leave empty)",
+            "embed": {
+                "enabled": false,
+                "title": "Embed Title! (or leave empty)",
+                "description": "Description (or leave empty)",
+                "customColor": "",
+                "image": "",
+                "thumbnail": "",
+                "fields": [
+                    {
+                        "name": "field name",
+                        "value": "field value",
+                        "inline": false
+                    }
+                ],
+                "timestamp": false
+            }
+        },
+        "ticketMessage": {
+            "enabled": true,
+            "text": "Bienvenido/a en breves te asistirán con tu invitación, por favor proporciona toda la información solicitada en las preguntas para agilizar el proceso.",
+            "embed": {
+                "enabled": true,
+                "title": "Ticket de Invitaciones",
+                "description": "Recuerda que estas invitaciones son para",
+                "customColor": "",
+                "image": "",
+                "thumbnail": "",
+                "fields": [],
+                "timestamp": true
+            },
+            "ping": {
+                "@here": false,
+                "@everyone": false,
+                "custom": []
+            }
+        },
+        "autoclose": {
+            "enableInactiveHours": false,
+            "inactiveHours": 24,
+            "enableUserLeave": false,
+            "disableOnClaim": false
+        },
+        "autodelete": {
+            "enableInactiveDays": false,
+            "inactiveDays": 7,
+            "enableUserLeave": true,
+            "disableOnClaim": false
+        },
+        "cooldown": {
+            "enabled": true,
+            "cooldownMinutes": 1
+        },
+        "limits": {
+            "enabled": true,
+            "globalMaximum": 100,
+            "userMaximum": 1
+        },
+        "slowMode": {
+            "enabled": false,
+            "slowModeSeconds": 1
+        }
+    },
+    {
+        "id": "prio-invitaciones-cc",
+        "transcriptId": "1428347638138273872",
+        "name": "Invitaciones CC",
+        "description": "",
+        "type": "ticket",
+        "button": {
+            "emoji": "📸",
+            "label": "Invitaciones CC",
+            "color": "blue"
+        },
+        "ticketAdmins": [
+            "1236147107694645348",
+            "1236147107694645349",
+            "1247649698609627256",
+            "1236147107694645350",
+            "1236147107711160363"
+        ],
+        "readonlyAdmins": [],
+        "allowCreationByBlacklistedUsers": false,
+        "questions": [
+            "discord-nick",
+            "discord-id",
+            "redes-sociales",
+            "canal-twitch-kick",
+            "fecha-nacimiento"
+        ],
+        "channel": {
+            "prefix": "💎📸-invicc-",
+            "suffix": "counter-fixed",
+            "category": "1428110951126929571",
+            "closedCategory": "",
+            "backupCategory": "",
+            "claimedCategory": [],
+            "topic": ""
+        },
+        "dmMessage": {
+            "enabled": false,
+            "text": "Thank you for creating a ticket in our server! (or leave empty)",
+            "embed": {
+                "enabled": false,
+                "title": "Embed Title! (or leave empty)",
+                "description": "Description (or leave empty)",
+                "customColor": "",
+                "image": "",
+                "thumbnail": "",
+                "fields": [
+                    {
+                        "name": "field name",
+                        "value": "field value",
+                        "inline": false
+                    }
+                ],
+                "timestamp": false
+            }
+        },
+        "ticketMessage": {
+            "enabled": true,
+            "text": "Bienvenido/a en breves te asistirán con tu **invitación de CC Tier**, por favor proporciona toda la información solicitada en las preguntas para agilizar el proceso.",
+            "embed": {
+                "enabled": true,
+                "title": "Ticket de Invitaciones CC",
+                "description": "Recuerda que estas invitaciones son para CC",
+                "customColor": "",
+                "image": "",
+                "thumbnail": "",
+                "fields": [],
+                "timestamp": true
+            },
+            "ping": {
+                "@here": true,
+                "@everyone": false,
+                "custom": []
+            }
+        },
+        "autoclose": {
+            "enableInactiveHours": false,
+            "inactiveHours": 24,
+            "enableUserLeave": false,
+            "disableOnClaim": false
+        },
+        "autodelete": {
+            "enableInactiveDays": false,
+            "inactiveDays": 7,
+            "enableUserLeave": true,
+            "disableOnClaim": false
+        },
+        "cooldown": {
+            "enabled": true,
+            "cooldownMinutes": 1
+        },
+        "limits": {
+            "enabled": true,
+            "globalMaximum": 50,
+            "userMaximum": 1
+        },
+        "slowMode": {
+            "enabled": false,
+            "slowModeSeconds": 1
+        }
+    },
+    {
+        "id": "prio-invitaciones",
+        "transcriptId": "1428347563949424681",
+        "name": "Invitaciones",
+        "description": "",
+        "type": "ticket",
+        "button": {
+            "emoji": "💌",
+            "label": "Invitaciones",
+            "color": "blue"
+        },
+        "ticketAdmins": [
+            "1236147107694645349",
+            "1247649698609627256",
+            "1236147107694645350",
+            "1236147107711160363"
+        ],
+        "readonlyAdmins": [],
+        "allowCreationByBlacklistedUsers": false,
+        "questions": [
+            "discord-nick",
+            "discord-id",
+            "redes-sociales",
+            "canal-twitch-kick",
+            "fecha-nacimiento"
+        ],
+        "channel": {
+            "prefix": "💌💎-invinocc-",
+            "suffix": "counter-fixed",
+            "category": "1428111038078779594",
+            "closedCategory": "",
+            "backupCategory": "",
+            "claimedCategory": [],
+            "topic": ""
+        },
+        "dmMessage": {
+            "enabled": false,
+            "text": "Thank you for creating a ticket in our server! (or leave empty)",
+            "embed": {
+                "enabled": false,
+                "title": "Embed Title! (or leave empty)",
+                "description": "Description (or leave empty)",
+                "customColor": "",
+                "image": "",
+                "thumbnail": "",
+                "fields": [
+                    {
+                        "name": "field name",
+                        "value": "field value",
+                        "inline": false
+                    }
+                ],
+                "timestamp": false
+            }
+        },
+        "ticketMessage": {
+            "enabled": true,
+            "text": "Bienvenido/a en breves te asistirán con tu **invitación Tier**, por favor proporciona toda la información solicitada en las preguntas para agilizar el proceso.",
+            "embed": {
+                "enabled": true,
+                "title": "Ticket de Invitaciones",
+                "description": "Recuerda que estas invitaciones son para",
+                "customColor": "",
+                "image": "",
+                "thumbnail": "",
+                "fields": [],
+                "timestamp": true
+            },
+            "ping": {
+                "@here": true,
+                "@everyone": false,
+                "custom": []
+            }
+        },
+        "autoclose": {
+            "enableInactiveHours": false,
+            "inactiveHours": 24,
+            "enableUserLeave": false,
+            "disableOnClaim": false
+        },
+        "autodelete": {
+            "enableInactiveDays": false,
+            "inactiveDays": 7,
+            "enableUserLeave": true,
+            "disableOnClaim": false
+        },
+        "cooldown": {
+            "enabled": true,
+            "cooldownMinutes": 1
+        },
+        "limits": {
+            "enabled": true,
+            "globalMaximum": 50,
+            "userMaximum": 1
+        },
+        "slowMode": {
+            "enabled": false,
+            "slowModeSeconds": 1
+        }
+    },
+    {
+        "id": "ropa",
+        "transcriptId": "1429853902118981743",
+        "name": "Ropa",
+        "description": "",
+        "type": "ticket",
+        "button": {
+            "emoji": "👔",
+            "label": "Ropa",
+            "color": "blue"
+        },
+        "ticketAdmins": [
+            "1268591966388617272"
+        ],
+        "readonlyAdmins": [],
+        "allowCreationByBlacklistedUsers": false,
+        "questions": [],
+        "channel": {
+            "prefix": "👔-ropa-",
+            "suffix": "counter-fixed",
+            "category": "1429853296604090399",
+            "closedCategory": "",
+            "backupCategory": "",
+            "claimedCategory": [],
+            "topic": ""
+        },
+        "dmMessage": {
+            "enabled": false,
+            "text": "Thank you for creating a ticket in our server! (or leave empty)",
+            "embed": {
+                "enabled": false,
+                "title": "Embed Title! (or leave empty)",
+                "description": "Description (or leave empty)",
+                "customColor": "",
+                "image": "",
+                "thumbnail": "",
+                "fields": [
+                    {
+                        "name": "field name",
+                        "value": "field value",
+                        "inline": false
+                    }
+                ],
+                "timestamp": false
+            }
+        },
+        "ticketMessage": {
+            "enabled": true,
+            "text": "Bienvenido/a un <@&1268591966388617272> revisará el contenido lo antes posible",
+            "embed": {
+                "enabled": true,
+                "title": "Ticket de Ropa",
+                "description": "**INFORMACIÓN DE INTERÉS:**\n\n- Añadir textura: 150 tokens\n- Update de textura: 150 tokens\n- Añadir modelo nuevo: 450 tokens\n- Añadir modelo nuevo+textura: 600 tokens\n- Añadir modelo+textura para hombre y mujer: 1200 tokens\n- El staff encargado del pack de ropa tendrá total potestad para rechazar o aceptar los solicitudes, hacer la compra de tokens no influirá en la decisión.\n\n- En caso de ser banda/racing y se realice disband se retirara la prenda.",
+                "customColor": "",
+                "image": "",
+                "thumbnail": "",
+                "fields": [],
+                "timestamp": true
+            },
+            "ping": {
+                "@here": false,
+                "@everyone": false,
+                "custom": []
+            }
+        },
+        "autoclose": {
+            "enableInactiveHours": false,
+            "inactiveHours": 24,
+            "enableUserLeave": false,
+            "disableOnClaim": false
+        },
+        "autodelete": {
+            "enableInactiveDays": false,
+            "inactiveDays": 7,
+            "enableUserLeave": true,
+            "disableOnClaim": false
+        },
+        "cooldown": {
+            "enabled": true,
+            "cooldownMinutes": 30
+        },
+        "limits": {
+            "enabled": true,
+            "globalMaximum": 50,
+            "userMaximum": 1
+        },
+        "slowMode": {
+            "enabled": false,
+            "slowModeSeconds": 1
+        }
+    },
+    {
+        "id": "liveries",
+        "transcriptId": "1489682530394312946",
+        "name": "Liveries",
+        "description": "",
+        "type": "ticket",
+        "button": {
+            "emoji": "🏎️",
+            "label": "Liveries",
+            "color": "blue"
+        },
+        "ticketAdmins": [
+            "1473672338754113663"
+        ],
+        "readonlyAdmins": [],
+        "allowCreationByBlacklistedUsers": false,
+        "questions": [],
+        "channel": {
+            "prefix": "🏎️-liveries-",
+            "suffix": "counter-fixed",
+            "category": "1473672563191189575",
+            "closedCategory": "",
+            "backupCategory": "",
+            "claimedCategory": [],
+            "topic": ""
+        },
+        "dmMessage": {
+            "enabled": false,
+            "text": "Thank you for creating a ticket in our server! (or leave empty)",
+            "embed": {
+                "enabled": false,
+                "title": "Embed Title! (or leave empty)",
+                "description": "Description (or leave empty)",
+                "customColor": "",
+                "image": "",
+                "thumbnail": "",
+                "fields": [
+                    {
+                        "name": "field name",
+                        "value": "field value",
+                        "inline": false
+                    }
+                ],
+                "timestamp": false
+            }
+        },
+        "ticketMessage": {
+            "enabled": true,
+            "text": "Bienvenido/a un <@&1473672338754113663> revisará el contenido lo antes posible",
+            "embed": {
+                "enabled": true,
+                "title": "Ticket de Liveries",
+                "description": "**INFORMACIÓN DE INTERÉS:**\n\n- Añadir una livery a un vehículo: 200 tokens.\n - Únicamente se aceptarán liverys diseñadas por el diseñador que trabaja con Family.\n - Queda al criterio del Staff si rechazar o aceptar su solicitud.\n - En caso de CK se retirará la livery del vehículo.",
+                "customColor": "",
+                "image": "",
+                "thumbnail": "",
+                "fields": [],
+                "timestamp": true
+            },
+            "ping": {
+                "@here": false,
+                "@everyone": false,
+                "custom": []
+            }
+        },
+        "autoclose": {
+            "enableInactiveHours": false,
+            "inactiveHours": 24,
+            "enableUserLeave": false,
+            "disableOnClaim": false
+        },
+        "autodelete": {
+            "enableInactiveDays": false,
+            "inactiveDays": 7,
+            "enableUserLeave": true,
+            "disableOnClaim": false
+        },
+        "cooldown": {
+            "enabled": true,
+            "cooldownMinutes": 30
+        },
+        "limits": {
+            "enabled": true,
+            "globalMaximum": 50,
+            "userMaximum": 1
+        },
+        "slowMode": {
+            "enabled": false,
+            "slowModeSeconds": 1
+        }
+    },
+    {
+        "id": "tatuajes",
+        "transcriptId": "1429853925573529731",
+        "name": "Tatuajes",
+        "description": "",
+        "type": "ticket",
+        "button": {
+            "emoji": "👂",
+            "label": "Tatuajes",
+            "color": "blue"
+        },
+        "ticketAdmins": [
+            "1420323641685446749"
+        ],
+        "readonlyAdmins": [],
+        "allowCreationByBlacklistedUsers": false,
+        "questions": [],
+        "channel": {
+            "prefix": "👂-tatuajes-",
+            "suffix": "counter-fixed",
+            "category": "1429853391101755451",
+            "closedCategory": "",
+            "backupCategory": "",
+            "claimedCategory": [],
+            "topic": ""
+        },
+        "dmMessage": {
+            "enabled": false,
+            "text": "Thank you for creating a ticket in our server! (or leave empty)",
+            "embed": {
+                "enabled": false,
+                "title": "Embed Title! (or leave empty)",
+                "description": "Description (or leave empty)",
+                "customColor": "",
+                "image": "",
+                "thumbnail": "",
+                "fields": [
+                    {
+                        "name": "field name",
+                        "value": "field value",
+                        "inline": false
+                    }
+                ],
+                "timestamp": false
+            }
+        },
+        "ticketMessage": {
+            "enabled": true,
+            "text": "Bienvenido/a un <@&1420323641685446749> revisará el contenido lo antes posible",
+            "embed": {
+                "enabled": true,
+                "title": "Ticket de Tatuajes",
+                "description": "**INFORMACIÓN DE INTERÉS:**\n\n- 1 Slot como máximo por personaje.\n- El coste de añadir tu tatuaje al servidor es de 1000 tokens.\n- Únicamente se aceptarán tatuajes que hayan sido diseñados con el diseñador que trabaja Family.\n- Queda en criterio del Staff si rechazar su solicitud o no.",
+                "customColor": "",
+                "image": "",
+                "thumbnail": "",
+                "fields": [],
+                "timestamp": true
+            },
+            "ping": {
+                "@here": false,
+                "@everyone": false,
+                "custom": []
+            }
+        },
+        "autoclose": {
+            "enableInactiveHours": false,
+            "inactiveHours": 24,
+            "enableUserLeave": false,
+            "disableOnClaim": false
+        },
+        "autodelete": {
+            "enableInactiveDays": false,
+            "inactiveDays": 7,
+            "enableUserLeave": true,
+            "disableOnClaim": false
+        },
+        "cooldown": {
+            "enabled": true,
+            "cooldownMinutes": 30
+        },
+        "limits": {
+            "enabled": true,
+            "globalMaximum": 50,
+            "userMaximum": 1
+        },
+        "slowMode": {
+            "enabled": false,
+            "slowModeSeconds": 1
+        }
     }
 ]

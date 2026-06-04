@@ -1,52 +1,46 @@
 /*
- * OPEN TICKET TRANSCRIPTS
- * ----------------------------------------------
- * Enable transcript creation when tickets are deleted. There are 2 available transcript types: HTML & Text
- * 
- * HTML Transcripts (recommended):
- * Generate transcripts as HTML files to view in the browser. No server or domain required. HTML Transcripts use an external service to process and host the transcripts.
- * 
- * Text Transcripts:
- * Generate transcripts as simple .txt files with limited details. Processing happens fully local.
+ * transcripts.jsonc — FamilyRP [IGUAL fmly]
+ * Modo HTML, canal global y DM al creador habilitados.
+ *
+ * CORE — Open Ticket envía transcripts aquí (canal global + DM al creador).
+ *
+ * [PLUGIN] ot-transcript-channel
+ *   Además envía copia al canal transcriptId de cada opción (options.jsonc).
  */
 {
     "general":{
-        "enabled":false,
-        
-        /* Choose which users and channel get the generated transcript. */
-        "enableChannel":false,
-        "enableCreatorDM":false,
+        "enabled":true,
+
+        "enableChannel":true, // [IGUAL fmly]
+        "enableCreatorDM":true, // [IGUAL fmly]
         "enableParticipantDM":false,
         "enableActiveAdminDM":false,
         "enableEveryAdminDM":false,
-        
-        "channel":"DISCORD_CHANNEL_ID", //Where to send transcripts. Leave empty when disabled.
-        "mode":"html" //The type of transcript to use. Choices: html, text
+
+        "channel":"1425797546873196645", // [IGUAL fmly]
+        "mode":"html"
     },
     "embedSettings":{
-        /* Customise the embed which contains the generated transcript file or URL. */
-        "customColor":"#f8ab00", //Leave empty to use default color
-        "listAllParticipants":false,
-        "includeTicketStats":false
+        "customColor":"",
+        "listAllParticipants":true,
+        "includeTicketStats":true
     },
     "textTranscriptStyle":{
-        /* Customise layout of the text transcripts. */
-        "layout":"normal", //Choices: simple, normal, detailed
+        "layout":"detailed",
         "includeStats":true,
-        "includeIds":false,
+        "includeIds":true,
         "includeEmbeds":true,
         "includeFiles":true,
         "includeBotMessages":true,
-        
-        "fileMode":"custom", //How to name the transcript file? Choices: custom, channel-name, channel-id, user-name, user-id
-        "customFileName":"transcript" //Custom filename without extension
+
+        "fileMode":"channel-id",
+        "customFileName":""
     },
     "htmlTranscriptStyle":{
-        /* Customise layout of the HTML transcripts. */
         "background":{
             "enableCustomBackground":false,
-            "backgroundColor":"#f8ba00", //Leave empty to use Open Ticket color (#f8ba00)
-            "backgroundImage":"https://www.example.com/image.png" //Image URL to fill entire background. Leave empty to disable
+            "backgroundColor":"",
+            "backgroundImage":"" 
         },
         "header":{
             "enableCustomHeader":false,
