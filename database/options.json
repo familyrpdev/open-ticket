@@ -5,7 +5,7 @@
         "value":{
             "id":"feedback",
             "type":"opendiscord:ticket",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:name","value":"Feedback"},
                 {"id":"opendiscord:description","value":""},
@@ -19,11 +19,10 @@
                 {"id":"opendiscord:channel-prefix","value":"📁-feedback-"},
                 {"id":"opendiscord:channel-suffix","value":"counter-fixed"},
                 {"id":"opendiscord:channel-category","value":"1425810221623939103"},
-                {"id":"opendiscord:channel-category-backup","value":""},
                 {"id":"opendiscord:channel-topic","value":""},
                 {"id":"opendiscord:dm-message-enabled","value":false},
                 {"id":"opendiscord:dm-message-text","value":"Thank you for creating a ticket in our server! (or leave empty)"},
-                {"id":"opendiscord:dm-message-embed","value":{"enabled":false,"title":"Embed Title! (or leave empty)","description":"Description (or leave empty)","customColor":"#f8ab00 (or leave empty)","image":"https://www.example.com/image.png (or leave empty)","thumbnail":"https://www.example.com/image.png (or leave empty)","fields":[{"name":"field name","value":"field value","inline":false}],"timestamp":false}},
+                {"id":"opendiscord:dm-message-embed","value":{"enabled":false,"title":"Embed Title! (or leave empty)","description":"Description (or leave empty)","customColor":"","image":"","thumbnail":"","fields":[{"name":"field name","value":"field value","inline":false}],"timestamp":false}},
                 {"id":"opendiscord:ticket-message-enabled","value":true},
                 {"id":"opendiscord:ticket-message-text","value":"Bienvenido/a alguien de <@&1236147107694645349> o <@&1247649698609627256> te ayudará en breves, expón tu problema de manera concreta!"},
                 {"id":"opendiscord:ticket-message-embed","value":{"enabled":true,"title":"Ticket de Feedback","description":"La ayuda está en camino","customColor":"","image":"","thumbnail":"","fields":[],"timestamp":true}},
@@ -42,7 +41,7 @@
                 {"id":"opendiscord:limits-maximum-global","value":50},
                 {"id":"opendiscord:limits-maximum-user","value":1},
                 {"id":"opendiscord:slowmode-enabled","value":false},
-                {"id":"opendiscord:slowmode-seconds","value":0}
+                {"id":"opendiscord:slowmode-seconds","value":1}
             ]
         }
     },
@@ -52,7 +51,7 @@
         "value":{
             "id":"cks",
             "type":"opendiscord:ticket",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:name","value":"CK"},
                 {"id":"opendiscord:description","value":""},
@@ -66,11 +65,10 @@
                 {"id":"opendiscord:channel-prefix","value":"💀-ck-"},
                 {"id":"opendiscord:channel-suffix","value":"counter-fixed"},
                 {"id":"opendiscord:channel-category","value":"1425589467204423751"},
-                {"id":"opendiscord:channel-category-backup","value":""},
                 {"id":"opendiscord:channel-topic","value":""},
                 {"id":"opendiscord:dm-message-enabled","value":false},
                 {"id":"opendiscord:dm-message-text","value":"Thank you for creating a ticket in our server! (or leave empty)"},
-                {"id":"opendiscord:dm-message-embed","value":{"enabled":false,"title":"Embed Title! (or leave empty)","description":"Description (or leave empty)","customColor":"#f8ab00 (or leave empty)","image":"https://www.example.com/image.png (or leave empty)","thumbnail":"https://www.example.com/image.png (or leave empty)","fields":[{"name":"field name","value":"field value","inline":false}],"timestamp":false}},
+                {"id":"opendiscord:dm-message-embed","value":{"enabled":false,"title":"Embed Title! (or leave empty)","description":"Description (or leave empty)","customColor":"","image":"","thumbnail":"","fields":[{"name":"field name","value":"field value","inline":false}],"timestamp":false}},
                 {"id":"opendiscord:ticket-message-enabled","value":true},
                 {"id":"opendiscord:ticket-message-text","value":"Bienvenido/a alguien de <@&1236147107669213263> te ayudará en breves, expón tu problema de manera concreta!"},
                 {"id":"opendiscord:ticket-message-embed","value":{"enabled":true,"title":"Ticket de CK","description":"La ayuda está en camino","customColor":"","image":"","thumbnail":"","fields":[],"timestamp":true}},
@@ -89,7 +87,7 @@
                 {"id":"opendiscord:limits-maximum-global","value":50},
                 {"id":"opendiscord:limits-maximum-user","value":1},
                 {"id":"opendiscord:slowmode-enabled","value":false},
-                {"id":"opendiscord:slowmode-seconds","value":0}
+                {"id":"opendiscord:slowmode-seconds","value":1}
             ]
         }
     },
@@ -99,7 +97,7 @@
         "value":{
             "id":"tebex",
             "type":"opendiscord:ticket",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:name","value":"Tebex"},
                 {"id":"opendiscord:description","value":"Estos tickets son para soporte de tebex, es decir he comprado tokens y no me han llegado (Cuando compras tokens revisa que en el launcher de Fivem, tengas iniciada la misma sesión que en la store)."},
@@ -109,15 +107,14 @@
                 {"id":"opendiscord:admins","value":["1253670507979739147"]},
                 {"id":"opendiscord:admins-readonly","value":[]},
                 {"id":"opendiscord:allow-blacklisted-users","value":false},
-                {"id":"opendiscord:questions","value":["tbx-id"]},
+                {"id":"opendiscord:questions","value":["tbx-id","tebex","aviso-inicio-sesion"]},
                 {"id":"opendiscord:channel-prefix","value":"💰-tebex-"},
                 {"id":"opendiscord:channel-suffix","value":"counter-fixed"},
                 {"id":"opendiscord:channel-category","value":"1425591785949888724"},
-                {"id":"opendiscord:channel-category-backup","value":""},
                 {"id":"opendiscord:channel-topic","value":""},
                 {"id":"opendiscord:dm-message-enabled","value":false},
                 {"id":"opendiscord:dm-message-text","value":"Thank you for creating a ticket in our server! (or leave empty)"},
-                {"id":"opendiscord:dm-message-embed","value":{"enabled":false,"title":"Embed Title! (or leave empty)","description":"Description (or leave empty)","customColor":"#f8ab00 (or leave empty)","image":"https://www.example.com/image.png (or leave empty)","thumbnail":"https://www.example.com/image.png (or leave empty)","fields":[{"name":"field name","value":"field value","inline":false}],"timestamp":false}},
+                {"id":"opendiscord:dm-message-embed","value":{"enabled":false,"title":"Embed Title! (or leave empty)","description":"Description (or leave empty)","customColor":"","image":"","thumbnail":"","fields":[{"name":"field name","value":"field value","inline":false}],"timestamp":false}},
                 {"id":"opendiscord:ticket-message-enabled","value":true},
                 {"id":"opendiscord:ticket-message-text","value":"Bienvenido/a un <@&1253670507979739147> revisará el contenido lo antes posible"},
                 {"id":"opendiscord:ticket-message-embed","value":{"enabled":true,"title":"Ticket de Tebex","description":"La ayuda está en camino","customColor":"","image":"","thumbnail":"","fields":[],"timestamp":true}},
@@ -136,7 +133,7 @@
                 {"id":"opendiscord:limits-maximum-global","value":50},
                 {"id":"opendiscord:limits-maximum-user","value":1},
                 {"id":"opendiscord:slowmode-enabled","value":false},
-                {"id":"opendiscord:slowmode-seconds","value":0}
+                {"id":"opendiscord:slowmode-seconds","value":1}
             ]
         }
     },
@@ -146,7 +143,7 @@
         "value":{
             "id":"reportes",
             "type":"opendiscord:ticket",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:name","value":"Reportes"},
                 {"id":"opendiscord:description","value":""},
@@ -160,11 +157,10 @@
                 {"id":"opendiscord:channel-prefix","value":"⚔️-reportes-"},
                 {"id":"opendiscord:channel-suffix","value":"counter-fixed"},
                 {"id":"opendiscord:channel-category","value":"1425593736456568893"},
-                {"id":"opendiscord:channel-category-backup","value":""},
                 {"id":"opendiscord:channel-topic","value":""},
                 {"id":"opendiscord:dm-message-enabled","value":false},
                 {"id":"opendiscord:dm-message-text","value":"Thank you for creating a ticket in our server! (or leave empty)"},
-                {"id":"opendiscord:dm-message-embed","value":{"enabled":false,"title":"Embed Title! (or leave empty)","description":"Description (or leave empty)","customColor":"#f8ab00 (or leave empty)","image":"https://www.example.com/image.png (or leave empty)","thumbnail":"https://www.example.com/image.png (or leave empty)","fields":[{"name":"field name","value":"field value","inline":false}],"timestamp":false}},
+                {"id":"opendiscord:dm-message-embed","value":{"enabled":false,"title":"Embed Title! (or leave empty)","description":"Description (or leave empty)","customColor":"","image":"","thumbnail":"","fields":[{"name":"field name","value":"field value","inline":false}],"timestamp":false}},
                 {"id":"opendiscord:ticket-message-enabled","value":true},
                 {"id":"opendiscord:ticket-message-text","value":"Bienvenido/a cuentanos el problema de manera detallada y adjunta las pruebas pertinentes para facilitar el trabajo del equipo de <@&1236147107694645350> pueda atenderte de la mejor manera posible!"},
                 {"id":"opendiscord:ticket-message-embed","value":{"enabled":true,"title":"Ticket de Bugs","description":"La ayuda está en camino","customColor":"","image":"","thumbnail":"","fields":[],"timestamp":true}},
@@ -183,7 +179,7 @@
                 {"id":"opendiscord:limits-maximum-global","value":50},
                 {"id":"opendiscord:limits-maximum-user","value":5},
                 {"id":"opendiscord:slowmode-enabled","value":false},
-                {"id":"opendiscord:slowmode-seconds","value":0}
+                {"id":"opendiscord:slowmode-seconds","value":1}
             ]
         }
     },
@@ -193,7 +189,7 @@
         "value":{
             "id":"bugs",
             "type":"opendiscord:ticket",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:name","value":"Bugs"},
                 {"id":"opendiscord:description","value":""},
@@ -207,11 +203,10 @@
                 {"id":"opendiscord:channel-prefix","value":"✍️-bugs-"},
                 {"id":"opendiscord:channel-suffix","value":"counter-fixed"},
                 {"id":"opendiscord:channel-category","value":"1425592556200398919"},
-                {"id":"opendiscord:channel-category-backup","value":""},
                 {"id":"opendiscord:channel-topic","value":""},
                 {"id":"opendiscord:dm-message-enabled","value":false},
                 {"id":"opendiscord:dm-message-text","value":"Thank you for creating a ticket in our server! (or leave empty)"},
-                {"id":"opendiscord:dm-message-embed","value":{"enabled":false,"title":"Embed Title! (or leave empty)","description":"Description (or leave empty)","customColor":"#f8ab00 (or leave empty)","image":"https://www.example.com/image.png (or leave empty)","thumbnail":"https://www.example.com/image.png (or leave empty)","fields":[{"name":"field name","value":"field value","inline":false}],"timestamp":false}},
+                {"id":"opendiscord:dm-message-embed","value":{"enabled":false,"title":"Embed Title! (or leave empty)","description":"Description (or leave empty)","customColor":"","image":"","thumbnail":"","fields":[{"name":"field name","value":"field value","inline":false}],"timestamp":false}},
                 {"id":"opendiscord:ticket-message-enabled","value":true},
                 {"id":"opendiscord:ticket-message-text","value":"Bienvenido/a alguien de <@&1236147107694645349> te ayudará en breves, expón tu problema de manera concreta!"},
                 {"id":"opendiscord:ticket-message-embed","value":{"enabled":true,"title":"Ticket de Bugs","description":"La ayuda está en camino","customColor":"","image":"","thumbnail":"","fields":[],"timestamp":true}},
@@ -230,7 +225,7 @@
                 {"id":"opendiscord:limits-maximum-global","value":50},
                 {"id":"opendiscord:limits-maximum-user","value":1},
                 {"id":"opendiscord:slowmode-enabled","value":false},
-                {"id":"opendiscord:slowmode-seconds","value":0}
+                {"id":"opendiscord:slowmode-seconds","value":1}
             ]
         }
     },
@@ -240,7 +235,7 @@
         "value":{
             "id":"comercio",
             "type":"opendiscord:ticket",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:name","value":"Ticket de Comercio"},
                 {"id":"opendiscord:description","value":""},
@@ -254,11 +249,10 @@
                 {"id":"opendiscord:channel-prefix","value":"🛒-comercio-"},
                 {"id":"opendiscord:channel-suffix","value":"counter-fixed"},
                 {"id":"opendiscord:channel-category","value":"1425814149736435732"},
-                {"id":"opendiscord:channel-category-backup","value":""},
                 {"id":"opendiscord:channel-topic","value":""},
                 {"id":"opendiscord:dm-message-enabled","value":false},
                 {"id":"opendiscord:dm-message-text","value":"Thank you for creating a ticket in our server! (or leave empty)"},
-                {"id":"opendiscord:dm-message-embed","value":{"enabled":false,"title":"Embed Title! (or leave empty)","description":"Description (or leave empty)","customColor":"#f8ab00 (or leave empty)","image":"https://www.example.com/image.png (or leave empty)","thumbnail":"https://www.example.com/image.png (or leave empty)","fields":[{"name":"field name","value":"field value","inline":false}],"timestamp":false}},
+                {"id":"opendiscord:dm-message-embed","value":{"enabled":false,"title":"Embed Title! (or leave empty)","description":"Description (or leave empty)","customColor":"","image":"","thumbnail":"","fields":[{"name":"field name","value":"field value","inline":false}],"timestamp":false}},
                 {"id":"opendiscord:ticket-message-enabled","value":true},
                 {"id":"opendiscord:ticket-message-text","value":"Ticket de Comercio"},
                 {"id":"opendiscord:ticket-message-embed","value":{"enabled":false,"title":"","description":"La ayuda está en camino","customColor":"","image":"","thumbnail":"","fields":[],"timestamp":true}},
@@ -277,7 +271,7 @@
                 {"id":"opendiscord:limits-maximum-global","value":50},
                 {"id":"opendiscord:limits-maximum-user","value":1},
                 {"id":"opendiscord:slowmode-enabled","value":false},
-                {"id":"opendiscord:slowmode-seconds","value":0}
+                {"id":"opendiscord:slowmode-seconds","value":1}
             ]
         }
     },
@@ -287,7 +281,7 @@
         "value":{
             "id":"bandas",
             "type":"opendiscord:ticket",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:name","value":"Ticket de Bandas"},
                 {"id":"opendiscord:description","value":""},
@@ -301,11 +295,10 @@
                 {"id":"opendiscord:channel-prefix","value":"🔪-bandas-"},
                 {"id":"opendiscord:channel-suffix","value":"counter-fixed"},
                 {"id":"opendiscord:channel-category","value":"1425814018567831592"},
-                {"id":"opendiscord:channel-category-backup","value":""},
                 {"id":"opendiscord:channel-topic","value":""},
                 {"id":"opendiscord:dm-message-enabled","value":false},
                 {"id":"opendiscord:dm-message-text","value":"Thank you for creating a ticket in our server! (or leave empty)"},
-                {"id":"opendiscord:dm-message-embed","value":{"enabled":false,"title":"Embed Title! (or leave empty)","description":"Description (or leave empty)","customColor":"#f8ab00 (or leave empty)","image":"https://www.example.com/image.png (or leave empty)","thumbnail":"https://www.example.com/image.png (or leave empty)","fields":[{"name":"field name","value":"field value","inline":false}],"timestamp":false}},
+                {"id":"opendiscord:dm-message-embed","value":{"enabled":false,"title":"Embed Title! (or leave empty)","description":"Description (or leave empty)","customColor":"","image":"","thumbnail":"","fields":[{"name":"field name","value":"field value","inline":false}],"timestamp":false}},
                 {"id":"opendiscord:ticket-message-enabled","value":true},
                 {"id":"opendiscord:ticket-message-text","value":"Bienvenido/a alguien de <@&1236147107694645345> te ayudará en breves, expón tu problema de manera concreta!"},
                 {"id":"opendiscord:ticket-message-embed","value":{"enabled":true,"title":"","description":"La ayuda está en camino","customColor":"","image":"","thumbnail":"","fields":[],"timestamp":true}},
@@ -324,7 +317,7 @@
                 {"id":"opendiscord:limits-maximum-global","value":50},
                 {"id":"opendiscord:limits-maximum-user","value":1},
                 {"id":"opendiscord:slowmode-enabled","value":false},
-                {"id":"opendiscord:slowmode-seconds","value":0}
+                {"id":"opendiscord:slowmode-seconds","value":1}
             ]
         }
     },
@@ -334,7 +327,7 @@
         "value":{
             "id":"invitaciones",
             "type":"opendiscord:ticket",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:name","value":"Invitaciones"},
                 {"id":"opendiscord:description","value":""},
@@ -348,11 +341,10 @@
                 {"id":"opendiscord:channel-prefix","value":"💌-invinocc-"},
                 {"id":"opendiscord:channel-suffix","value":"counter-fixed"},
                 {"id":"opendiscord:channel-category","value":"1428110844402733189"},
-                {"id":"opendiscord:channel-category-backup","value":"1428842519227269270"},
                 {"id":"opendiscord:channel-topic","value":""},
                 {"id":"opendiscord:dm-message-enabled","value":false},
                 {"id":"opendiscord:dm-message-text","value":"Thank you for creating a ticket in our server! (or leave empty)"},
-                {"id":"opendiscord:dm-message-embed","value":{"enabled":false,"title":"Embed Title! (or leave empty)","description":"Description (or leave empty)","customColor":"#f8ab00 (or leave empty)","image":"https://www.example.com/image.png (or leave empty)","thumbnail":"https://www.example.com/image.png (or leave empty)","fields":[{"name":"field name","value":"field value","inline":false}],"timestamp":false}},
+                {"id":"opendiscord:dm-message-embed","value":{"enabled":false,"title":"Embed Title! (or leave empty)","description":"Description (or leave empty)","customColor":"","image":"","thumbnail":"","fields":[{"name":"field name","value":"field value","inline":false}],"timestamp":false}},
                 {"id":"opendiscord:ticket-message-enabled","value":true},
                 {"id":"opendiscord:ticket-message-text","value":"Bienvenido/a en breves te asistirán con tu invitación, por favor proporciona toda la información solicitada en las preguntas para agilizar el proceso."},
                 {"id":"opendiscord:ticket-message-embed","value":{"enabled":true,"title":"Ticket de Invitaciones","description":"Recuerda que estas invitaciones son para","customColor":"","image":"","thumbnail":"","fields":[],"timestamp":true}},
@@ -371,7 +363,7 @@
                 {"id":"opendiscord:limits-maximum-global","value":100},
                 {"id":"opendiscord:limits-maximum-user","value":1},
                 {"id":"opendiscord:slowmode-enabled","value":false},
-                {"id":"opendiscord:slowmode-seconds","value":0}
+                {"id":"opendiscord:slowmode-seconds","value":1}
             ]
         }
     },
@@ -381,7 +373,7 @@
         "value":{
             "id":"ropa",
             "type":"opendiscord:ticket",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:name","value":"Ropa"},
                 {"id":"opendiscord:description","value":""},
@@ -395,11 +387,10 @@
                 {"id":"opendiscord:channel-prefix","value":"👔-ropa-"},
                 {"id":"opendiscord:channel-suffix","value":"counter-fixed"},
                 {"id":"opendiscord:channel-category","value":"1429853296604090399"},
-                {"id":"opendiscord:channel-category-backup","value":""},
                 {"id":"opendiscord:channel-topic","value":""},
                 {"id":"opendiscord:dm-message-enabled","value":false},
                 {"id":"opendiscord:dm-message-text","value":"Thank you for creating a ticket in our server! (or leave empty)"},
-                {"id":"opendiscord:dm-message-embed","value":{"enabled":false,"title":"Embed Title! (or leave empty)","description":"Description (or leave empty)","customColor":"#f8ab00 (or leave empty)","image":"https://www.example.com/image.png (or leave empty)","thumbnail":"https://www.example.com/image.png (or leave empty)","fields":[{"name":"field name","value":"field value","inline":false}],"timestamp":false}},
+                {"id":"opendiscord:dm-message-embed","value":{"enabled":false,"title":"Embed Title! (or leave empty)","description":"Description (or leave empty)","customColor":"","image":"","thumbnail":"","fields":[{"name":"field name","value":"field value","inline":false}],"timestamp":false}},
                 {"id":"opendiscord:ticket-message-enabled","value":true},
                 {"id":"opendiscord:ticket-message-text","value":"Bienvenido/a un <@&1268591966388617272> revisará el contenido lo antes posible"},
                 {"id":"opendiscord:ticket-message-embed","value":{"enabled":true,"title":"Ticket de Ropa","description":"**INFORMACIÓN DE INTERÉS:**\n\n- Añadir textura: 150 tokens\n- Update de textura: 150 tokens\n- Añadir modelo nuevo: 450 tokens\n- Añadir modelo nuevo+textura: 600 tokens\n- Añadir modelo+textura para hombre y mujer: 1200 tokens\n- El staff encargado del pack de ropa tendrá total potestad para rechazar o aceptar los solicitudes, hacer la compra de tokens no influirá en la decisión.\n\n- En caso de ser banda/racing y se realice disband se retirara la prenda.","customColor":"","image":"","thumbnail":"","fields":[],"timestamp":true}},
@@ -418,7 +409,7 @@
                 {"id":"opendiscord:limits-maximum-global","value":50},
                 {"id":"opendiscord:limits-maximum-user","value":1},
                 {"id":"opendiscord:slowmode-enabled","value":false},
-                {"id":"opendiscord:slowmode-seconds","value":0}
+                {"id":"opendiscord:slowmode-seconds","value":1}
             ]
         }
     },
@@ -428,7 +419,7 @@
         "value":{
             "id":"housing",
             "type":"opendiscord:ticket",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:name","value":"Housing"},
                 {"id":"opendiscord:description","value":""},
@@ -442,11 +433,10 @@
                 {"id":"opendiscord:channel-prefix","value":"🏠-housing-"},
                 {"id":"opendiscord:channel-suffix","value":"counter-fixed"},
                 {"id":"opendiscord:channel-category","value":"1465786114022445137"},
-                {"id":"opendiscord:channel-category-backup","value":""},
                 {"id":"opendiscord:channel-topic","value":""},
                 {"id":"opendiscord:dm-message-enabled","value":false},
                 {"id":"opendiscord:dm-message-text","value":"Thank you for creating a ticket in our server! (or leave empty)"},
-                {"id":"opendiscord:dm-message-embed","value":{"enabled":false,"title":"Embed Title! (or leave empty)","description":"Description (or leave empty)","customColor":"#f8ab00 (or leave empty)","image":"https://www.example.com/image.png (or leave empty)","thumbnail":"https://www.example.com/image.png (or leave empty)","fields":[{"name":"field name","value":"field value","inline":false}],"timestamp":false}},
+                {"id":"opendiscord:dm-message-embed","value":{"enabled":false,"title":"Embed Title! (or leave empty)","description":"Description (or leave empty)","customColor":"","image":"","thumbnail":"","fields":[{"name":"field name","value":"field value","inline":false}],"timestamp":false}},
                 {"id":"opendiscord:ticket-message-enabled","value":true},
                 {"id":"opendiscord:ticket-message-text","value":"Bienvenido/a. Un miembro de <@&1253670507979739147> revisará tu solicitud. Lee los **Términos del Servicio** en el embed, confirma su aceptación en este canal y aporta toda la información de tu pedido. Tu ticket se atenderá cuando se añada el emoji 🟢."},
                 {"id":"opendiscord:ticket-message-embed","value":{"enabled":true,"title":"Términos del Servicio – Sistema Housing","description":"### 1. Costos del Servicio\n- Cada mapeado (MLO) es evaluado de manera individual.\n- El precio final dependerá de distintos factores, incluyendo, pero no limitado a:\n  - Nivel de dificultad en la creación o adaptación del MLO.\n  - Número de habitaciones.\n  - Complejidad estructural.\n  - Zona donde será ubicado el mapeado.\n  - Requerimientos adicionales solicitados por el cliente.\n- El costo será informado únicamente después de realizar una revisión previa del proyecto.\n\n> No se brindan precios estimados sin evaluación.\n\n### 2. Alcance del Servicio\nEl servicio incluye:\n- Integración del mapeado (MLO) en la zona seleccionada dentro del servidor.\n- Configuración para que la propiedad funcione con todas las mecánicas estándar del sistema, tales como:\n  - Compra de muebles.\n  - Expansión de almacenamiento.\n  - Uso de garaje (si aplica).\n  - Funciones adicionales propias del sistema housing activo en el servidor.\n\n### 3. Consideraciones Importantes\n- El pago del servicio corresponde únicamente al trabajo de integración y configuración del mapeado dentro del sistema housing.\n- El servicio no incluye la entrega de la propiedad con mejoras desbloqueadas, almacenamiento ampliado, muebles comprados ni garaje expandido.\n- Todas las mejoras deberán adquirirse mediante los métodos normales ya establecidos dentro del servidor (Dinero IC | Tokens).\n\n### 4. Entrega y Garantía de Revisión\n- Una vez entregado el mapeado e integrado al sistema housing, el cliente contará con un plazo de 24 horas para notificar cualquier disconformidad relacionada con bugs, errores técnicos o fallas de funcionamiento. Pasado este plazo, se asumirá que el servicio fue recibido conforme.\n\n### 5. Solicitudes de Edición Posterior\nCualquier modificación adicional al mapeado después de la entrega deberá solicitarse mediante un nuevo ticket de housing. Dichas solicitudes serán evaluadas nuevamente de manera individual.\n\n> Las ediciones pueden generar costos adicionales dependiendo del alcance de los cambios requeridos.\n\n### IMPORTANTE\nEl usuario sabrá que su ticket está siendo atendido cuando se añada el emoji 🟢 en el mismo. Hasta que dicho indicador sea colocado, el solicitante deberá:\n- Confirmar la lectura y aceptación de estos términos.\n- Brindar el máximo de información posible sobre su pedido.\n\n> El envío de información adicional fuera del alcance del pedido podrá retrasar la evaluación.\n> En caso de ser atendido y no tener respuesta en un plazo de 5 días, el ticket procederá a cerrarse.","customColor":"","image":"","thumbnail":"","fields":[],"timestamp":true}},
@@ -465,7 +455,7 @@
                 {"id":"opendiscord:limits-maximum-global","value":15},
                 {"id":"opendiscord:limits-maximum-user","value":1},
                 {"id":"opendiscord:slowmode-enabled","value":false},
-                {"id":"opendiscord:slowmode-seconds","value":0}
+                {"id":"opendiscord:slowmode-seconds","value":1}
             ]
         }
     },
@@ -475,7 +465,7 @@
         "value":{
             "id":"peds",
             "type":"opendiscord:ticket",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:name","value":"Peds"},
                 {"id":"opendiscord:description","value":""},
@@ -489,11 +479,10 @@
                 {"id":"opendiscord:channel-prefix","value":"🛀-peds-"},
                 {"id":"opendiscord:channel-suffix","value":"counter-fixed"},
                 {"id":"opendiscord:channel-category","value":"1443542436130590852"},
-                {"id":"opendiscord:channel-category-backup","value":""},
                 {"id":"opendiscord:channel-topic","value":""},
                 {"id":"opendiscord:dm-message-enabled","value":false},
                 {"id":"opendiscord:dm-message-text","value":"Thank you for creating a ticket in our server! (or leave empty)"},
-                {"id":"opendiscord:dm-message-embed","value":{"enabled":false,"title":"Embed Title! (or leave empty)","description":"Description (or leave empty)","customColor":"#f8ab00 (or leave empty)","image":"https://www.example.com/image.png (or leave empty)","thumbnail":"https://www.example.com/image.png (or leave empty)","fields":[{"name":"field name","value":"field value","inline":false}],"timestamp":false}},
+                {"id":"opendiscord:dm-message-embed","value":{"enabled":false,"title":"Embed Title! (or leave empty)","description":"Description (or leave empty)","customColor":"","image":"","thumbnail":"","fields":[{"name":"field name","value":"field value","inline":false}],"timestamp":false}},
                 {"id":"opendiscord:ticket-message-enabled","value":true},
                 {"id":"opendiscord:ticket-message-text","value":"Bienvenido/a un <@&1253670507979739147> revisará el contenido lo antes posible. Revisa toda la información de interés para que podamos solventar tus dudas."},
                 {"id":"opendiscord:ticket-message-embed","value":{"enabled":true,"title":"Ticket de Peds","description":"**Información de Interés:**\n\n## PEDS:\n- Ped vanilla: 300 TOKENS\n- Ped addon: 600 TOKENS\n- Update PED: 150 TOKENS\n","customColor":"","image":"","thumbnail":"","fields":[],"timestamp":true}},
@@ -512,7 +501,7 @@
                 {"id":"opendiscord:limits-maximum-global","value":50},
                 {"id":"opendiscord:limits-maximum-user","value":1},
                 {"id":"opendiscord:slowmode-enabled","value":false},
-                {"id":"opendiscord:slowmode-seconds","value":0}
+                {"id":"opendiscord:slowmode-seconds","value":1}
             ]
         }
     },
@@ -522,7 +511,7 @@
         "value":{
             "id":"admin",
             "type":"opendiscord:ticket",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:name","value":"Ticket de Administración"},
                 {"id":"opendiscord:description","value":""},
@@ -536,11 +525,10 @@
                 {"id":"opendiscord:channel-prefix","value":"🔨-admin-"},
                 {"id":"opendiscord:channel-suffix","value":"counter-fixed"},
                 {"id":"opendiscord:channel-category","value":"1425811969407062036"},
-                {"id":"opendiscord:channel-category-backup","value":""},
                 {"id":"opendiscord:channel-topic","value":""},
                 {"id":"opendiscord:dm-message-enabled","value":false},
                 {"id":"opendiscord:dm-message-text","value":"Thank you for creating a ticket in our server! (or leave empty)"},
-                {"id":"opendiscord:dm-message-embed","value":{"enabled":false,"title":"Embed Title! (or leave empty)","description":"Description (or leave empty)","customColor":"#f8ab00 (or leave empty)","image":"https://www.example.com/image.png (or leave empty)","thumbnail":"https://www.example.com/image.png (or leave empty)","fields":[{"name":"field name","value":"field value","inline":false}],"timestamp":false}},
+                {"id":"opendiscord:dm-message-embed","value":{"enabled":false,"title":"Embed Title! (or leave empty)","description":"Description (or leave empty)","customColor":"","image":"","thumbnail":"","fields":[{"name":"field name","value":"field value","inline":false}],"timestamp":false}},
                 {"id":"opendiscord:ticket-message-enabled","value":true},
                 {"id":"opendiscord:ticket-message-text","value":"Ticket de Administración"},
                 {"id":"opendiscord:ticket-message-embed","value":{"enabled":false,"title":"","description":"La ayuda está en camino","customColor":"","image":"","thumbnail":"","fields":[],"timestamp":true}},
@@ -559,7 +547,7 @@
                 {"id":"opendiscord:limits-maximum-global","value":50},
                 {"id":"opendiscord:limits-maximum-user","value":1},
                 {"id":"opendiscord:slowmode-enabled","value":false},
-                {"id":"opendiscord:slowmode-seconds","value":0}
+                {"id":"opendiscord:slowmode-seconds","value":1}
             ]
         }
     },
@@ -569,7 +557,7 @@
         "value":{
             "id":"liveries",
             "type":"opendiscord:ticket",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:name","value":"Liveries"},
                 {"id":"opendiscord:description","value":""},
@@ -583,11 +571,10 @@
                 {"id":"opendiscord:channel-prefix","value":"🏎️-liveries-"},
                 {"id":"opendiscord:channel-suffix","value":"counter-fixed"},
                 {"id":"opendiscord:channel-category","value":"1473672563191189575"},
-                {"id":"opendiscord:channel-category-backup","value":""},
                 {"id":"opendiscord:channel-topic","value":""},
                 {"id":"opendiscord:dm-message-enabled","value":false},
                 {"id":"opendiscord:dm-message-text","value":"Thank you for creating a ticket in our server! (or leave empty)"},
-                {"id":"opendiscord:dm-message-embed","value":{"enabled":false,"title":"Embed Title! (or leave empty)","description":"Description (or leave empty)","customColor":"#f8ab00 (or leave empty)","image":"https://www.example.com/image.png (or leave empty)","thumbnail":"https://www.example.com/image.png (or leave empty)","fields":[{"name":"field name","value":"field value","inline":false}],"timestamp":false}},
+                {"id":"opendiscord:dm-message-embed","value":{"enabled":false,"title":"Embed Title! (or leave empty)","description":"Description (or leave empty)","customColor":"","image":"","thumbnail":"","fields":[{"name":"field name","value":"field value","inline":false}],"timestamp":false}},
                 {"id":"opendiscord:ticket-message-enabled","value":true},
                 {"id":"opendiscord:ticket-message-text","value":"Bienvenido/a un <@&1473672338754113663> revisará el contenido lo antes posible"},
                 {"id":"opendiscord:ticket-message-embed","value":{"enabled":true,"title":"Ticket de Liveries","description":"**INFORMACIÓN DE INTERÉS:**\n\n- Añadir una livery a un vehículo: 200 tokens.\n - Únicamente se aceptarán liverys diseñadas por el diseñador que trabaja con Family.\n - Queda al criterio del Staff si rechazar o aceptar su solicitud.\n - En caso de CK se retirará la livery del vehículo.","customColor":"","image":"","thumbnail":"","fields":[],"timestamp":true}},
@@ -606,7 +593,7 @@
                 {"id":"opendiscord:limits-maximum-global","value":50},
                 {"id":"opendiscord:limits-maximum-user","value":1},
                 {"id":"opendiscord:slowmode-enabled","value":false},
-                {"id":"opendiscord:slowmode-seconds","value":0}
+                {"id":"opendiscord:slowmode-seconds","value":1}
             ]
         }
     },
@@ -616,7 +603,7 @@
         "value":{
             "id":"soporte",
             "type":"opendiscord:ticket",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:name","value":"Soporte"},
                 {"id":"opendiscord:description","value":""},
@@ -630,11 +617,10 @@
                 {"id":"opendiscord:channel-prefix","value":"🔧-soporte-"},
                 {"id":"opendiscord:channel-suffix","value":"counter-fixed"},
                 {"id":"opendiscord:channel-category","value":"1425587892469895188"},
-                {"id":"opendiscord:channel-category-backup","value":""},
                 {"id":"opendiscord:channel-topic","value":""},
                 {"id":"opendiscord:dm-message-enabled","value":false},
                 {"id":"opendiscord:dm-message-text","value":"Thank you for creating a ticket in our server! (or leave empty)"},
-                {"id":"opendiscord:dm-message-embed","value":{"enabled":false,"title":"Embed Title! (or leave empty)","description":"Description (or leave empty)","customColor":"#f8ab00 (or leave empty)","image":"https://www.example.com/image.png (or leave empty)","thumbnail":"https://www.example.com/image.png (or leave empty)","fields":[{"name":"field name","value":"field value","inline":false}],"timestamp":false}},
+                {"id":"opendiscord:dm-message-embed","value":{"enabled":false,"title":"Embed Title! (or leave empty)","description":"Description (or leave empty)","customColor":"","image":"","thumbnail":"","fields":[{"name":"field name","value":"field value","inline":false}],"timestamp":false}},
                 {"id":"opendiscord:ticket-message-enabled","value":true},
                 {"id":"opendiscord:ticket-message-text","value":"Bienvenido/a alguien de <@&1236147107694645349> o <@&1247649698609627256> te ayudará en breves, expón tu problema de manera concreta!"},
                 {"id":"opendiscord:ticket-message-embed","value":{"enabled":true,"title":"Ticket de Ayuda","description":"La ayuda está en camino","customColor":"","image":"","thumbnail":"","fields":[],"timestamp":true}},
@@ -653,7 +639,7 @@
                 {"id":"opendiscord:limits-maximum-global","value":50},
                 {"id":"opendiscord:limits-maximum-user","value":1},
                 {"id":"opendiscord:slowmode-enabled","value":false},
-                {"id":"opendiscord:slowmode-seconds","value":0}
+                {"id":"opendiscord:slowmode-seconds","value":1}
             ]
         }
     },
@@ -663,7 +649,7 @@
         "value":{
             "id":"reportes-staff",
             "type":"opendiscord:ticket",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:name","value":"Reportes Staff"},
                 {"id":"opendiscord:description","value":""},
@@ -677,11 +663,10 @@
                 {"id":"opendiscord:channel-prefix","value":"🛡️-staff-"},
                 {"id":"opendiscord:channel-suffix","value":"counter-fixed"},
                 {"id":"opendiscord:channel-category","value":"1425807479777792060"},
-                {"id":"opendiscord:channel-category-backup","value":""},
                 {"id":"opendiscord:channel-topic","value":""},
                 {"id":"opendiscord:dm-message-enabled","value":false},
                 {"id":"opendiscord:dm-message-text","value":"Thank you for creating a ticket in our server! (or leave empty)"},
-                {"id":"opendiscord:dm-message-embed","value":{"enabled":false,"title":"Embed Title! (or leave empty)","description":"Description (or leave empty)","customColor":"#f8ab00 (or leave empty)","image":"https://www.example.com/image.png (or leave empty)","thumbnail":"https://www.example.com/image.png (or leave empty)","fields":[{"name":"field name","value":"field value","inline":false}],"timestamp":false}},
+                {"id":"opendiscord:dm-message-embed","value":{"enabled":false,"title":"Embed Title! (or leave empty)","description":"Description (or leave empty)","customColor":"","image":"","thumbnail":"","fields":[{"name":"field name","value":"field value","inline":false}],"timestamp":false}},
                 {"id":"opendiscord:ticket-message-enabled","value":true},
                 {"id":"opendiscord:ticket-message-text","value":"Bienvenido/a cuentanos el problema de manera detallada y adjunta las pruebas pertinentes para facilitar el trabajo del equipo de <@&1236147107711160363> pueda atenderte de la mejor manera posible!"},
                 {"id":"opendiscord:ticket-message-embed","value":{"enabled":true,"title":"Reporte Staff","description":"La ayuda está en camino","customColor":"","image":"","thumbnail":"","fields":[],"timestamp":true}},
@@ -700,7 +685,7 @@
                 {"id":"opendiscord:limits-maximum-global","value":50},
                 {"id":"opendiscord:limits-maximum-user","value":3},
                 {"id":"opendiscord:slowmode-enabled","value":false},
-                {"id":"opendiscord:slowmode-seconds","value":0}
+                {"id":"opendiscord:slowmode-seconds","value":1}
             ]
         }
     },
@@ -710,7 +695,7 @@
         "value":{
             "id":"sapd",
             "type":"opendiscord:ticket",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:name","value":"Ticket de SAPD"},
                 {"id":"opendiscord:description","value":""},
@@ -724,11 +709,10 @@
                 {"id":"opendiscord:channel-prefix","value":"🚔-sapd-"},
                 {"id":"opendiscord:channel-suffix","value":"counter-fixed"},
                 {"id":"opendiscord:channel-category","value":"1425812486787170335"},
-                {"id":"opendiscord:channel-category-backup","value":""},
                 {"id":"opendiscord:channel-topic","value":""},
                 {"id":"opendiscord:dm-message-enabled","value":false},
                 {"id":"opendiscord:dm-message-text","value":"Thank you for creating a ticket in our server! (or leave empty)"},
-                {"id":"opendiscord:dm-message-embed","value":{"enabled":false,"title":"Embed Title! (or leave empty)","description":"Description (or leave empty)","customColor":"#f8ab00 (or leave empty)","image":"https://www.example.com/image.png (or leave empty)","thumbnail":"https://www.example.com/image.png (or leave empty)","fields":[{"name":"field name","value":"field value","inline":false}],"timestamp":false}},
+                {"id":"opendiscord:dm-message-embed","value":{"enabled":false,"title":"Embed Title! (or leave empty)","description":"Description (or leave empty)","customColor":"","image":"","thumbnail":"","fields":[{"name":"field name","value":"field value","inline":false}],"timestamp":false}},
                 {"id":"opendiscord:ticket-message-enabled","value":true},
                 {"id":"opendiscord:ticket-message-text","value":"Bienvenido/a alguien de <@&1236147107694645343> te ayudará en breves, expón tu problema de manera concreta!"},
                 {"id":"opendiscord:ticket-message-embed","value":{"enabled":true,"title":"","description":"La ayuda está en camino","customColor":"","image":"","thumbnail":"","fields":[],"timestamp":true}},
@@ -747,7 +731,7 @@
                 {"id":"opendiscord:limits-maximum-global","value":50},
                 {"id":"opendiscord:limits-maximum-user","value":1},
                 {"id":"opendiscord:slowmode-enabled","value":false},
-                {"id":"opendiscord:slowmode-seconds","value":0}
+                {"id":"opendiscord:slowmode-seconds","value":1}
             ]
         }
     },
@@ -757,7 +741,7 @@
         "value":{
             "id":"streamers",
             "type":"opendiscord:ticket",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:name","value":"Streamers"},
                 {"id":"opendiscord:description","value":""},
@@ -771,11 +755,10 @@
                 {"id":"opendiscord:channel-prefix","value":"🎥-streamers-"},
                 {"id":"opendiscord:channel-suffix","value":"counter-fixed"},
                 {"id":"opendiscord:channel-category","value":"1425590413598654665"},
-                {"id":"opendiscord:channel-category-backup","value":""},
                 {"id":"opendiscord:channel-topic","value":""},
                 {"id":"opendiscord:dm-message-enabled","value":false},
                 {"id":"opendiscord:dm-message-text","value":"Thank you for creating a ticket in our server! (or leave empty)"},
-                {"id":"opendiscord:dm-message-embed","value":{"enabled":false,"title":"Embed Title! (or leave empty)","description":"Description (or leave empty)","customColor":"#f8ab00 (or leave empty)","image":"https://www.example.com/image.png (or leave empty)","thumbnail":"https://www.example.com/image.png (or leave empty)","fields":[{"name":"field name","value":"field value","inline":false}],"timestamp":false}},
+                {"id":"opendiscord:dm-message-embed","value":{"enabled":false,"title":"Embed Title! (or leave empty)","description":"Description (or leave empty)","customColor":"","image":"","thumbnail":"","fields":[{"name":"field name","value":"field value","inline":false}],"timestamp":false}},
                 {"id":"opendiscord:ticket-message-enabled","value":true},
                 {"id":"opendiscord:ticket-message-text","value":"Bienvenido/a alguien de <@&1236147107694645348> te ayudará en breves, expón tu problema de manera concreta!"},
                 {"id":"opendiscord:ticket-message-embed","value":{"enabled":true,"title":"Ticket de Streamers","description":"La ayuda está en camino","customColor":"","image":"","thumbnail":"","fields":[],"timestamp":true}},
@@ -794,7 +777,7 @@
                 {"id":"opendiscord:limits-maximum-global","value":50},
                 {"id":"opendiscord:limits-maximum-user","value":1},
                 {"id":"opendiscord:slowmode-enabled","value":false},
-                {"id":"opendiscord:slowmode-seconds","value":0}
+                {"id":"opendiscord:slowmode-seconds","value":1}
             ]
         }
     },
@@ -804,7 +787,7 @@
         "value":{
             "id":"invitaciones-cc",
             "type":"opendiscord:ticket",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:name","value":"Invitaciones CC"},
                 {"id":"opendiscord:description","value":""},
@@ -818,11 +801,10 @@
                 {"id":"opendiscord:channel-prefix","value":"📸-invicc-"},
                 {"id":"opendiscord:channel-suffix","value":"counter-fixed"},
                 {"id":"opendiscord:channel-category","value":"1428109489378431068"},
-                {"id":"opendiscord:channel-category-backup","value":""},
                 {"id":"opendiscord:channel-topic","value":""},
                 {"id":"opendiscord:dm-message-enabled","value":false},
                 {"id":"opendiscord:dm-message-text","value":"Thank you for creating a ticket in our server! (or leave empty)"},
-                {"id":"opendiscord:dm-message-embed","value":{"enabled":false,"title":"Embed Title! (or leave empty)","description":"Description (or leave empty)","customColor":"#f8ab00 (or leave empty)","image":"https://www.example.com/image.png (or leave empty)","thumbnail":"https://www.example.com/image.png (or leave empty)","fields":[{"name":"field name","value":"field value","inline":false}],"timestamp":false}},
+                {"id":"opendiscord:dm-message-embed","value":{"enabled":false,"title":"Embed Title! (or leave empty)","description":"Description (or leave empty)","customColor":"","image":"","thumbnail":"","fields":[{"name":"field name","value":"field value","inline":false}],"timestamp":false}},
                 {"id":"opendiscord:ticket-message-enabled","value":true},
                 {"id":"opendiscord:ticket-message-text","value":"Bienvenido/a en breves te asistirán con tu invitación de CC, por favor proporciona toda la información solicitada en las preguntas para agilizar el proceso."},
                 {"id":"opendiscord:ticket-message-embed","value":{"enabled":true,"title":"Ticket de Invitaciones CC","description":"Recuerda que estas invitaciones son para CC","customColor":"","image":"","thumbnail":"","fields":[],"timestamp":true}},
@@ -841,7 +823,7 @@
                 {"id":"opendiscord:limits-maximum-global","value":50},
                 {"id":"opendiscord:limits-maximum-user","value":1},
                 {"id":"opendiscord:slowmode-enabled","value":false},
-                {"id":"opendiscord:slowmode-seconds","value":0}
+                {"id":"opendiscord:slowmode-seconds","value":1}
             ]
         }
     },
@@ -851,7 +833,7 @@
         "value":{
             "id":"reclamaciones",
             "type":"opendiscord:ticket",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:name","value":"Reclamaciones"},
                 {"id":"opendiscord:description","value":""},
@@ -865,11 +847,10 @@
                 {"id":"opendiscord:channel-prefix","value":"📦-reclamaciones-"},
                 {"id":"opendiscord:channel-suffix","value":"counter-fixed"},
                 {"id":"opendiscord:channel-category","value":"1425591157777367161"},
-                {"id":"opendiscord:channel-category-backup","value":""},
                 {"id":"opendiscord:channel-topic","value":""},
                 {"id":"opendiscord:dm-message-enabled","value":false},
                 {"id":"opendiscord:dm-message-text","value":"Thank you for creating a ticket in our server! (or leave empty)"},
-                {"id":"opendiscord:dm-message-embed","value":{"enabled":false,"title":"Embed Title! (or leave empty)","description":"Description (or leave empty)","customColor":"#f8ab00 (or leave empty)","image":"https://www.example.com/image.png (or leave empty)","thumbnail":"https://www.example.com/image.png (or leave empty)","fields":[{"name":"field name","value":"field value","inline":false}],"timestamp":false}},
+                {"id":"opendiscord:dm-message-embed","value":{"enabled":false,"title":"Embed Title! (or leave empty)","description":"Description (or leave empty)","customColor":"","image":"","thumbnail":"","fields":[{"name":"field name","value":"field value","inline":false}],"timestamp":false}},
                 {"id":"opendiscord:ticket-message-enabled","value":true},
                 {"id":"opendiscord:ticket-message-text","value":"Bienvenido/a alguien de <@&1236147107694645349> o <@&1247649698609627256> te ayudará en breves, expón tu problema de manera concreta!"},
                 {"id":"opendiscord:ticket-message-embed","value":{"enabled":true,"title":"Ticket de Reclamaciones","description":"La ayuda está en camino","customColor":"","image":"","thumbnail":"","fields":[],"timestamp":true}},
@@ -888,7 +869,7 @@
                 {"id":"opendiscord:limits-maximum-global","value":50},
                 {"id":"opendiscord:limits-maximum-user","value":1},
                 {"id":"opendiscord:slowmode-enabled","value":false},
-                {"id":"opendiscord:slowmode-seconds","value":0}
+                {"id":"opendiscord:slowmode-seconds","value":1}
             ]
         }
     }

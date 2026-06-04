@@ -5,7 +5,7 @@
         "value":{
             "id":"1430346690698805429",
             "option":"cks",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:busy","value":false},
                 {"id":"opendiscord:ticket-message","value":"1430346692225667164"},
@@ -50,7 +50,7 @@
         "value":{
             "id":"1446108122132250708",
             "option":"feedback",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:busy","value":false},
                 {"id":"opendiscord:ticket-message","value":"1446108123998978159"},
@@ -95,7 +95,7 @@
         "value":{
             "id":"1451803786057093291",
             "option":"feedback",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:busy","value":false},
                 {"id":"opendiscord:ticket-message","value":"1451803787617505382"},
@@ -140,7 +140,7 @@
         "value":{
             "id":"1455253973773586512",
             "option":"comercio",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:busy","value":false},
                 {"id":"opendiscord:ticket-message","value":"1455253975153512510"},
@@ -185,7 +185,7 @@
         "value":{
             "id":"1463436500988465276",
             "option":"feedback",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:busy","value":false},
                 {"id":"opendiscord:ticket-message","value":"1463436502842474537"},
@@ -230,7 +230,7 @@
         "value":{
             "id":"1464247267765780603",
             "option":"feedback",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:busy","value":false},
                 {"id":"opendiscord:ticket-message","value":"1464247269715873948"},
@@ -275,7 +275,7 @@
         "value":{
             "id":"1470200807415615723",
             "option":"feedback",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:busy","value":false},
                 {"id":"opendiscord:ticket-message","value":"1470200809722482730"},
@@ -320,7 +320,7 @@
         "value":{
             "id":"1475561265169563921",
             "option":"ropa",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:busy","value":false},
                 {"id":"opendiscord:ticket-message","value":"1475561266620661791"},
@@ -365,7 +365,7 @@
         "value":{
             "id":"1478053827587342478",
             "option":"housing",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:busy","value":false},
                 {"id":"opendiscord:ticket-message","value":"1478053828749299856"},
@@ -410,7 +410,7 @@
         "value":{
             "id":"1483543011710468199",
             "option":"feedback",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:busy","value":false},
                 {"id":"opendiscord:ticket-message","value":"1483543014067535872"},
@@ -455,7 +455,7 @@
         "value":{
             "id":"1486084747540041932",
             "option":"bugs",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:busy","value":false},
                 {"id":"opendiscord:ticket-message","value":"1486084749310169251"},
@@ -500,7 +500,7 @@
         "value":{
             "id":"1491503820365107273",
             "option":"tebex",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:busy","value":false},
                 {"id":"opendiscord:ticket-message","value":"1491503821959204906"},
@@ -545,7 +545,7 @@
         "value":{
             "id":"1491833591296954379",
             "option":"cks",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:busy","value":false},
                 {"id":"opendiscord:ticket-message","value":"1491833593427918969"},
@@ -590,7 +590,7 @@
         "value":{
             "id":"1494465882875756605",
             "option":"feedback",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:busy","value":false},
                 {"id":"opendiscord:ticket-message","value":"1494465884952072282"},
@@ -635,7 +635,7 @@
         "value":{
             "id":"1494847495430209608",
             "option":"comercio",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:busy","value":false},
                 {"id":"opendiscord:ticket-message","value":"1494847497447800993"},
@@ -680,7 +680,7 @@
         "value":{
             "id":"1496943124025446562",
             "option":"housing",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:busy","value":false},
                 {"id":"opendiscord:ticket-message","value":"1496943126353416252"},
@@ -725,7 +725,7 @@
         "value":{
             "id":"1497728383969267833",
             "option":"housing",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:busy","value":false},
                 {"id":"opendiscord:ticket-message","value":"1497728385336610836"},
@@ -770,7 +770,7 @@
         "value":{
             "id":"1498106335462555759",
             "option":"housing",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:busy","value":false},
                 {"id":"opendiscord:ticket-message","value":"1498106336909594654"},
@@ -815,7 +815,7 @@
         "value":{
             "id":"1499090491503808593",
             "option":"housing",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:busy","value":false},
                 {"id":"opendiscord:ticket-message","value":"1499090493932437696"},
@@ -860,7 +860,7 @@
         "value":{
             "id":"1499210932725878804",
             "option":"housing",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:busy","value":false},
                 {"id":"opendiscord:ticket-message","value":"1499210934349070417"},
@@ -905,7 +905,7 @@
         "value":{
             "id":"1499741470176055365",
             "option":"reportes-staff",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:busy","value":false},
                 {"id":"opendiscord:ticket-message","value":"1499741471451119648"},
@@ -950,7 +950,7 @@
         "value":{
             "id":"1501286241193431090",
             "option":"cks",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:busy","value":false},
                 {"id":"opendiscord:ticket-message","value":"1501286243793899623"},
@@ -995,7 +995,7 @@
         "value":{
             "id":"1501656381743304825",
             "option":"housing",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:busy","value":false},
                 {"id":"opendiscord:ticket-message","value":"1501656383286935753"},
@@ -1040,7 +1040,7 @@
         "value":{
             "id":"1502425415707529399",
             "option":"housing",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:busy","value":false},
                 {"id":"opendiscord:ticket-message","value":"1502425416894255367"},
@@ -1085,7 +1085,7 @@
         "value":{
             "id":"1502960752498311228",
             "option":"housing",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:busy","value":false},
                 {"id":"opendiscord:ticket-message","value":"1502960753945219102"},
@@ -1130,7 +1130,7 @@
         "value":{
             "id":"1504179607891607604",
             "option":"bandas",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:busy","value":false},
                 {"id":"opendiscord:ticket-message","value":"1504179609707614288"},
@@ -1175,7 +1175,7 @@
         "value":{
             "id":"1504658646263660721",
             "option":"sapd",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:busy","value":false},
                 {"id":"opendiscord:ticket-message","value":"1504658647697850450"},
@@ -1220,7 +1220,7 @@
         "value":{
             "id":"1504718223780876409",
             "option":"bandas",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:busy","value":false},
                 {"id":"opendiscord:ticket-message","value":"1504718225034706985"},
@@ -1265,7 +1265,7 @@
         "value":{
             "id":"1505013055371870239",
             "option":"peds",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:busy","value":false},
                 {"id":"opendiscord:ticket-message","value":"1505013056957190245"},
@@ -1310,7 +1310,7 @@
         "value":{
             "id":"1505468701187768421",
             "option":"bandas",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:busy","value":false},
                 {"id":"opendiscord:ticket-message","value":"1505468702534013069"},
@@ -1355,7 +1355,7 @@
         "value":{
             "id":"1505640098992226415",
             "option":"tebex",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:busy","value":false},
                 {"id":"opendiscord:ticket-message","value":"1505640100275687594"},
@@ -1400,7 +1400,7 @@
         "value":{
             "id":"1506027203903754333",
             "option":"housing",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:busy","value":false},
                 {"id":"opendiscord:ticket-message","value":"1506027206025936947"},
@@ -1445,7 +1445,7 @@
         "value":{
             "id":"1506452478257004654",
             "option":"bandas",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:busy","value":false},
                 {"id":"opendiscord:ticket-message","value":"1506452480073011353"},
@@ -1490,7 +1490,7 @@
         "value":{
             "id":"1507020961839448245",
             "option":"tebex",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:busy","value":false},
                 {"id":"opendiscord:ticket-message","value":"1507020962812661933"},
@@ -1535,7 +1535,7 @@
         "value":{
             "id":"1507485879076262110",
             "option":"reportes",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:busy","value":false},
                 {"id":"opendiscord:ticket-message","value":"1507485880280023040"},
@@ -1580,7 +1580,7 @@
         "value":{
             "id":"1507722159533985842",
             "option":"housing",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:busy","value":false},
                 {"id":"opendiscord:ticket-message","value":"1507722160657928233"},
@@ -1625,7 +1625,7 @@
         "value":{
             "id":"1507796425495413009",
             "option":"housing",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:busy","value":false},
                 {"id":"opendiscord:ticket-message","value":"1507796426724343938"},
@@ -1670,7 +1670,7 @@
         "value":{
             "id":"1508098329328877708",
             "option":"comercio",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:busy","value":false},
                 {"id":"opendiscord:ticket-message","value":"1508098330444697671"},
@@ -1715,7 +1715,7 @@
         "value":{
             "id":"1508355168834551900",
             "option":"liveries",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:busy","value":false},
                 {"id":"opendiscord:ticket-message","value":"1508355170197573632"},
@@ -1760,7 +1760,7 @@
         "value":{
             "id":"1508488894335815791",
             "option":"admin",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:busy","value":false},
                 {"id":"opendiscord:ticket-message","value":"1508488895799759000"},
@@ -1805,7 +1805,7 @@
         "value":{
             "id":"1508629529671893022",
             "option":"streamers",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:busy","value":false},
                 {"id":"opendiscord:ticket-message","value":"1508629531324321953"},
@@ -1850,7 +1850,7 @@
         "value":{
             "id":"1508881406032347280",
             "option":"reportes",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:busy","value":false},
                 {"id":"opendiscord:ticket-message","value":"1508881407424991274"},
@@ -1895,7 +1895,7 @@
         "value":{
             "id":"1508893265938616562",
             "option":"ropa",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:busy","value":false},
                 {"id":"opendiscord:ticket-message","value":"1508893267146575945"},
@@ -1940,7 +1940,7 @@
         "value":{
             "id":"1509223717232967803",
             "option":"bugs",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:busy","value":false},
                 {"id":"opendiscord:ticket-message","value":"1509223719678120288"},
@@ -1985,7 +1985,7 @@
         "value":{
             "id":"1509242576446947389",
             "option":"admin",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:busy","value":false},
                 {"id":"opendiscord:ticket-message","value":"1509242578111959111"},
@@ -2030,7 +2030,7 @@
         "value":{
             "id":"1509294162376392789",
             "option":"reportes-staff",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:busy","value":false},
                 {"id":"opendiscord:ticket-message","value":"1509294166608318535"},
@@ -2075,7 +2075,7 @@
         "value":{
             "id":"1509304881171792084",
             "option":"soporte",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:busy","value":false},
                 {"id":"opendiscord:ticket-message","value":"1509304882828677252"},
@@ -2120,7 +2120,7 @@
         "value":{
             "id":"1509510783770296350",
             "option":"bandas",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:busy","value":false},
                 {"id":"opendiscord:ticket-message","value":"1509510785305415720"},
@@ -2165,7 +2165,7 @@
         "value":{
             "id":"1509620722383716443",
             "option":"ropa",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:busy","value":false},
                 {"id":"opendiscord:ticket-message","value":"1509620724132741200"},
@@ -2210,7 +2210,7 @@
         "value":{
             "id":"1509625140059574462",
             "option":"sapd",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:busy","value":false},
                 {"id":"opendiscord:ticket-message","value":"1509625141871771689"},
@@ -2255,7 +2255,7 @@
         "value":{
             "id":"1509636521689612388",
             "option":"bugs",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:busy","value":false},
                 {"id":"opendiscord:ticket-message","value":"1509636523736305907"},
@@ -2300,7 +2300,7 @@
         "value":{
             "id":"1509731829756989470",
             "option":"reclamaciones",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:busy","value":false},
                 {"id":"opendiscord:ticket-message","value":"1509731830935457935"},
@@ -2345,7 +2345,7 @@
         "value":{
             "id":"1509949029717508166",
             "option":"cks",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:busy","value":false},
                 {"id":"opendiscord:ticket-message","value":"1509949030917079262"},
@@ -2390,7 +2390,7 @@
         "value":{
             "id":"1509979040805687577",
             "option":"tebex",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:busy","value":false},
                 {"id":"opendiscord:ticket-message","value":"1509979042173026414"},
@@ -2435,7 +2435,7 @@
         "value":{
             "id":"1510018702396096783",
             "option":"peds",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:busy","value":false},
                 {"id":"opendiscord:ticket-message","value":"1510018704295858248"},
@@ -2480,7 +2480,7 @@
         "value":{
             "id":"1510026694222680114",
             "option":"soporte",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:busy","value":false},
                 {"id":"opendiscord:ticket-message","value":"1510026696164642997"},
@@ -2525,7 +2525,7 @@
         "value":{
             "id":"1510046645126172684",
             "option":"soporte",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:busy","value":false},
                 {"id":"opendiscord:ticket-message","value":"1510046647563063477"},
@@ -2570,7 +2570,7 @@
         "value":{
             "id":"1510052408909234246",
             "option":"housing",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:busy","value":false},
                 {"id":"opendiscord:ticket-message","value":"1510052410884751422"},
@@ -2615,7 +2615,7 @@
         "value":{
             "id":"1510123037893071021",
             "option":"ropa",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:busy","value":false},
                 {"id":"opendiscord:ticket-message","value":"1510123039877234858"},
@@ -2660,7 +2660,7 @@
         "value":{
             "id":"1510238036829405194",
             "option":"streamers",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:busy","value":false},
                 {"id":"opendiscord:ticket-message","value":"1510238038536622090"},
@@ -2705,7 +2705,7 @@
         "value":{
             "id":"1510302324193497260",
             "option":"streamers",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:busy","value":false},
                 {"id":"opendiscord:ticket-message","value":"1510302325804236972"},
@@ -2750,7 +2750,7 @@
         "value":{
             "id":"1510308938950905967",
             "option":"invitaciones",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:busy","value":false},
                 {"id":"opendiscord:ticket-message","value":"1510308940406329557"},
@@ -2795,7 +2795,7 @@
         "value":{
             "id":"1510314069020905553",
             "option":"invitaciones",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:busy","value":false},
                 {"id":"opendiscord:ticket-message","value":"1510314070803484694"},
@@ -2840,7 +2840,7 @@
         "value":{
             "id":"1510419666655510709",
             "option":"streamers",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:busy","value":false},
                 {"id":"opendiscord:ticket-message","value":"1510419668115128571"},
@@ -2885,7 +2885,7 @@
         "value":{
             "id":"1510467048965275708",
             "option":"ropa",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:busy","value":false},
                 {"id":"opendiscord:ticket-message","value":"1510467050567499917"},
@@ -2930,7 +2930,7 @@
         "value":{
             "id":"1510695678718902303",
             "option":"ropa",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:busy","value":false},
                 {"id":"opendiscord:ticket-message","value":"1510695680539230228"},
@@ -2975,7 +2975,7 @@
         "value":{
             "id":"1510733544589365289",
             "option":"reportes",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:busy","value":false},
                 {"id":"opendiscord:ticket-message","value":"1510733546581393548"},
@@ -3020,7 +3020,7 @@
         "value":{
             "id":"1510777027903356969",
             "option":"reportes",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:busy","value":false},
                 {"id":"opendiscord:ticket-message","value":"1510777029446991963"},
@@ -3065,7 +3065,7 @@
         "value":{
             "id":"1510791934057119895",
             "option":"cks",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:busy","value":false},
                 {"id":"opendiscord:ticket-message","value":"1510791935890296874"},
@@ -3110,7 +3110,7 @@
         "value":{
             "id":"1510829120551125022",
             "option":"soporte",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:busy","value":false},
                 {"id":"opendiscord:ticket-message","value":"1510829122593755246"},
@@ -3155,7 +3155,7 @@
         "value":{
             "id":"1510891957092749332",
             "option":"reportes",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:busy","value":false},
                 {"id":"opendiscord:ticket-message","value":"1510891958472544328"},
@@ -3200,7 +3200,7 @@
         "value":{
             "id":"1510962876800831519",
             "option":"streamers",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:busy","value":false},
                 {"id":"opendiscord:ticket-message","value":"1510962878449061999"},
@@ -3245,7 +3245,7 @@
         "value":{
             "id":"1511089750180888717",
             "option":"invitaciones",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:busy","value":false},
                 {"id":"opendiscord:ticket-message","value":"1511089752240164916"},
@@ -3290,7 +3290,7 @@
         "value":{
             "id":"1511090851638411264",
             "option":"cks",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:busy","value":false},
                 {"id":"opendiscord:ticket-message","value":"1511090853102358538"},
@@ -3335,7 +3335,7 @@
         "value":{
             "id":"1511105298604097596",
             "option":"invitaciones",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:busy","value":false},
                 {"id":"opendiscord:ticket-message","value":"1511105300583809135"},
@@ -3380,7 +3380,7 @@
         "value":{
             "id":"1511132119081029806",
             "option":"invitaciones",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:busy","value":false},
                 {"id":"opendiscord:ticket-message","value":"1511132120834375793"},
@@ -3425,7 +3425,7 @@
         "value":{
             "id":"1511136130353987734",
             "option":"housing",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:busy","value":false},
                 {"id":"opendiscord:ticket-message","value":"1511136132111401143"},
@@ -3470,7 +3470,7 @@
         "value":{
             "id":"1511201093831360522",
             "option":"admin",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:busy","value":false},
                 {"id":"opendiscord:ticket-message","value":"1511201095240913068"},
@@ -3515,7 +3515,7 @@
         "value":{
             "id":"1511204236896108644",
             "option":"ropa",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:busy","value":false},
                 {"id":"opendiscord:ticket-message","value":"1511204238510919861"},
@@ -3560,7 +3560,7 @@
         "value":{
             "id":"1511224353436598422",
             "option":"soporte",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:busy","value":false},
                 {"id":"opendiscord:ticket-message","value":"1511224354913124402"},
@@ -3605,7 +3605,7 @@
         "value":{
             "id":"1511236759290118336",
             "option":"soporte",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:busy","value":false},
                 {"id":"opendiscord:ticket-message","value":"1511236760955392123"},
@@ -3650,7 +3650,7 @@
         "value":{
             "id":"1511283519194791936",
             "option":"ropa",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:busy","value":false},
                 {"id":"opendiscord:ticket-message","value":"1511283520956272670"},
@@ -3695,7 +3695,7 @@
         "value":{
             "id":"1511308687057227796",
             "option":"housing",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:busy","value":false},
                 {"id":"opendiscord:ticket-message","value":"1511308688462188665"},
@@ -3740,7 +3740,7 @@
         "value":{
             "id":"1511329751149580409",
             "option":"invitaciones",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:busy","value":false},
                 {"id":"opendiscord:ticket-message","value":"1511329752613650482"},
@@ -3785,7 +3785,7 @@
         "value":{
             "id":"1511413831035912272",
             "option":"invitaciones",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:busy","value":false},
                 {"id":"opendiscord:ticket-message","value":"1511413833330069554"},
@@ -3830,7 +3830,7 @@
         "value":{
             "id":"1511414702255640586",
             "option":"invitaciones",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:busy","value":false},
                 {"id":"opendiscord:ticket-message","value":"1511414705095315617"},
@@ -3875,7 +3875,7 @@
         "value":{
             "id":"1511437237123027126",
             "option":"invitaciones",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:busy","value":false},
                 {"id":"opendiscord:ticket-message","value":"1511437239933075486"},
@@ -3920,7 +3920,7 @@
         "value":{
             "id":"1511439586096578560",
             "option":"bugs",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:busy","value":false},
                 {"id":"opendiscord:ticket-message","value":"1511439588227551465"},
@@ -3965,7 +3965,7 @@
         "value":{
             "id":"1511453167785611357",
             "option":"bandas",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:busy","value":false},
                 {"id":"opendiscord:ticket-message","value":"1511453173750038719"},
@@ -4010,7 +4010,7 @@
         "value":{
             "id":"1511454763030417670",
             "option":"invitaciones",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:busy","value":false},
                 {"id":"opendiscord:ticket-message","value":"1511454765501124709"},
@@ -4055,7 +4055,7 @@
         "value":{
             "id":"1511516637608804450",
             "option":"bandas",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:busy","value":false},
                 {"id":"opendiscord:ticket-message","value":"1511516640708395068"},
@@ -4100,7 +4100,7 @@
         "value":{
             "id":"1511519368683454544",
             "option":"invitaciones",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:busy","value":false},
                 {"id":"opendiscord:ticket-message","value":"1511519370915090532"},
@@ -4145,7 +4145,7 @@
         "value":{
             "id":"1511521476036268122",
             "option":"soporte",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:busy","value":false},
                 {"id":"opendiscord:ticket-message","value":"1511521478066311200"},
@@ -4190,7 +4190,7 @@
         "value":{
             "id":"1511554607724236940",
             "option":"invitaciones-cc",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:busy","value":false},
                 {"id":"opendiscord:ticket-message","value":"1511554609909469194"},
@@ -4235,7 +4235,7 @@
         "value":{
             "id":"1511567520606453811",
             "option":"soporte",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:busy","value":false},
                 {"id":"opendiscord:ticket-message","value":"1511567523051733114"},
@@ -4280,7 +4280,7 @@
         "value":{
             "id":"1511697267801854043",
             "option":"invitaciones",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:busy","value":false},
                 {"id":"opendiscord:ticket-message","value":"1511697271010365511"},
@@ -4325,7 +4325,7 @@
         "value":{
             "id":"1511700848152154203",
             "option":"invitaciones",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:busy","value":false},
                 {"id":"opendiscord:ticket-message","value":"1511700850144313355"},
@@ -4370,7 +4370,7 @@
         "value":{
             "id":"1511761712976494753",
             "option":"bandas",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:busy","value":false},
                 {"id":"opendiscord:ticket-message","value":"1511761715660849294"},
@@ -4415,7 +4415,7 @@
         "value":{
             "id":"1511771866782498920",
             "option":"invitaciones",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:busy","value":false},
                 {"id":"opendiscord:ticket-message","value":"1511771870288941056"},
@@ -4460,7 +4460,7 @@
         "value":{
             "id":"1511778004815183882",
             "option":"reclamaciones",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:busy","value":false},
                 {"id":"opendiscord:ticket-message","value":"1511778006476132434"},
@@ -4505,7 +4505,7 @@
         "value":{
             "id":"1511783743101079692",
             "option":"invitaciones",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:busy","value":false},
                 {"id":"opendiscord:ticket-message","value":"1511783746389414059"},
@@ -4550,7 +4550,7 @@
         "value":{
             "id":"1511788716216025228",
             "option":"soporte",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:busy","value":false},
                 {"id":"opendiscord:ticket-message","value":"1511788718669824070"},
@@ -4595,7 +4595,7 @@
         "value":{
             "id":"1511791761289117788",
             "option":"comercio",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:busy","value":false},
                 {"id":"opendiscord:ticket-message","value":"1511791763927339130"},
@@ -4640,7 +4640,7 @@
         "value":{
             "id":"1511798394648002722",
             "option":"invitaciones",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:busy","value":false},
                 {"id":"opendiscord:ticket-message","value":"1511798397588472019"},
@@ -4685,7 +4685,7 @@
         "value":{
             "id":"1511812179588939778",
             "option":"bugs",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:busy","value":false},
                 {"id":"opendiscord:ticket-message","value":"1511812182193602570"},
@@ -4730,7 +4730,7 @@
         "value":{
             "id":"1511812311805988974",
             "option":"comercio",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:busy","value":false},
                 {"id":"opendiscord:ticket-message","value":"1511812313923981534"},
@@ -4775,7 +4775,7 @@
         "value":{
             "id":"1511824963932393544",
             "option":"invitaciones",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:busy","value":false},
                 {"id":"opendiscord:ticket-message","value":"1511824968030355476"},
@@ -4820,7 +4820,7 @@
         "value":{
             "id":"1511827948599247030",
             "option":"invitaciones",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:busy","value":false},
                 {"id":"opendiscord:ticket-message","value":"1511827952852275231"},
@@ -4865,7 +4865,7 @@
         "value":{
             "id":"1511866462271176726",
             "option":"invitaciones",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:busy","value":false},
                 {"id":"opendiscord:ticket-message","value":"1511866467497283715"},
@@ -4910,7 +4910,7 @@
         "value":{
             "id":"1511894924583370984",
             "option":"bugs",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:busy","value":false},
                 {"id":"opendiscord:ticket-message","value":"1511894926873464879"},
@@ -4955,7 +4955,7 @@
         "value":{
             "id":"1511947235225763990",
             "option":"reclamaciones",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:busy","value":false},
                 {"id":"opendiscord:ticket-message","value":"1511947237394092224"},
@@ -5000,7 +5000,7 @@
         "value":{
             "id":"1511955641370148966",
             "option":"cks",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:busy","value":false},
                 {"id":"opendiscord:ticket-message","value":"1511955644171948042"},
@@ -5045,7 +5045,7 @@
         "value":{
             "id":"1512044283203555398",
             "option":"tebex",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:busy","value":false},
                 {"id":"opendiscord:ticket-message","value":"1512044284633944225"},
@@ -5090,7 +5090,7 @@
         "value":{
             "id":"1512078926560755903",
             "option":"invitaciones",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:busy","value":false},
                 {"id":"opendiscord:ticket-message","value":"1512078930335633558"},
@@ -5135,7 +5135,7 @@
         "value":{
             "id":"1512080120163340439",
             "option":"cks",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:busy","value":false},
                 {"id":"opendiscord:ticket-message","value":"1512080122914672760"},
@@ -5180,7 +5180,7 @@
         "value":{
             "id":"1512082912793727169",
             "option":"invitaciones",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:busy","value":false},
                 {"id":"opendiscord:ticket-message","value":"1512082915910094958"},
@@ -5225,7 +5225,7 @@
         "value":{
             "id":"1512087257622904983",
             "option":"cks",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:busy","value":false},
                 {"id":"opendiscord:ticket-message","value":"1512087259460014253"},
@@ -5270,7 +5270,7 @@
         "value":{
             "id":"1512104290980724746",
             "option":"cks",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:busy","value":false},
                 {"id":"opendiscord:ticket-message","value":"1512104293136728265"},
@@ -5315,7 +5315,7 @@
         "value":{
             "id":"1512107447655989518",
             "option":"invitaciones",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:busy","value":false},
                 {"id":"opendiscord:ticket-message","value":"1512107450885603468"},
@@ -5360,7 +5360,7 @@
         "value":{
             "id":"1512113511155761272",
             "option":"streamers",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:busy","value":false},
                 {"id":"opendiscord:ticket-message","value":"1512113513206648996"},
@@ -5405,7 +5405,7 @@
         "value":{
             "id":"1512131658935963802",
             "option":"streamers",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:busy","value":false},
                 {"id":"opendiscord:ticket-message","value":"1512131662740197576"},
@@ -5450,7 +5450,7 @@
         "value":{
             "id":"1512138682600263902",
             "option":"soporte",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:busy","value":false},
                 {"id":"opendiscord:ticket-message","value":"1512138685695660264"},
@@ -5495,7 +5495,7 @@
         "value":{
             "id":"1512141757318561963",
             "option":"bugs",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:busy","value":false},
                 {"id":"opendiscord:ticket-message","value":"1512141759491211626"},
@@ -5540,7 +5540,7 @@
         "value":{
             "id":"1512144451248848949",
             "option":"bandas",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:busy","value":false},
                 {"id":"opendiscord:ticket-message","value":"1512144453668704367"},
@@ -5585,7 +5585,7 @@
         "value":{
             "id":"1512145034382803065",
             "option":"bandas",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:busy","value":false},
                 {"id":"opendiscord:ticket-message","value":"1512145036794531944"},
@@ -5630,7 +5630,7 @@
         "value":{
             "id":"1512152720541352127",
             "option":"reclamaciones",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:busy","value":false},
                 {"id":"opendiscord:ticket-message","value":"1512152728544088237"},
@@ -5675,7 +5675,7 @@
         "value":{
             "id":"1512153951435362314",
             "option":"admin",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:busy","value":false},
                 {"id":"opendiscord:ticket-message","value":"1512153953582977084"},
@@ -5720,7 +5720,7 @@
         "value":{
             "id":"1512157130843623547",
             "option":"invitaciones",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:busy","value":false},
                 {"id":"opendiscord:ticket-message","value":"1512157134693859521"},
@@ -5765,7 +5765,7 @@
         "value":{
             "id":"1512161985448382658",
             "option":"soporte",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:busy","value":false},
                 {"id":"opendiscord:ticket-message","value":"1512161989151952937"},
@@ -5810,7 +5810,7 @@
         "value":{
             "id":"1512165352736428042",
             "option":"feedback",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:busy","value":false},
                 {"id":"opendiscord:ticket-message","value":"1512165355056005130"},
@@ -5855,7 +5855,7 @@
         "value":{
             "id":"1512171287487844394",
             "option":"invitaciones",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:busy","value":false},
                 {"id":"opendiscord:ticket-message","value":"1512171292357300274"},
@@ -5900,7 +5900,7 @@
         "value":{
             "id":"1512183228491104440",
             "option":"cks",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:busy","value":false},
                 {"id":"opendiscord:ticket-message","value":"1512183231061954731"},
@@ -5945,7 +5945,7 @@
         "value":{
             "id":"1512193254261657871",
             "option":"reclamaciones",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:busy","value":false},
                 {"id":"opendiscord:ticket-message","value":"1512193256216068126"},
@@ -5990,7 +5990,7 @@
         "value":{
             "id":"1512201405828567102",
             "option":"invitaciones",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:busy","value":false},
                 {"id":"opendiscord:ticket-message","value":"1512201409037074545"},
@@ -6035,7 +6035,7 @@
         "value":{
             "id":"1512214292525744208",
             "option":"cks",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:busy","value":false},
                 {"id":"opendiscord:ticket-message","value":"1512214294647935096"},
@@ -6080,7 +6080,7 @@
         "value":{
             "id":"1512215335439306784",
             "option":"reportes",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:busy","value":false},
                 {"id":"opendiscord:ticket-message","value":"1512215338073198784"},
@@ -6125,7 +6125,7 @@
         "value":{
             "id":"1512220767176102068",
             "option":"invitaciones",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:busy","value":false},
                 {"id":"opendiscord:ticket-message","value":"1512220769734623262"},
@@ -6170,7 +6170,7 @@
         "value":{
             "id":"1512224352853033250",
             "option":"cks",
-            "version":"v4.1.2",
+            "version":"v4.2.1",
             "data":[
                 {"id":"opendiscord:busy","value":false},
                 {"id":"opendiscord:ticket-message","value":"1512224355898232864"},
