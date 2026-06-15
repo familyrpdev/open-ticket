@@ -149,7 +149,12 @@
         },
 
         // [NUEVO 4.2]
-        "claimedCategories": []
+        "claimedCategories": [
+            {
+                "user": "654326471363657748",
+                "category": "1516060794893111326"
+            }
+        ]
     },
 
     // [REORG 4.2] antes: system.permissions
@@ -160,8 +165,8 @@
         "close": "everyone",
         "delete": "admin",
         "reopen": "admin",
-        "claim": "none", // [IGUAL fmly]
-        "unclaim": "none", // [IGUAL fmly]
+        "claim": "admin", // [IGUAL fmly]
+        "unclaim": "admin", // [IGUAL fmly]
         "pin": "admin",
         "unpin": "admin",
         "move": "admin",
