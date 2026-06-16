@@ -1,0 +1,25 @@
+[
+	{
+		"category": "reclamaciones",
+		"key": "1516581628007284778",
+		"value": {
+			"optionId": "reclamaciones",
+			"ticketId": "1516581628007284778",
+			"date": "2026-06-16",
+			"priority": "high",
+			"problem": "El usuario transfirió 20,000 unidades de dinero del juego a un ID de jugador incorrecto (8088 en lugar de 8078) debido a un error de escucha. Solicitó la devolución del dinero.",
+			"solution": "Se informó al usuario que, al tratarse de un error dentro del juego (IC), no se podía realizar una devolución. Se le aconsejó que buscara una solución con la persona a la que transfirió el dinero dentro del juego.",
+			"notes": "Prioridad alta. El problema fue un error del usuario al escuchar un ID de jugador, resultando en una transferencia de dinero a la persona equivocada. La resolución fue que el soporte no interviene en errores IC.",
+			"keywords": [
+				"reclamación",
+				"transferencia",
+				"dinero",
+				"error",
+				"IC",
+				"soporte",
+				"devolución"
+			],
+			"transcriptUrl": "https://t.dj-dj.be/v2/2026/6/16/314300e9698e7001"
+		}
+	}
+]
